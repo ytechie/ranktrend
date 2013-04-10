@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+	<class name="Rt.Framework.Components.SearchEngine, Rt.Framework" table="SearchEngines">
+		<id name="Id">
+			<generator class="native" />
+		</id>
+		<property name="Name" />
+	</class>
+</hibernate-mapping>

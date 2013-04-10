@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+	<class name="Rt.Framework.Components.EmailFilter, Rt.Framework" table="rt_EmailFilters">
+		<id name="Name">
+			<generator class="assigned" />
+		</id>
+		<property name="DisplayName" />
+		<property name="Description" />
+	</class>
+</hibernate-mapping>

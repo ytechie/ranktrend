@@ -1,0 +1,48 @@
+﻿/**********************************
+	Edit EmailTemplates Page
+**********************************/
+.EmailTemplateEditor
+{
+	margin-left: auto;
+	margin-right: auto;
+}
+.EmailTemplateEditor_Subject
+{
+	width: 250px;
+}
+.EmailTemplateEditor_MessageHeader
+{
+	width: 500px;
+}
+.EmailTemplateEditor_Message
+{
+	height: 250px;
+	width: 500px;
+}
+.EmailTemplateEditor_SupportedTokens td
+{
+	padding-left: 5px;
+	padding-right: 5px;
+	width: 33%
+}
+.EmailTemplateEditor_TokenExample img
+{
+	height: 30px;
+}
+/**********************************
+	Send Email Page
+**********************************/
+.SendEmail_MessageBody
+{
+	border-top: solid 1px silver;
+	border-left: solid 1px silver;
+	border-right: solid 2px black;
+	border-bottom: solid 2px black;
+	height: 625px;
+	overflow: scroll;
+	width: 500px;
+}
+.SendEmail_MessageBodyMessage
+{
+	width: 500px;
+}

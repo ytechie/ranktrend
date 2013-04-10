@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+	<class name="Rt.Framework.Components.DatasourceSubType, Rt.Framework" table="DatasourceSubTypes">
+		<id name="Id">
+			<generator class="native" />
+		</id>
+		<many-to-one name="DatasourceType" class="Rt.Framework.Components.DatasourceType, Rt.Framework" column="DatasourceTypeId" />
+		<property name="Name" />
+	</class>
+</hibernate-mapping>

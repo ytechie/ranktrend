@@ -1,0 +1,166 @@
+<html> <head> <style type="text/css"><!--
+
+  .caption {
+    color: #000;
+    font-family: arial, sans-serif;
+    font-weight: bold;
+    font-size: 83%;
+  }
+
+  body, td, th, div, table, p, span, li {
+    font-family: arial, verdana, helvetica, lucida, sans-serif;
+  }
+  body {
+    color: black;
+    background-color: white;
+    margin-top: 2px;
+  }
+  form {
+    margin: 0px;
+    padding: 0px;
+  }
+  a:link {
+    color: #0000cc;
+  }
+  a:visited {
+    color: #551a8b;
+  }
+  a:active {
+    color: #ff0000;
+  }
+  a.navbutton {
+    padding: 5px;
+    border: 1px solid #ddad08;
+    background-color: #f7ebc6;
+  }
+  table table.layout, table table.layout td, table table.layout tr {
+    border-left-width: 0px;
+    border-right-width: 0px;
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+  }
+  .footer {
+    color: #666666;
+  }
+  textarea:focus, input:focus {
+    background-color: #ffffee;
+  }
+  .errorbox-good {
+    display: inline;
+  }
+  div#main {
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+  //--> </style> <script type="text/javascript" language="JavaScript"><!--
+
+  var aw_ff_ok = false;
+  function aw_ff() {
+    if (aw_ff_ok) {
+      return;
+    }
+    var row = document.getElementById("ga-fprow");
+    // Change the width of the Email and Password inputs
+    var oem = document.getElementById("Email");
+    if (oem) { 
+      oem.style.width = 116;
+      document.getElementById("Passwd").style.width = 116;
+      aw_ff_ok = true;
+    }
+    var captcha = document.getElementById("logincaptcha");
+    if (captcha) {
+      captcha.size = 15;
+    }
+    if (row) {
+      var tableCell = row.getElementsByTagName("td").item(0);
+      tableCell.setAttribute("colSpan", "1");
+      tableCell.setAttribute("height", "17.0em");
+      tableCell.setAttribute("align", "left");
+      var cellLeft = row.insertCell(0);
+    }
+  }
+  //--> </script>
+</head>
+<body dir="ltr" onload="gaia_setFocus(); aw_ff();" style="padding: 0px; margin:0px;"> 
+<span class="caption">Existing Customer Login</span>
+                          <script type="text/javascript"><!--
+  
+
+function gaia_onLoginSubmit() {
+
+  if (window.gaiacb_onLoginSubmit) {
+    return gaiacb_onLoginSubmit();
+  } else {
+    return true;
+  }
+
+}
+
+
+function gaia_setFocus() {
+  var f = null;
+  if (document.getElementById) { 
+    f = document.getElementById("gaia_loginform");
+  } else if (window.gaia_loginform) { 
+    f = window.gaia_loginform;
+  } 
+  if (f) {
+    if (f.Email.value == null || f.Email.value == "") { 
+      f.Email.focus();
+    } else {
+      f.Passwd.focus();
+    } 
+  }
+}
+
+//--> </script> <style type="text/css"><!--
+
+      div.errormsg { color: red; font-size: smaller; font-family:arial,sans-serif; }
+      font.errormsg { color: red; font-size: smaller; font-family:arial,sans-serif; }  
+  --> </style>  <style type="text/css"><!--
+
+.gaia.le.lbl { font-family: Arial, Helvetica, sans-serif; font-size: smaller; }
+.gaia.le.fpwd { font-family: Arial, Helvetica, sans-serif; font-size: 70%; }
+.gaia.le.chusr { font-family: Arial, Helvetica, sans-serif; font-size: 70%; }
+.gaia.le.val { font-family: Arial, Helvetica, sans-serif; font-size: smaller; }
+.gaia.le.button { font-family: Arial, Helvetica, sans-serif; font-size: smaller; }
+.gaia.le.rem { font-family: Arial, Helvetica, sans-serif; font-size: smaller; }
+
+   
+  .gaia.captchahtml.desc { font-family: arial, sans-serif; font-size: smaller; } 
+  .gaia.captchahtml.cmt { font-family: arial, sans-serif; font-size: smaller; font-style: italic; }
+  
+--> </style>       <!-- ServiceLoginElements.nui=default -->  <div id="gaia_loginbox" class="body"> <form action="ServiceLoginAuth" onsubmit="return(gaia_onLoginSubmit());" id="gaia_loginform" method="post">  <input type="hidden" name="ltmpl" value="login">   <table cellpadding="1" cellspacing="0" align="center" border="0" id="gaia_table">                         <script type="text/javascript"><!--
+
+    function onPreCreateAccount() {
+    
+      return true;
+    
+    }
+
+    function onPreLogin() {
+    
+      
+      if (window["onlogin"] != null) {
+        return onlogin();
+      } else {
+        return true;
+      }
+    
+    }
+  //--> </script>   <tr> <td colspan="2" align="center"> <div class="errorbox-good">  </div> </td> </tr> <tr> <td nowrap> <div align="right"> <span class="gaia le lbl"> Email: </span> </div> </td> <td>         <input type="hidden" name="continue" value="https://www.google.com/adsense/gaiaauth">    <input type="hidden" name="followup" value="https://www.google.com/adsense/gaiaauth">    <input type="hidden" name="service" value="adsense">      <input type="hidden" name="nui" value="3">          <input type="hidden" name="ifr" value="true">            <input type="hidden" name="rm" value="hide">            <input type="hidden" name="ltmpl" value="login">      <input type="hidden" name="hl" value="en-US">    <input type="hidden" name="alwf" value="true">                                                                <input type="text" name="Email" value="" class="gaia le val" id="Email" size="18">  </td> </tr> <tr> <td></td> <td align="left"> <div class="errormsg" id="errormsg_0_Email">Required field cannot be left blank</div> </td> </tr> <tr> <td align="right"> <span class="gaia le lbl"> Password: </span> </td> <td> <input type="password" name="Passwd" value="" class="gaia le val" id="Passwd" size="18"> </td> </tr> <tr> <td></td> <td align="left"> <div class="errormsg" id="errormsg_0_Passwd">We cannot log you into your account at this time. Please try again later.</div> </td> </tr>                       <!-- LoginElementsSubmitButton.nui=default -->    <tr> <td></td> <td align="left"> <input type="submit" name="null" value="Sign in" class="gaia le button"> </td> </tr>      <tr id="ga-fprow"> <td colspan="2" align="center" height="33.0" valign="bottom" nowrap class="gaia le fpwd"> <a href="http://www.google.com/support/accounts/bin/answer.py?answer=48598&amp;fpUrl=https%3A%2F%2Fwww.google.com%2Faccounts%2FForgotPasswd%3FfpOnly%3D1%26continue%3Dhttps%253A%252F%252Fwww.google.com%252Fadsense%252Fgaiaauth%26followup%3Dhttps%253A%252F%252Fwww.google.com%252Fadsense%252Fgaiaauth%26service%3Dadsense%26hl%3Den-US" target="_top"> I cannot access my account </a> </td> </tr>        </table> </form> </div>     
+<script type="text/javascript" language="JavaScript"><!--
+  aw_ff();
+//--> </script> <style type="text/css"><!--
+
+div.errormsg { color: red; font-size: 70%; font-family:arial,sans-serif; }
+font.errormsg { color: red; font-size: 70%; font-family:arial,sans-serif; }  
+.gaia.le.fpwd { font-family: Arial, Helvetica, sans-serif; font-size: 60%; } 
+//--> </style>
+
+<iframe src="https://www.google.com/adsense/loginfooter?hl=en" 
+        style="width: 19.5em; height:500;" align="top"
+        marginwidth="0" marginheight="0" scrolling="no" frameborder="0"
+        id="awgpromo" name="awgpromo" > </iframe>
+</body>
+</html>

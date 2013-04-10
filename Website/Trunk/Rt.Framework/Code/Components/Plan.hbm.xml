@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+	<class name="Rt.Framework.Components.Plan, Rt.Framework" table="rt_Plans">
+		<id name="Id">
+			<generator class="native" />
+		</id>
+		<property name="FriendlyName" />
+		<property name="PlotRank" />
+		<property name="RankCheckRate" />
+		<property name="Urls" />
+		<property name="UnlimitedSubPageRank" />
+		<property name="AdFree" />
+		<property name="GlobalEvents" />
+		<property name="ImportExport" />
+		<property name="SavedReports" />
+		<property name="CustomEvents" />
+		<property name="DailyEmailReports" />
+		<property name="MonthlyPrice" />
+		<property name="YearlyPrice" />
+	</class>
+</hibernate-mapping>

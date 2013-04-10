@@ -1,0 +1,40 @@
+﻿<?xml version='1.0'?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2003/01/wi'>
+
+	<!--
+	
+	This file builds a simple, silent install for testing and deploying this
+	service alone.  It requires that the "Components.wxs" is included during
+	the installer generation.  The components file is also used to build a full
+	blown installer for all of the services.
+	
+	-->
+	
+  <Product Id='87907992-16d1-11db-ac5d-0800200c9a66' Name='RankTrend.com Email Engine Installer' Language='1033' Version='1.0.0.0'
+           Manufacturer='Young Technologies LLC'>
+
+    <Package Id='????????-????-????-????-????????????' Description='RankTrend.com Email Engine'
+             Manufacturer='Young Technologies LLC'
+             InstallerVersion='200' Compressed='yes'/>
+    <Media Id='1' Cabinet='Main.cab' EmbedCab='yes' />
+
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder" Name="PFiles">
+				<Directory Id="RtPrograms" Name="RankTrnd" LongName="RankTrend">
+					<Directory Id="ServicesInstallDir" Name="Services">
+					</Directory>
+				</Directory>
+			</Directory>
+		</Directory>
+
+		<!-- Feature -->
+		<Feature Id='Feat_EmailEngine'
+							Description='The email engine which sends out queued emails and creates scheduled emails that need to be sent.'
+             Title='Email Engine' Level='1' ConfigurableDirectory='EMAILENGSERVICEDIR' TypicalDefault='install'
+             Absent='disallow' AllowAdvertise='no'>
+			
+			<ComponentGroupRef Id="groupEmailEngineComponents" />
+		</Feature>
+
+  </Product>
+</Wix>

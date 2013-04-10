@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+	<class name="Rt.Framework.Components.CustomReportComponent, Rt.Framework" table="rt_CustomReportComponents">
+		<id name="Id">
+			<generator class="native" />
+		</id>
+		<many-to-one name="ComponentType" column="ComponentTypeId" />
+		<many-to-one name="ConfiguredDatasource" column="ConfiguredDatasourceId" />
+		<many-to-one name="DatasourceSubType" column="ConfiguredDatasourceSubTypeId" />
+		<many-to-one name="SavedReport" column="SavedReportId" />
+		<many-to-one name="Url" column="SiteId" />
+		<many-to-one name="CustomReport" column="CustomReportId" />
+	</class>
+</hibernate-mapping>

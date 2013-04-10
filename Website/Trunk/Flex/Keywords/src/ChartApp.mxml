@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical"
+	backgroundColor="white" initialize="configSvc.send();" paddingLeft="3" paddingRight="3" paddingBottom="3" paddingTop="3">
+	
+	<!-- This will always be in the current directory -->
+	<mx:HTTPService id="configSvc" result="configSvc_result()" fault="configSvc_fault(event)" resultFormat="e4x"
+		url="config.xml" />
+		
+	<mx:HTTPService id="dataSvc" result="dataSvc_result()" resultFormat="e4x"
+		url="QueryData.aspx" />
+	<mx:HTTPService id="datasourcesSvc" resultFormat="e4x"
+		url="QueryDatasources.aspx?urlid={_siteId}" />
+		
+	<mx:Style>
+        @font-face {
+            src:url("file://../Embed/verdana.ttf");
+            font-family: verdana;
+        }
+    </mx:Style>
+		
+	<mx:Fade id="fadeOut" alphaFrom="1.0" alphaTo="0.0" duration="500" />
+	<mx:Fade id="fadeIn" alphaFrom="0.0" alphaTo="1.0" duration="1000" />
+		
+	<mx:HBox width="100%" horizontalAlign="center">
+		<mx:HBox paddingTop="4" paddingRight="4" paddingLeft="4" paddingBottom="4" cornerRadius="5" borderStyle="solid" borderThickness="0" backgroundColor="#ECECEC">
+			<mx:DateField id="dpStart" change="_start = dpStart.selectedDate;refreshChart();" showEffect="fadeIn" hideEffect="fadeOut" fontFamily="verdana" selectedDate="{_start}" />
+			<mx:Button fontWeight="bold" label="Scroll Left" toolTip="Scroll left" click="scrollLeft()" icon="@Embed(source='file://../Embed/ScrollLeft.gif')"/>
+			<mx:ComboBox id="cboRanges" dataProvider="{acTimeRanges}" selectedIndex="1" creationComplete="cboRanges_change()" change="cboRanges_change()" />
+			<mx:Button toolTip="Scroll right" click="scrollRight()"  icon="@Embed(source='file://../Embed/ScrollRight.gif')" label="Scroll Right"/>
+			<mx:DateField id="dpEnd" showToday="true" change="_end = dpEnd.selectedDate;refreshChart();" showEffect="fadeIn" hideEffect="fadeOut" fontFamily="verdana" selectedDate="{_end}" />
+		</mx:HBox>
+	</mx:HBox>
+	<mx:VBox width="100%" verticalAlign="middle" backgroundColor="#FFFFFF" cornerRadius="8" borderStyle="solid" borderThickness="0" height="284">
+		<mx:LineChart id="lineChart" showDataTips="true" width="100%" height="100%" seriesFilters="[]" showEffect="fadeIn" hideEffect="fadeOut"
+			fontFamily="verdana" dataTipFunction="chartDataTipFunction">
+			<mx:horizontalAxis>
+				<mx:DateTimeAxis id="xAxis" />		
+			</mx:horizontalAxis>
+			<mx:verticalAxis>
+				<mx:LinearAxis id="yAxis" />
+			</mx:verticalAxis>
+		</mx:LineChart>
+		<mx:Legend dataProvider="{lineChart}" direction="horizontal" fontFamily="verdana" />
+	</mx:VBox>
+	<mx:TabNavigator width="100%" height="50%">
+		<mx:VBox label="Data" width="100%" height="100%">
+			<mx:icon>@Embed(source='file://../Embed/Data.gif')</mx:icon>
+			<mx:DataGrid id="dgDatasources" width="100%" height="100%" dataProvider="{lcDatasources}">
+				<mx:columns>
+					<mx:DataGridColumn width="20" textAlign="center">
+						<mx:itemRenderer>
+							<mx:Component>
+								<mx:CheckBox click="parentDocument.datasourcePlotCheck(event)" selected="{data.@plot=='true'}" />
+							</mx:Component>						
+						</mx:itemRenderer>
+					</mx:DataGridColumn>
+					<!--<mx:DataGridColumn headerText="URL" dataField="@url" />-->
+					<!--<mx:DataGridColumn headerText="Id" dataField="@Id" />-->
+					<!--<mx:DataGridColumn headerText="Trend Line" width="50" textAlign="center" wordWrap="true">
+						<mx:itemRenderer>
+							<mx:Component>
+								<mx:CheckBox selected="{data.trendLine}" />
+							</mx:Component>						
+						</mx:itemRenderer>
+					</mx:DataGridColumn>-->
+					<mx:DataGridColumn headerText="Name" dataField="@Name" />
+					
+				</mx:columns>
+			</mx:DataGrid>
+		</mx:VBox>
+		<mx:Canvas label="Events" width="100%" height="100%">
+			<mx:icon>@Embed(source='file://../Embed/Events.gif')</mx:icon>
+		</mx:Canvas>
+	</mx:TabNavigator>
+	
+	<mx:ArrayCollection id="acTimeRanges">
+		<mx:Object label="Custom" start="{dpStart.selectedDate}" end="{dpEnd.selectedDate}" />
+		<mx:Object label="Last 3 Months" start="{new Date((new Date()).fullYear, (new Date()).month-3, (new Date()).date)}" end="{new Date()}" />
+		<mx:Object label="Last 6 Months" start="{new Date((new Date()).fullYear, (new Date()).month-6, (new Date()).date)}" end="{new Date()}" />
+		<mx:Object label="Last Year" start="{new Date((new Date()).fullYear-1, (new Date()).month, (new Date()).date)}" end="{new Date()}" />
+	</mx:ArrayCollection>
+	
+	<mx:XMLListCollection id="lcDatasources" source="{datasourcesSvc.lastResult.datasource}" />
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.ToolTip;
+			import mx.controls.CheckBox;
+			import mx.charts.chartClasses.Series;
+			import mx.charts.chartClasses.NumericAxis;
+			import mx.containers.Canvas;
+			import mx.charts.series.LineSeries;
+			import mx.formatters.*;
+			import mx.controls.Alert;
+			import mx.rpc.events.*;
+			import mx.events.ToolTipEvent;
+			import mx.charts.series.items.LineSeriesItem;
+            import mx.charts.HitData;
+
+			
+			[Bindable]
+			private var _start:Date;
+			[Bindable]
+			private var _end:Date;
+			
+			private var _displayedStart:Date;
+			private var _displayedEnd:Date;
+			
+			//private var _loadingDatasourceName:String;
+			private var _loadingDatasourceIds:Array;
+			
+			//Provides quick access to a series keyed off the datasource ID
+			private var _seriesMap:Object = new Object();
+			
+			//The ID of the site to report on, as found in the flash vars
+			[Bindable]
+			private var _siteId:int;
+			
+			private function loadFlashVars():void
+			{
+				_siteId = int(Application.application.parameters["siteId"]);
+			}
+		
+			private function getCurrentDatasourceIds():Array
+			{
+				var datasourceIds:Array = new Array();
+				
+				for(var key:Object in _seriesMap)
+					if(_seriesMap[key] != null)
+						datasourceIds.push(key);
+					
+				return datasourceIds;
+			}
+			
+			private function loadDatasources(datasourceIds:Array):void
+			{				
+				var params:Object = new Object();
+				
+				var df:DateFormatter = new DateFormatter;
+				df.formatString="DD-MMM-YYYY";
+				
+				params["start"] = df.format(_start);
+				params["end"] = df.format(_end);
+				params["datasourceids"] = datasourceIds.join(",");
+					
+				_loadingDatasourceIds = getCurrentDatasourceIds();
+				
+				trace("Sending request for datasources");
+				trace("Parameters: " + params["start"] + " " + params["end"] + " " + params["datasourceids"]);
+				
+				dataSvc.send(params);
+			}
+
+			private function cboRanges_change():void
+			{
+				if(cboRanges.selectedIndex > 0)
+				{
+					timeSelectorsVisible = false;
+					
+					_start = cboRanges.selectedItem.start;
+					_end = cboRanges.selectedItem.end;
+				}
+				else
+				{
+					timeSelectorsVisible = true;
+				}
+				
+				refreshChart();
+			}
+			
+			private function set timeSelectorsVisible(visible:Boolean):void
+			{
+				dpStart.visible = dpEnd.visible = dpStart.includeInLayout = dpEnd.includeInLayout = visible;
+			}
+			
+			private function scrollLeft():void
+			{
+				var diff:Number;
+				var startVal:Number;
+				var endVal:Number;
+				
+				cboRanges.selectedIndex = 0;
+				cboRanges_change();
+				
+				startVal = _start.valueOf();
+				endVal = _end.valueOf();
+				
+				diff = endVal - startVal;
+				
+				_start = new Date(startVal - (diff / 2.0));
+				_end = new Date(endVal - (diff / 2.0));
+				
+				refreshChart();
+			}
+			
+			private function scrollRight():void
+			{
+				var diff:Number;
+				var startVal:Number;
+				var endVal:Number;
+				
+				cboRanges.selectedIndex = 0;
+				cboRanges_change();
+				
+				startVal = _start.valueOf();
+				endVal = _end.valueOf();
+				
+				diff = endVal - startVal;
+				
+				_start = new Date(startVal + (diff / 2.0));
+				_end = new Date(endVal + (diff / 2.0));
+				
+				refreshChart();
+			}
+			
+			public function datasourcePlotCheck(event:Event):void
+			{
+				var datasource:XML;
+				var source:CheckBox = event.currentTarget as CheckBox;
+				
+				datasource = source.data as XML;
+				datasource.@plot = source.selected;
+				
+				var datasourceId:int = datasource.@Id;
+				
+				if(source.selected)
+				{
+					//Only load it if it's not already loaded
+					if(getCurrentDatasourceIds().indexOf(datasourceId) == -1)
+						loadDatasources([datasourceId]);
+				}
+				else
+				{
+					//Remove the series
+		
+					var seriesToRemove:LineSeries;
+					
+					seriesToRemove = _seriesMap[datasourceId];
+					if(seriesToRemove != null)
+					{
+						var newSeriesArr:Array;
+						
+						//Create a new series array to bind
+						newSeriesArr = new Array();
+						for(var j:int = 0; j < lineChart.series.length; j++)
+						{
+							//Copy all series except the one being removed
+							if(lineChart.series[j] != seriesToRemove)
+								newSeriesArr.push(lineChart.series[j]);
+						}
+						
+						lineChart.series = newSeriesArr;
+					}
+					
+					//We no longer need a reference to the removed series
+					_seriesMap[datasourceId] = null;
+				}
+			}
+			
+			private function getDatasourceName(datasourceId:int):String
+			{
+				for each(var datasource:XML in lcDatasources)
+				{
+					if(datasource.@Id == datasourceId)
+						return datasource.@Name;
+				}
+				 
+				return "unknown";
+			}
+			
+			//Updates all of the data on the chart. Only use this
+			//when all the data needs to be reloaded
+			private function refreshChart():void
+			{
+				if(_displayedStart == _start && _displayedEnd == _end)
+					return; //nothing to do
+				
+				_displayedStart = _start;
+				_displayedEnd = _end;
+				
+				
+				lineChart.visible = false;
+				
+				var datasourceIds:Array = getCurrentDatasourceIds();
+				
+				if(datasourceIds.length == 0)
+					return;
+					
+				loadDatasources(datasourceIds);
+			}
+			
+			private function dataSvc_result():void
+			{
+				var resultData:XML;
+				
+				trace("Received data for datasource(s)");
+				
+				resultData = dataSvc.lastResult as XML;
+				var xmlResultList:Object = resultData.data;
+				
+				for each(var datasource:XML in xmlResultList)
+				{
+					var dataString:String;
+					var ac:ArrayCollection;
+					
+					dataString = datasource.points;
+					ac = parseDataList(dataString);
+					addSeries(datasource.@datasourceKey, ac);
+				}
+				
+				fadeOut.stop();
+				lineChart.visible = true;
+			}
+			
+			private function addSeries(datasourceId:int, ac:ArrayCollection):void
+			{				
+				var newSeries:LineSeries;
+				var newSeriesArr:Array;
+				var currSeries:Series; //Use for the 'for' loops
+				
+				newSeries = new LineSeries();
+				newSeries.xField = "x";
+				newSeries.yField = "y";
+				newSeries.displayName = getDatasourceName(datasourceId);
+				newSeries.dataProvider = ac;
+				newSeries.width = 2;
+				
+				//If the series exists, remove the old one
+				if(_seriesMap[datasourceId] != null)			
+				{
+					//This is an existing datasource that we should replace
+									
+					var existingSeries:Series = _seriesMap[datasourceId];
+					
+					newSeriesArr = new Array();
+					for each(currSeries in lineChart.series)
+					{
+						if(currSeries != existingSeries)
+							newSeriesArr.push(currSeries);
+					}
+				}
+				else
+				{				
+					newSeriesArr = new Array();
+					for each(currSeries in lineChart.series)
+						newSeriesArr.push(currSeries);
+				}
+				
+				newSeriesArr.push(newSeries);
+				_seriesMap[datasourceId] = newSeries;
+				
+				//Now display the series array we created
+				lineChart.series = newSeriesArr;
+			}
+			
+			private function hasSeries(checkSeries:Series):Boolean
+			{
+				for each(var currSeries:Series in lineChart.series)
+					if(currSeries == checkSeries)
+						return true;
+						
+				return false;
+			}
+			
+			private function parseDataList(dataString:String):ArrayCollection
+			{
+				if(dataString == null || dataString.length == 0)
+					return new ArrayCollection();
+				
+				var parts:Array;
+				var points:ArrayCollection;
+				
+				parts = dataString.split("|");
+				points = new ArrayCollection();
+				for each(var currPart:String in parts)
+				{
+					var pointParts:Array;
+					var newPoint:Object;
+					
+					pointParts = currPart.split(",");
+					newPoint = new Object();
+					newPoint.x = new Date(parseInt(pointParts[0]));
+					newPoint.y =  parseInt(pointParts[1]);
+					
+					points.addItem(newPoint);
+				}
+				
+				return points;
+			}
+			
+			private function configSvc_result():void
+			{
+				loadFlashVars();
+				
+				var resultData:XML = configSvc.lastResult as XML;
+				var servicePath:String = resultData.servicePath;
+				
+				dataSvc.url = servicePath + dataSvc.url;
+				datasourcesSvc.url = servicePath + datasourcesSvc.url;
+				
+				datasourcesSvc.send();
+			}
+			
+			private function configSvc_fault(event:FaultEvent):void
+			{
+				Alert.show("Error loading configuration data file" + event.message);
+			}
+			
+			private function chartDataTipFunction(item:HitData):String
+			{
+                var lsi:LineSeriesItem = item.chartItem as LineSeriesItem;
+				var formatter:DateFormatter = new DateFormatter();
+				
+				formatter.formatString = "M/D/Y";
+
+                return "<b>" + (item.element as LineSeries).displayName + "</b><br />" +
+                        "Date: <b>" + formatter.format(lsi.xValue) + "</b><br />" +
+                        "Value: <b>" + lsi.yValue + "</b>";
+            }
+ 
+		]]>
+	</mx:Script>
+	
+</mx:Application>

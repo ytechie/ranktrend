@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+	<class name="Rt.Framework.Components.PayPal.Subscription, Rt.Framework" table="rt_Subscriptions">
+		<id name="Id">
+			<generator class="assigned" />
+		</id>
+		<property name="UserId" />
+		<many-to-one name="Plan" column="PlanId" />
+		<property name="StartTime" />
+		<property name="EndTime" />
+		<property name="PayPalInterval" />
+		<property name="Cost" />
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,6 @@
+Snippet installation instructions for Visual Studio 2005
+- Go to Tools->Code Snippets Manager
+- Click "Import..."
+- Navigate to the snippets folder and select them all, click "OK"
+- Choose a location to save them, hit "Finish"
+- Click "OK" to exit the Snippets manager

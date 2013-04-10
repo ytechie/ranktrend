@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2003/01/wi">
+	<Fragment>
+		<ComponentGroup Id="groupEmailEngineComponents">
+			<ComponentRef Id="EmailEngineExe" />
+			<ComponentRef Id="EmailEngineSupportingFiles" />
+		</ComponentGroup>
+
+		<DirectoryRef Id="ServicesInstallDir">
+			<!-- This section adds files to the DATAENGSERVICEDIR list in the main install script -->
+			<Directory Id="EMAILENGSERVICEDIR" Name="EmailEng" LongName="Email Engine">
+				
+				<Component Id="EmailEngineExe" Guid="87907990-16d1-11db-ac5d-0800200c9a66">
+					<File Id='Rt.EmailEngine.exe' Name='EmailEng.exe' LongName="Rt.EmailEngine.exe" src='Rt.EmailEngine.exe' DiskId ='1'/>
+					<ServiceInstall Id="Rt.EmailEngine.exe" Name='Rt.EmailEngine' DisplayName='RankTrend Email Engine'
+						Type='ownProcess' Interactive='yes' Start='auto' Vital='no'
+						ErrorControl='normal'/>
+					<ServiceControl Id="Rt.EmailEngine.exe" Name='Rt.EmailEngine' Start='install' Stop='both' Remove='uninstall' Wait='no'/>
+					<File Id="Rt.EmailEngine.exe.config" Name="EmailEng.cfg" LongName="Rt.EmailEngine.exe.config" src="Rt.EmailEngine.exe.config" DiskId="1" />
+				</Component>
+				
+				<Component Id="EmailEngineSupportingFiles" Guid="87907991-16d1-11db-ac5d-0800200c9a66">
+					<File Id="Rt.Framework.dll" Name="Framewrk.dll" LongName="Rt.Framework.dll" src="Rt.Framework.dll" DiskId="1" />
+					<File Id="YTech.General.dll" Name="YTGen.dll" LongName="YTech.General.dll" src="YTech.General.dll" DiskId="1" />
+					<File Id="YTech.Db.dll" Name="YTechDb.dll" LongName="YTech.Db.dll" src="YTech.Db.dll" DiskId="1" />
+					<File Id="Iesi.Collections.dll" Name="IesiColl.dll" LongName="Iesi.Collections.dll" src="Iesi.Collections.dll" DiskId="1" />
+					<File Id="NHibernate.dll" Name="NHib.dll" LongName="NHibernate.dll" src="NHibernate.dll" DiskId="1" />
+					<File Id="log4net.dll" Name="log4net.dll" LongName="log4net.dll" src="log4net.dll" DiskId="1" />
+					<File Id="Logging.config" Name="Logging.cfg" LongName="Logging.config" src="Logging.config" DiskId="1" />
+				</Component>
+			</Directory>
+		</DirectoryRef>
+	</Fragment>
+</Wix>

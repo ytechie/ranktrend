@@ -1,0 +1,1 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="SessionImage.aspx.cs" Inherits="Common_SessionImage" %>

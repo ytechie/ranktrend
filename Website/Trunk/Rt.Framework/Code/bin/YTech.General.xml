@@ -1,0 +1,2568 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>YTech.General</name>
+    </assembly>
+    <members>
+        <member name="T:YTech.General.Web.PayPal.IpnReturnData">
+            <summary>
+            	Provides methods to assist in handling the IPN return
+            	data from the PayPal system.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.PayPal.IpnReturnData.ParsePayPalDateTime(System.String)">
+            <summary>
+            	Converts a standard PayPal date time string into
+            	a regular .NET <see cref="T:System.DateTime"/> object
+            </summary>
+            <param name="paypalDateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="T:YTech.General.Web.Controls.ImageWriter">
+            <summary>
+            	A <see cref="T:System.Web.UI.WebControls.WebControl"/> that is used to display PNG
+            	images.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.Controls.ImageWriter.#ctor">
+            <summary>
+            	Creates a new instance of the <see cref="T:YTech.General.Web.Controls.ImageWriter"/>
+            	control.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.Controls.ImageWriter.InitForImageHandling(System.Web.UI.Page)">
+            <summary>
+            	Sets up the page so that it can handle image requests.
+            </summary>
+            <remarks>
+            	<para>
+            		This needs to be added in the Init section of your page
+            		if the page needs to handle image requests from the
+            		<see cref="T:YTech.General.Web.Controls.ImageWriter"/>.
+            	</para>
+            	<para>
+            		A call to this method is only necessary if the image control
+            		is not added to the page before the Init event.
+            	</para>
+            </remarks>
+        </member>
+        <member name="M:YTech.General.Web.Controls.ImageWriter.checkOnPage(System.Web.UI.Page)">
+            <summary>
+            	Makes sure that the control is on a page so that we have access
+            	to the intrinsic page objects (Session, request, response).
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.Controls.ImageWriter.getLoadUrl(System.Int32)">
+            <summary>
+            	Uses the current URL to derive a URL that can
+            	be used to call this page and tell it to render the image.
+            </summary>
+            <param name="imageId">
+            	The unique id of the image to display.
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.General.Web.Controls.ImageWriter.Render(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            	Renders the entire control.
+            </summary>
+            <param name="writer">
+            	The <see cref="T:System.Web.UI.HtmlTextWriter"/> to output to.
+            </param>
+        </member>
+        <member name="P:YTech.General.Web.Controls.ImageWriter.ImageBitmap">
+            <summary>
+            	Gets or sets the bitmap to display.
+            </summary>
+        </member>
+        <member name="P:YTech.General.Web.Controls.ImageWriter.AlternateText">
+            <summary>
+            	The alt text to include in the "img" tag.
+            </summary>
+            <remarks>
+            	This must be set to comply with XHTML standards.  It
+            	is also a good idea to set this because it shows up while
+            	loading the image, and while hovering.
+            </remarks>
+        </member>
+        <member name="T:YTech.General.Email.EmailValidation">
+            <summary>
+                Provides functionality to assist in validating email addresses.
+            </summary>
+        </member>
+        <member name="F:YTech.General.Email.EmailValidation.EMAIL_REGEX">
+            <summary>
+                The email expression that validates if a particular email
+                is valid or not.
+            </summary>
+        </member>
+        <member name="T:YTech.General.Drawing.ImageUtilities">
+            <summary>
+            	Methods for manipulating images.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Drawing.ImageUtilities.BitmapToBytes(System.Drawing.Bitmap,System.Drawing.Imaging.ImageFormat)">
+            <summary>
+            	Generates the bites for the specified bitmap.
+            </summary>
+            <param name="bitmap">
+            	The bitmap to convert to bytes.
+            </param>
+            <param name="imageFormat">
+            	The format the image should be stored in.
+            </param>
+            <returns>
+            	A byte array that represents the specified <see cref="T:System.Drawing.Bitmap"/> 
+            	in the specified <see cref="T:System.Drawing.Imaging.ImageFormat"/>.
+            </returns>
+        </member>
+        <member name="M:YTech.General.Drawing.ImageUtilities.WritePngImage(System.Web.HttpResponse,System.Byte[])">
+            <summary>
+            	Writes the bytes for the PNG image to the specified <see cref="T:System.Web.HttpResponse"/>
+            </summary>
+            <param name="response">
+            	The <see cref="T:System.Web.HttpResponse"/> stream to write to.
+            </param>
+            <param name="bytes">
+            	The <see cref="T:System.Byte"/> array to write.
+            </param>
+        </member>
+        <member name="T:YTech.General.Web.WebUtilities">
+            <summary>
+            Contains handy functions for web requests, navigation, etc.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.WebUtilities.GetProperUrl(System.String)">
+            <summary>
+            Accepts a URL and returns the URL with http:// appended
+            on the beginning if no protocol was supplied.
+            </summary>
+            <param name="url">The URL to expand upon.</param>
+            <returns>The expanded URL.</returns>
+        </member>
+        <member name="M:YTech.General.Web.WebUtilities.ReadWebPage(System.String)">
+            <summary>
+            Reads and returns the HTML of a web page.
+            </summary>
+            <param name="url">The URL of the web page to read.</param>
+            <returns>The HTML of the requested web page.</returns>
+            <remarks>Calls ReadWebPage(url, true);</remarks>
+        </member>
+        <member name="M:YTech.General.Web.WebUtilities.ReadWebPage(System.String,System.Boolean)">
+            <summary>
+            Reads and returns the HTML of a web page.
+            </summary>
+            <param name="url">The URL of the web page to read.</param>
+            <param name="throwExceptions">
+            If false, UriFormatException and WebExceptions will be caught and
+            null will be returned.  If true and one of these exceptions is thrown,
+            it will not be handled in this method.
+            </param>
+            <returns>The HTML of the requested web page.</returns>
+        </member>
+        <member name="T:YTech.General.Web.Sitemaps.SiteMapUtilities">
+            <summary>
+            	Provides utility methods to help working with
+            	sitemap nodes.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.Sitemaps.SiteMapUtilities.IsMainMenuItem(System.Web.SiteMapNode)">
+            <summary>
+            	Determines if the <see cref="T:System.Web.SiteMapNode"/> is a top level node that would
+            	be considered a main menu item.
+            </summary>
+            <param name="testNode"></param>
+            <returns></returns>
+        </member>
+        <member name="T:YTech.General.General.Reflection.EmbeddedFileUtilities">
+            <summary>
+            	Utilities for working with files that are embedded
+            	in .NET assemblies.
+            </summary>
+        </member>
+        <member name="M:YTech.General.General.Reflection.EmbeddedFileUtilities.ReadEmbeddedTextFile(System.Reflection.Assembly,System.String,System.String)">
+            <summary>
+            	Reads an embedded text file from the specified assembly.
+            </summary>
+            <param name="asm"></param>
+            <param name="namespaceName"></param>
+            <param name="fileName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:YTech.General.Web.RedirectUtilities">
+            <summary>
+            	Provides utilities to assist with web page redirection.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.RedirectUtilities.EnforceWwwPrefix(System.String)">
+            <summary>
+            	Redirects page requests that don't have the WWW and
+            	adds the WWW.
+            </summary>
+            <param name="nonWwwUrl">
+            	The full URL, including "http://" that does NOT have the WWW
+            	prefix.
+            </param>
+        </member>
+        <member name="M:YTech.General.Web.RedirectUtilities.Redirect301(System.Web.HttpResponse,System.String)">
+            <summary>
+            	Performs a 301 redirect on the specified <see cref="T:System.Web.HttpResponse"/>.
+            </summary>
+            <param name="response">
+            	The <see cref="T:System.Web.HttpResponse"/> stream to redirect.
+            </param>
+            <param name="destination">
+            	The URL to redirect to.
+            </param>
+        </member>
+        <member name="M:YTech.General.Web.RedirectUtilities.GetRedirectUrlWithParams(System.String,System.String)">
+            <summary>
+            	Gets an alternate URL that has the same parameters as the specified URL.  This
+            	is usually used when a page moves, but the old page should still function
+            	transparently.
+            </summary>
+            <param name="startRawUrl"></param>
+            <param name="destinationBase"></param>
+            <returns></returns>
+        </member>
+        <member name="T:YTech.General.Web.Modules.WhitespaceModule">
+            <summary>
+            Removes whitespace from the webpage.
+            </summary>
+        </member>
+        <member name="T:YTech.General.Web.PayPal.PaymentTransactionTypes">
+            <summary>
+            	The possible transaction types for a PayPal IPN post.
+            </summary>
+        </member>
+        <member name="F:YTech.General.Web.PayPal.PaymentTransactionTypes.Unknown">
+            <summary>
+            	The transaction type is not recognized.
+            </summary>
+        </member>
+        <member name="F:YTech.General.Web.PayPal.PaymentTransactionTypes.SubscriptionCancel">
+            <summary>
+            	The user has cancelled a subscription
+            </summary>
+        </member>
+        <member name="F:YTech.General.Web.PayPal.PaymentTransactionTypes.Cart">
+            <summary>
+            	This payment was sent by your customer via the PayPal Shopping Cart.
+            </summary>
+        </member>
+        <member name="F:YTech.General.Web.PayPal.PaymentTransactionTypes.SendMoney">
+            <summary>
+            	This payment was sent by your customer from the PayPal website, using the Send
+            	Money tab.
+            </summary>
+        </member>
+        <member name="F:YTech.General.Web.PayPal.PaymentTransactionTypes.WebAccept">
+            <summary>
+            	The payment was sent by your customer via Buy Now Buttons, Donations, or Smart Logos.
+            </summary>
+        </member>
+        <member name="T:YTech.General.Web.Seo.AdSenseDatasource">
+            <summary>
+            	Provides a way to retrieve Google Adsense data.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.Seo.AdSenseDatasource.#ctor(System.String,System.String)">
+            <summary>
+            	Creates a new instance of the <see cref="T:YTech.General.Web.Seo.AdSenseDatasource"/> class.
+            </summary>
+            <param name="username"></param>
+            <param name="password"></param>
+        </member>
+        <member name="M:YTech.General.Web.Seo.AdSenseDatasource.GetDailyEarnings(System.DateTime,System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="start"></param>
+            <param name="end"></param>
+            <returns>
+            	A string representing the data in the CSV format.
+            </returns>
+        </member>
+        <member name="M:YTech.General.Web.Seo.AdSenseDatasource.getLoginFormHiddenFields">
+            <summary>
+            	This is phase 1 of the login process.  We need to make a request to
+            	the adsense login page, and get a list of all the hidden fields, so
+            	that we can post them back to the form just like a browser would.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.Seo.AdSenseDatasource.postLoginData(System.String[][],System.String,System.String)">
+            <summary>
+            	Makes a post to the Google login service to pass over the session
+            	information from the hidden fields, and supply the username
+            	and password for validation.
+            </summary>
+            <param name="hiddenFields"></param>
+            <param name="username"></param>
+            <param name="password"></param>
+            <returns>
+            	The response text from the posting of the login data.
+            </returns>
+        </member>
+        <member name="M:YTech.General.Web.Seo.AdSenseDatasource.postFinalLoginCall(System.String)">
+            <summary>
+            	Checks the response text recieved from the login page and
+            	determines if the login was successfull or not.
+            </summary>
+            <param name="postLoginResponse"></param>
+            <returns>
+            	True if the login succeeded.
+            </returns>
+        </member>
+        <member name="M:YTech.General.Web.Seo.AdSenseDatasource.GenerateReportUrl(System.DateTime,System.DateTime)">
+            <summary>
+            	Generates a URL for retrieving an AdSense report based on the specified criteria.
+            </summary>
+            <param name="start"></param>
+            <param name="end"></param>
+            <returns></returns>
+        </member>
+        <member name="T:YTech.General.Web.PayPal.PaymentStatuses">
+            <summary>
+            Summary description for PaymentStatusesEnum.
+            </summary>
+        </member>
+        <member name="F:YTech.General.Web.PayPal.PaymentStatuses.Completed">
+            <summary>
+            	If referring to an initial purchase, this means the payment has been completed
+            	and the funds have successfully been added to your account balance.
+            </summary>
+        </member>
+        <member name="F:YTech.General.Web.PayPal.PaymentStatuses.CanceledReversal">
+            <summary>
+            	This means a reversal has been canceled; for example, you, the merchant, won a dispute with
+            	the customer and the funds for the transaction that was reversed have been returned to you.
+            </summary>
+        </member>
+        <member name="F:YTech.General.Web.PayPal.PaymentStatuses.Denied">
+            <summary>
+            	You, the merchant, denied the payment. This will only happen if the payment was previously
+            	pending due to one of the following pending reasons.
+            </summary>
+        </member>
+        <member name="F:YTech.General.Web.PayPal.PaymentStatuses.Failed">
+            <summary>
+            	The payment has failed. This will only happen if the payment was attempted from your
+            	customer’s bank account.
+            </summary>
+        </member>
+        <member name="F:YTech.General.Web.PayPal.PaymentStatuses.Pending">
+            <summary>
+            	The payment is pending; see the pending_reason variable for more information.
+            	Please note, you will receive another Instant Payment Notification when the status
+            	of the payment changes to "Completed," "Failed," or "Denied."
+            </summary>
+        </member>
+        <member name="F:YTech.General.Web.PayPal.PaymentStatuses.Refunded">
+            <summary>
+            	You, the merchant, refunded the payment.
+            </summary>
+        </member>
+        <member name="F:YTech.General.Web.PayPal.PaymentStatuses.Reversed">
+            <summary>
+            	This means that a payment was reversed due to a chargeback or other type of reversal. The
+            	funds have been debited from your account balance and returned to the customer. The
+            	reason for the reversal is given by the reason_code variable.
+            </summary>
+        </member>
+        <member name="T:YTech.General.Web.ICookieDatasource">
+            <summary>
+                <para>
+                    An interface that can be used in a class to use different
+                    persistent data storage methods.
+                </para>
+                <para>
+                    This interface was developed as a way to test a web class that
+                    reads and writes cookies.  It allows you to substitute a mock
+                    class for the reading and writing.
+                </para>
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.ICookieDatasource.ReadValue(System.String)">
+            <summary>
+                Reads the cookie value with the specified name/key.
+            </summary>
+            <param name="key">
+                The key (name) of the cookie value to read.
+            </param>
+            <returns>
+                The value that corresponds to the the specified key.  Otherwise
+                NULL is returned.
+            </returns>
+        </member>
+        <member name="M:YTech.General.Web.ICookieDatasource.WriteValue(System.String,System.String)">
+            <summary>
+                Persists a key/value pair.
+            </summary>
+            <remarks>
+                Since no expiration is required, the cookie will be set
+                to expire as far in the future as possible (DateTime.MaxValue).
+            </remarks>
+            <param name="key">
+                The key to use for the cookie value to write.
+            </param>
+            <param name="valueToWrite">
+                The <see cref="T:System.String"/> value to persist.
+            </param>
+        </member>
+        <member name="M:YTech.General.Web.CookieDatasource.#ctor(System.Web.HttpCookieCollection,System.Web.HttpCookieCollection)">
+            <summary>
+                Creates a new instance of the <see cref="T:YTech.General.Web.CookieDatasource"/> that is ready
+                to read and write cookies.
+            </summary>
+            <param name="requestCookies"></param>
+            <param name="responseCookies"></param>
+        </member>
+        <member name="T:YTech.General.Charting.Controls.ThumbnailChart">
+            <summary>
+            	A small chart control useful for displaying many charts
+            	on a single page so that the user can get an overview
+            	of many different pieces of data, and select the set they
+            	wish to analyze.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Charting.Controls.ThumbnailChart.GenerateBitmap">
+            <summary>
+            	Generates the chart using the specified data and timestamps.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.General.Charting.Controls.ThumbnailChart.setUpChart">
+            <summary>
+            	Sets up the chart background and border
+            </summary>
+        </member>
+        <member name="M:YTech.General.Charting.Controls.ThumbnailChart.calculateRelativeXValues">
+            <summary>
+            	Uses the input timestamps and calculates their positions
+            	based on the chart width.
+            </summary>
+            <returns>
+            	An array if integer values that represents the Y positions on the chart bitmap.
+            </returns>
+        </member>
+        <member name="M:YTech.General.Charting.Controls.ThumbnailChart.getSpanPercentage(System.DateTime,System.DateTime,System.DateTime)">
+            <summary>
+            	Calculates the percentage of the specified timestamp in
+            	relation to a timestamp range.
+            </summary>
+            <example>
+            	If you specified a start and end time range of a day, and specify
+            	a timestamp in the middle, you would get a value of .5, which is 50%.
+            </example>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.General.Charting.Controls.ThumbnailChart.calculateRelativeYValues">
+            <summary>
+            	Uses the input data and calculates their positions on the
+            	y axis based on the chart height.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:YTech.General.Charting.Controls.ThumbnailChart.Height">
+            <summary>
+            	Gets or sets the height of the thumbnail chart
+            </summary>
+        </member>
+        <member name="P:YTech.General.Charting.Controls.ThumbnailChart.Width">
+            <summary>
+            	Gets or sets the width of the chart.
+            </summary>
+        </member>
+        <member name="P:YTech.General.Charting.Controls.ThumbnailChart.YValues">
+            <summary>
+            	Gets or set the Y-Values (the data) for the chart.
+            </summary>
+        </member>
+        <member name="P:YTech.General.Charting.Controls.ThumbnailChart.Timestamps">
+            <summary>
+            	Gets or sets the timestamps for the chart (x-axis)
+            </summary>
+        </member>
+        <member name="P:YTech.General.Charting.Controls.ThumbnailChart.YMin">
+            <summary>
+            	The minimum value for the y axis scale.
+            </summary>
+        </member>
+        <member name="P:YTech.General.Charting.Controls.ThumbnailChart.YMax">
+            <summary>
+            	The maximum value for the y axis scale.
+            </summary>
+        </member>
+        <member name="P:YTech.General.Charting.Controls.ThumbnailChart.BackgroundColor">
+            <summary>
+            	Gets or sets the background color of the chart.
+            </summary>
+        </member>
+        <member name="P:YTech.General.Charting.Controls.ThumbnailChart.InverseScale">
+            <summary>
+            	Gets or sets whether the data should be plotted
+            	on a reversed y-axis (y-max to y-min instead
+            	of y-min 
+            </summary>
+        </member>
+        <member name="T:YTech.General.Web.PayPal.IntervalUnits">
+            <summary>
+            	Represents the possible units of time that an
+            	interval can represent.
+            </summary>
+        </member>
+        <member name="F:YTech.General.Web.PayPal.IntervalUnits.Days">
+            <summary>
+            	The units are measured in Days
+            </summary>
+        </member>
+        <member name="F:YTech.General.Web.PayPal.IntervalUnits.Weeks">
+            <summary>
+            	The units are measured in Weeks
+            </summary>
+        </member>
+        <member name="F:YTech.General.Web.PayPal.IntervalUnits.Months">
+            <summary>
+            	The units are measured in Months
+            </summary>
+        </member>
+        <member name="F:YTech.General.Web.PayPal.IntervalUnits.Years">
+            <summary>
+            	The units are measured in Years
+            </summary>
+        </member>
+        <member name="T:YTech.General.Web.PageContentReader">
+            <summary>
+                An <see cref="T:YTech.General.Web.IPageContentReader"/> capable of reading
+                pages on the Internet.
+            </summary>
+        </member>
+        <member name="T:YTech.General.Web.IPageContentReader">
+            <summary>
+                An interface for classes that are able to read URL's
+                on the Internet.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.IPageContentReader.GetPageContents(System.String)">
+            <summary>
+                Gets the HTML page contents of a website.
+            </summary>
+            <param name="url">
+                The URL to read the contents of.
+            </param>
+            <returns>
+                The contents of the page.
+            </returns>
+        </member>
+        <member name="M:YTech.General.Web.PageContentReader.GetPageContents(System.String)">
+            <summary>
+                Gets the HTTP contents of the site with the
+                specified URL.
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="T:YTech.General.Cryptography.HashFunctions">
+            <summary>
+            Contains functions that implement different Hash Algorithms.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Cryptography.HashFunctions.APHash(System.String,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Implements a rotative hash function using the four supplied numbers.
+            For the hash function to be most affective, four prime numbers should be used.
+            </summary>
+            <param name="str">The string to hash.</param>
+            <param name="p1">First number (preferably prime)</param>
+            <param name="p2">Second number (preferably prime)</param>
+            <param name="p3">Third number (preferably prime)</param>
+            <param name="p4">Fourth number (preferably prime)</param>
+            <returns></returns>
+        </member>
+        <member name="T:YTech.General.CommandArgumentParser">
+            <summary>
+            	Parses arguments receieved from the command line.
+            </summary>
+        </member>
+        <member name="M:YTech.General.CommandArgumentParser.#ctor(System.String[])">
+            <summary>
+            	Creates a new instance of the <see cref="T:YTech.General.CommandArgumentParser"/> class.
+            </summary>
+            <param name="Args"></param>
+        </member>
+        <member name="P:YTech.General.CommandArgumentParser.Item(System.String)">
+            <summary>
+            	Retrieve a parameter value if it exists 
+            	(overriding C# indexer property)
+            </summary>
+        </member>
+        <member name="T:YTech.General.Charting.ChartMath">
+            <summary>
+            	Provides mathematical methods that are commonly
+            	used in charting applications.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Charting.ChartMath.GetDataBounds(System.Nullable{System.Double}[],System.Nullable{System.Double}@,System.Nullable{System.Double}@)">
+            <summary>
+            	Loops through the array of doubles and determines the minimum
+            	and maximum values contained in the array.
+            </summary>
+            <remarks>
+            	If the array is null or length 0, then 0 is returned for both
+            	the min and max.
+            </remarks>
+            <param name="values">
+            	The array to loop through.
+            </param>
+            <param name="min">
+            	The minimum value found in the array, or 0 if there are no
+            	values in the array.
+            </param>
+            <param name="max">
+            	The maximum value found in the array, or 0 if there are no
+            	values in the array.
+            </param>
+        </member>
+        <member name="M:YTech.General.Charting.ChartMath.GetDataBounds(System.Double[],System.Nullable{System.Double}@,System.Nullable{System.Double}@)">
+            <summary>
+            	Loops through the array of doubles and determines the minimum
+            	and maximum values contained in the array.
+            </summary>
+            <remarks>
+            	If the array is null or length 0, then 0 is returned for both
+            	the min and max.
+            </remarks>
+            <param name="values">
+            	The array to loop through.
+            </param>
+            <param name="min">
+            	The minimum value found in the array, or 0 if there are no
+            	values in the array.
+            </param>
+            <param name="max">
+            	The maximum value found in the array, or 0 if there are no
+            	values in the array.
+            </param>
+        </member>
+        <member name="T:YTech.Web.Ftp.FtpClient">
+            <summary>
+            	A simple FTP client that I found online.
+            </summary>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.#ctor">
+            <summary>
+            Default contructor
+            </summary>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.#ctor(System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="server"></param>
+            <param name="username"></param>
+            <param name="password"></param>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.#ctor(System.String,System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="server"></param>
+            <param name="username"></param>
+            <param name="password"></param>
+            <param name="timeoutSeconds"></param>
+            <param name="port"></param>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.Login">
+            <summary>
+            Login to the remote server.
+            </summary>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.Close">
+            <summary>
+            Close the FTP connection.
+            </summary>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.GetFileList">
+            <summary>
+            Return a string array containing the remote directory's file list.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.GetFileList(System.String)">
+            <summary>
+            Return a string array containing the remote directory's file list.
+            </summary>
+            <param name="mask"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.GetFileSize(System.String)">
+            <summary>
+            Return the size of a file.
+            </summary>
+            <param name="fileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.Download(System.String)">
+            <summary>
+            Download a file to the Assembly's local directory,
+            keeping the same file name.
+            </summary>
+            <param name="remFileName"></param>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.Download(System.String,System.Boolean)">
+            <summary>
+            Download a remote file to the Assembly's local directory,
+            keeping the same file name, and set the resume flag.
+            </summary>
+            <param name="remFileName"></param>
+            <param name="resume"></param>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.Download(System.String,System.String)">
+            <summary>
+            Download a remote file to a local file name which can include
+            a path. The local file name will be created or overwritten,
+            but the path must exist.
+            </summary>
+            <param name="remFileName"></param>
+            <param name="locFileName"></param>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.Download(System.String,System.String,System.Boolean)">
+            <summary>
+            Download a remote file to a local file name which can include
+            a path, and set the resume flag. The local file name will be
+            created or overwritten, but the path must exist.
+            </summary>
+            <param name="remFileName"></param>
+            <param name="locFileName"></param>
+            <param name="resume"></param>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.Upload(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="fileName"></param>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.Upload(System.IO.Stream,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="input"></param>
+            <param name="fileName"></param>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.UploadDirectory(System.String,System.Boolean)">
+            <summary>
+            Upload a directory and its file contents
+            </summary>
+            <param name="path"></param>
+            <param name="recurse">Whether to recurse sub directories</param>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.UploadDirectory(System.String,System.Boolean,System.String)">
+            <summary>
+            Upload a directory and its file contents
+            </summary>
+            <param name="path"></param>
+            <param name="recurse">Whether to recurse sub directories</param>
+            <param name="mask">Only upload files of the given mask - everything is '*.*'</param>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.DeleteFile(System.String)">
+            <summary>
+            Delete a file from the remote FTP server.
+            </summary>
+            <param name="fileName"></param>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.RenameFile(System.String,System.String,System.Boolean)">
+            <summary>
+            Rename a file on the remote FTP server.
+            </summary>
+            <param name="oldFileName"></param>
+            <param name="newFileName"></param>
+            <param name="overwrite">setting to false will throw exception if it exists</param>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.MakeDir(System.String)">
+            <summary>
+            Create a directory on the remote FTP server.
+            </summary>
+            <param name="dirName"></param>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.RemoveDir(System.String)">
+            <summary>
+            Delete a directory on the remote FTP server.
+            </summary>
+            <param name="dirName"></param>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.ChangeDir(System.String)">
+            <summary>
+            Change the current working directory on the remote FTP server.
+            </summary>
+            <param name="dirName"></param>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.readResponse">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.readLine">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.sendCommand(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="command"></param>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.createDataSocket">
+            <summary>
+            when doing data transfers, we need to open another socket for it.
+            </summary>
+            <returns>Connected socket</returns>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.cleanup">
+            <summary>
+            Always release those sockets.
+            </summary>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.Finalize">
+            <summary>
+            Destuctor
+            </summary>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.BeginLogin(System.AsyncCallback)">
+            <summary>
+            
+            </summary>
+            <param name="callback"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.BeginClose(System.AsyncCallback)">
+            <summary>
+            
+            </summary>
+            <param name="callback"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.BeginGetFileList(System.AsyncCallback)">
+            <summary>
+            
+            </summary>
+            <param name="callback"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.BeginGetFileList(System.String,System.AsyncCallback)">
+            <summary>
+            
+            </summary>
+            <param name="mask"></param>
+            <param name="callback"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.BeginGetFileSize(System.String,System.AsyncCallback)">
+            <summary>
+            
+            </summary>
+            <param name="fileName"></param>
+            <param name="callback"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.BeginDownload(System.String,System.AsyncCallback)">
+            <summary>
+            
+            </summary>
+            <param name="remFileName"></param>
+            <param name="callback"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.BeginDownload(System.String,System.Boolean,System.AsyncCallback)">
+            <summary>
+            
+            </summary>
+            <param name="remFileName"></param>
+            <param name="resume"></param>
+            <param name="callback"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.BeginDownload(System.String,System.String,System.AsyncCallback)">
+            <summary>
+            
+            </summary>
+            <param name="remFileName"></param>
+            <param name="locFileName"></param>
+            <param name="callback"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.BeginDownload(System.String,System.String,System.Boolean,System.AsyncCallback)">
+            <summary>
+            
+            </summary>
+            <param name="remFileName"></param>
+            <param name="locFileName"></param>
+            <param name="resume"></param>
+            <param name="callback"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.BeginUpload(System.String,System.AsyncCallback)">
+            <summary>
+            
+            </summary>
+            <param name="fileName"></param>
+            <param name="callback"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.BeginUploadDirectory(System.String,System.Boolean,System.AsyncCallback)">
+            <summary>
+            
+            </summary>
+            <param name="path"></param>
+            <param name="recurse"></param>
+            <param name="callback"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.BeginUploadDirectory(System.String,System.Boolean,System.String,System.AsyncCallback)">
+            <summary>
+            
+            </summary>
+            <param name="path"></param>
+            <param name="recurse"></param>
+            <param name="mask"></param>
+            <param name="callback"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.BeginDeleteFile(System.String,System.AsyncCallback)">
+            <summary>
+            
+            </summary>
+            <param name="fileName"></param>
+            <param name="callback"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.BeginRenameFile(System.String,System.String,System.Boolean,System.AsyncCallback)">
+            <summary>
+            
+            </summary>
+            <param name="oldFileName"></param>
+            <param name="newFileName"></param>
+            <param name="overwrite"></param>
+            <param name="callback"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.BeginMakeDir(System.String,System.AsyncCallback)">
+            <summary>
+            
+            </summary>
+            <param name="dirName"></param>
+            <param name="callback"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.BeginRemoveDir(System.String,System.AsyncCallback)">
+            <summary>
+            
+            </summary>
+            <param name="dirName"></param>
+            <param name="callback"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.BeginChangeDir(System.String,System.AsyncCallback)">
+            <summary>
+            
+            </summary>
+            <param name="dirName"></param>
+            <param name="callback"></param>
+            <returns></returns>
+        </member>
+        <member name="P:YTech.Web.Ftp.FtpClient.VerboseDebugging">
+            <summary>
+            Display all communications to the debug log
+            </summary>
+        </member>
+        <member name="P:YTech.Web.Ftp.FtpClient.Port">
+            <summary>
+            Remote server port. Typically TCP 21
+            </summary>
+        </member>
+        <member name="P:YTech.Web.Ftp.FtpClient.Timeout">
+            <summary>
+            Timeout waiting for a response from server, in seconds.
+            </summary>
+        </member>
+        <member name="P:YTech.Web.Ftp.FtpClient.Server">
+            <summary>
+            Gets and Sets the name of the FTP server.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:YTech.Web.Ftp.FtpClient.RemotePort">
+            <summary>
+            Gets and Sets the port number.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:YTech.Web.Ftp.FtpClient.RemotePath">
+            <summary>
+            GetS and Sets the remote directory.
+            </summary>
+        </member>
+        <member name="P:YTech.Web.Ftp.FtpClient.Username">
+            <summary>
+            Gets and Sets the username.
+            </summary>
+        </member>
+        <member name="P:YTech.Web.Ftp.FtpClient.Password">
+            <summary>
+            Gets and Set the password.
+            </summary>
+        </member>
+        <member name="P:YTech.Web.Ftp.FtpClient.BinaryMode">
+            <summary>
+            If the value of mode is true, set binary mode for downloads, else, Ascii mode.
+            </summary>
+        </member>
+        <member name="T:YTech.Web.Ftp.FtpClient.FtpException">
+            <summary>
+            	Represents an error while communicating with the FTP server
+            </summary>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.FtpException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:YTech.Web.Ftp.FtpClient.FtpException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="innerException"></param>
+        </member>
+        <member name="T:YTech.General.Web.Seo.RankChecking.Yahoo.SearchApi">
+            <summary>
+            	Provides simple access the Yahoo search API.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.Seo.RankChecking.Yahoo.SearchApi.WebSearch(System.String,System.String,System.String,System.Int16,System.Int32,System.String,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            	Performs a Yahoo search query.
+            </summary>
+            <param name="appId"></param>
+            <param name="query"></param>
+            <param name="type"></param>
+            <param name="results"></param>
+            <param name="start"></param>
+            <param name="format"></param>
+            <param name="adultOk"></param>
+            <param name="similarOk"></param>
+            <param name="language"></param>
+            <returns></returns>
+        </member>
+        <member name="T:YTech.General.Web.Seo.GooglePageRankChecksum">
+            <summary>
+                Provides a way to calculate the checksum that the Google
+                toolbar generates to send queries to their PageRank server.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.Seo.GooglePageRankChecksum.GetCheckSumOld(System.String)">
+            <summary>
+            Used by Google ToolBar v2.0.114-
+            </summary>
+            <param name="targetURL"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.General.Web.Seo.GooglePageRankChecksum.GetCheckSumNew(System.String)">
+            <summary>
+            Used by Google ToolBar v2.0.114+
+            </summary>
+            <param name="targetURL"></param>
+            <returns></returns>
+        </member>
+        <member name="T:YTech.General.Web.Seo.GooglePageRank">
+            <summary>
+                Retrieves the PageRank for a website by making a request
+                to the Google PageRank server.
+            </summary>
+        </member>
+        <member name="F:YTech.General.Web.Seo.GooglePageRank.GOOGLE_PAGE_RANK_URL">
+            <summary>
+                The URL to use to retrieve the PageRank for a site.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.Seo.GooglePageRank.GetPageRankURL(System.String,System.Boolean)">
+            <summary>
+                Returns the Google PageRank URL with all the required parameters to fetch
+                the PageRank for given targetURL.
+            </summary>
+            <param name="targetURL">URL For which GooglePageRank URL needs to be fetched</param>
+            <param name="useNew">True to use New CheckSum</param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.General.Web.Seo.GooglePageRank.GetPageRank(System.String)">
+            <summary>
+            Fetches the PageRank for the given URL using NEW CheckSum
+            </summary>
+            <param name="targetUrl">URL for which Page Rank needs to be fetched</param>
+            <returns>Page Rank</returns>
+        </member>
+        <member name="M:YTech.General.Web.Seo.GooglePageRank.GetPageRank(System.String,System.Boolean)">
+            <summary>
+            Fetches the PageRank for the given URL
+            </summary>
+            <param name="targetURL">URL for which Page Rank needs to be fetched</param>
+            <param name="useNew">If enabled, uses Newer Version of CheckSum</param>/// 
+            <returns>Page Rank</returns>
+        </member>
+        <member name="M:YTech.General.Web.Seo.GooglePageRank.ParseRankFromResult(System.String)">
+            <summary>
+                Parses the response received from Google, and determines the PageRank.
+            </summary>
+            <param name="rankResponse"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.General.Web.Seo.GooglePageRank.Cleanup">
+            <summary>
+            Called once and only once before dereferencing
+            the object for GC.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.Seo.GooglePageRank.dumpHeaders(System.Net.HttpWebResponse)">
+            <summary>
+            Dumps HTTP headers received to the Console.
+            </summary>
+            <param name="webResponse">HttpWebResponse object</param>
+        </member>
+        <member name="T:YTech.General.Web.Controls.TextEditPane">
+            <summary>
+                This control allows inline editing of web content.  It provides
+                an edit button that lets the user switch to edit mode, where it
+                becomes a text box.  They can then save the content, or cancel.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.Controls.TextEditPane.#ctor">
+            <summary>
+                Creates a new instances of the <see cref="T:YTech.General.Web.Controls.TextEditPane"/>
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.Controls.TextEditPane.CreateControls">
+            <summary>
+                Creates the child controls for this control.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.Controls.TextEditPane.raiseTextChanged(System.Object,System.EventArgs)">
+            <summary>
+                A proxy for raising the <see cref="E:YTech.General.Web.Controls.TextEditPane.TextChanged"/> event
+                so that it is not called when null.
+            </summary>
+            <param name="s"></param>
+            <param name="e"></param>
+        </member>
+        <member name="E:YTech.General.Web.Controls.TextEditPane.TextChanged">
+            <summary>
+                Raised when the user edits the content.
+            </summary>
+        </member>
+        <member name="P:YTech.General.Web.Controls.TextEditPane.ReadOnly">
+            <summary>
+                If true, the control renders as a regular literal.
+            </summary>
+        </member>
+        <member name="P:YTech.General.Web.Controls.TextEditPane.Text">
+            <summary>
+                Gets or sets the text to display in this edit panel.
+            </summary>
+        </member>
+        <member name="T:YTech.General.Web.Controls.TextEditPane.TextChangedDelegate">
+            <summary>
+                The signature used for the <see cref="E:YTech.General.Web.Controls.TextEditPane.TextChanged"/> event.
+            </summary>
+            <param name="s"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:YTech.General.Web.Controls.ListUtilities">
+            <summary>
+            	Provides utilities that simplifies working with web lists.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.Controls.ListUtilities.GetItemIndexAfterDelete(System.Int32,System.Int32)">
+            <summary>
+            	After an item is deleted from a list, this method will calculate the
+            	item that should now become the selected item.
+            </summary>
+            <param name="itemCount">
+            	The CURRENT number of items in the list.
+            </param>
+            <param name="deleteIndex">
+            	The index of the list item that was just deleted.
+            </param>
+            <returns>
+            	The index of the item that is now the best candidate for being selected.
+            </returns>
+        </member>
+        <member name="T:YTech.General.Web.URLParamList">
+            <summary>
+            	Represents a parameter list for a URL so that
+            	the parameters can be added, removed, etc. easily.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.URLParamList.#ctor(System.Boolean)">
+            <summary>
+            	Creates and instance of the URL parameter list.
+            </summary>
+            <param name="alreadyHasParameter">
+            	Specify true if the URL this is for already has 1 or more parameters.
+            </param>
+        </member>
+        <member name="M:YTech.General.Web.URLParamList.#ctor(System.String,System.Boolean)">
+            <summary>
+            	Creates a URL parameter list by parsing
+            	the specified querystring.
+            </summary>
+            <param name="parameterList">
+            	The querystring to parse.
+            </param>
+            <param name="encoded">
+            	Used to specify if the url parameters are encoded in the URL.
+            </param>
+        </member>
+        <member name="M:YTech.General.Web.URLParamList.#ctor(System.String)">
+            <summary>
+            	Creates a URL parameter list by parsing
+            	the specified querystring.  
+            </summary>
+            <remarks>
+            	The Parameters are assumed to be encoded, so if you are trying
+            	to use the current URL, use <see cref="P:System.Web.HttpRequest.RawUrl"/> RawUrl instead of Url.ToString.
+            </remarks>
+            <param name="parameterList">
+            	The querystring to parse.
+            </param>
+        </member>
+        <member name="M:YTech.General.Web.URLParamList.AddParameter(System.String,System.String)">
+            <summary>
+            Adds a parameter to the URL with the specified name and value.
+            </summary>
+            <param name="paramName"></param>
+            <param name="paramValue"></param>
+        </member>
+        <member name="M:YTech.General.Web.URLParamList.AddParameter(System.String,System.Object)">
+            <summary>
+            Adds a parameter to the URL with the specified name and value.
+            </summary>
+            <param name="paramName"></param>
+            <param name="paramValue"></param>
+        </member>
+        <member name="M:YTech.General.Web.URLParamList.AddParameterNoEncode(System.String,System.Object)">
+            <summary>
+            		Adds The Parameter Without Encoding It
+            </summary>
+            <param name="paramName"></param>
+            <param name="paramValue"></param>
+            <remarks>
+            		Parameters should always be encoded if they are going in the query string.
+            		Only use this if you really know what you are doing!
+            </remarks>
+            <history>
+             	Jason Young	12/1/2003	Created
+            </history>
+        </member>
+        <member name="M:YTech.General.Web.URLParamList.RemoveParameter(System.String)">
+            <summary>
+            Removes the specified parameter from the URL
+            </summary>
+            <param name="paramName">The parameter to remove</param>
+        </member>
+        <member name="M:YTech.General.Web.URLParamList.ToString">
+            <summary>
+            Outputs the URL param list as a string suitable for appending to a url
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.General.Web.URLParamList.ParamsExist(System.Collections.Specialized.StringCollection)">
+            <summary>
+            Determines if one or more parameters exist in the parameter list.
+            </summary>
+            <param name="checkParams">The params to search for.</param>
+            <returns>Returns true if any of the parameters are found.</returns>
+        </member>
+        <member name="M:YTech.General.Web.URLParamList.AddParams(YTech.General.Web.URLParamList)">
+            <summary>
+            Adds the parameters from the source param list to this param list.
+            </summary>
+            <param name="source">The parameter list to copy the parameters from.</param>
+        </member>
+        <member name="M:YTech.General.Web.URLParamList.GetAllParameters">
+            <summary>
+            	Gets all of the parameters this parameter list contains.
+            </summary>
+            <returns>A name value collection containing the key/value pairs of the parameters</returns>
+        </member>
+        <member name="M:YTech.General.Web.URLParamList.GetAllParameters(System.Boolean)">
+            <summary>
+            	Gets all of the parameters this parameter list contains in decoded form.
+            </summary>
+            <returns>
+            	A name value collection containing the key/value pairs of the parameters
+            </returns>
+        </member>
+        <member name="M:YTech.General.Web.URLParamList.ParseParameterList(System.String)">
+            <summary>
+            	Parses a list of parameters from the querystring and converts
+            	then into name/value pairs.
+            </summary>
+            <remarks>
+            	The parameters are NOT decoded.
+            </remarks>
+            <param name="parameterList"></param>
+            <returns>The parameters read from the parameter list</returns>
+        </member>
+        <member name="M:YTech.General.Web.URLParamList.ParseParameterList(System.String,System.Boolean)">
+            <summary>
+            Parses a list of parameters, and stores them in a nameValueCollection.
+            </summary>
+            <param name="parameterList">A string containing an asp style list of parameters.</param>
+            <param name="encode">If true, the parameter values are encoded when read from the querystring</param>
+            <returns></returns>
+        </member>
+        <member name="T:YTech.General.Web.JavaScript.JavaScriptBlock">
+            <summary>
+              Creates a block of JavaScript to embed in a web page.  To use, create
+              a single instance of this class, and add it to your page.  It is a
+              control, so it automatically renders itself.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.JavaScript.JavaScriptBlock.#ctor">
+            <summary>
+            	Creates a new instance of the <see cref="T:YTech.General.Web.JavaScript.JavaScriptBlock"/> 
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.JavaScript.JavaScriptBlock.GetInnerBlockText">
+            <summary>
+              Returns All The JavaScript Inside Of The Start/End Tags
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.JavaScript.JavaScriptBlock.GetBlockText(System.Boolean)">
+            <summary>
+              Returns The Entire JavaScript Block, Including The JavaScript Start/End Tags
+            </summary>
+            <returns></returns>
+            <remarks>
+            </remarks>
+            <param name="defer">
+            If true, adds the defer tag so that the script
+            is executed after the page has rendered.
+            </param>
+            <history>
+            	Jason Young	3/9/2004	Created
+            </history>
+        </member>
+        <member name="M:YTech.General.Web.JavaScript.JavaScriptBlock.ShowAlert(System.String)">
+            <summary>
+            Shows a client alert with the specified message
+            </summary>
+            <param name="alertText">The text to show in the alert (message box)</param>
+        </member>
+        <member name="M:YTech.General.Web.JavaScript.JavaScriptBlock.SetBodyColor(System.Drawing.Color)">
+            <summary>
+            Changes the background color of the body element.
+            </summary>
+            <param name="bodyColor"></param>
+        </member>
+        <member name="M:YTech.General.Web.JavaScript.JavaScriptBlock.CallFunction(System.String,System.String[])">
+            <summary>
+            Calls the specified function with the specified parameters
+            </summary>
+            <param name="functionName">The name of the JavaScript function</param>
+            <param name="parameters">The parameters to pass to the function</param>
+        </member>
+        <member name="M:YTech.General.Web.JavaScript.JavaScriptBlock.CloseWindow">
+            <summary>
+            Closes the window via Javascript
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.JavaScript.JavaScriptBlock.OpenNewWindow(System.String)">
+            <summary>
+            Opens a new window
+            </summary>
+            <param name="URL">URL of the new page to open</param>
+        </member>
+        <member name="M:YTech.General.Web.JavaScript.JavaScriptBlock.ConfirmClick(System.Web.UI.WebControls.WebControl,System.String)">
+            <summary>
+            	Uses a JavaScript pop-up dialog to allow the user to confirm
+            	or cancel the click event.
+            </summary>
+            <remarks>
+            	If the user cannot use JavaScript, they will not get a confirmation.
+            </remarks>
+            <param name="controlToConfirm">
+            	The control to add the confirmation to.
+            </param>
+            <param name="message">
+            	The message to display to the user on the confirmation dialog.
+            </param>
+        </member>
+        <member name="M:YTech.General.Web.JavaScript.JavaScriptBlock.AlertOnClick(System.Web.UI.WebControls.WebControl,System.String)">
+            <summary>
+            Uses a JavaScript pop-up message to display a message to the user
+            on the click event.
+            </summary>
+            <param name="controlToAlert">The control to add the alert to.</param>
+            <param name="message">The message to display ot the user in the alert box.</param>
+        </member>
+        <member name="M:YTech.General.Web.JavaScript.JavaScriptBlock.Confirm(System.Web.UI.WebControls.WebControl,System.String,System.String)">
+            <summary>
+            	Uses a JavaScript confirmation to confirm the specified
+            	event for the specified <see cref="T:System.Web.UI.WebControls.WebControl"/>.
+            </summary>
+            <param name="controlToConfirm">
+            	The control whose event will be confirmed.
+            </param>
+            <param name="eventName">
+            	The event name to confirm, commonly "onclick"
+            </param>
+            <param name="confirmationMessage">
+            	The message to display to the user to confirm.
+            </param>
+        </member>
+        <member name="M:YTech.General.Web.JavaScript.JavaScriptBlock.AlertOnEvent(System.Web.UI.WebControls.WebControl,System.String,System.String)">
+            <summary>
+            Uses a JavaScript alert to display a message on an event.
+            </summary>
+            <param name="controlToAlert">The control whose event will be alerted.</param>
+            <param name="eventName">The event name to alert, commonly "onclick".</param>
+            <param name="alertMessage">The message to display to the user.</param>
+        </member>
+        <member name="M:YTech.General.Web.JavaScript.JavaScriptBlock.SetFocus(System.Web.UI.WebControls.WebControl)">
+            <summary>
+            Sets the page focus of the page to the specified control.
+            </summary>
+            <param name="controlToFocus">
+            	The control that should receive focus.
+            </param>
+        </member>
+        <member name="M:YTech.General.Web.JavaScript.JavaScriptBlock.DeclareVariable(System.String)">
+            <summary>
+            Declares the specified page level variable.
+            </summary>
+            <param name="varName">The name of the variable.</param>
+        </member>
+        <member name="M:YTech.General.Web.JavaScript.JavaScriptBlock.DeclareVariable(System.String,System.String)">
+            <summary>
+            Declares the specified page level variable and sets the specified
+            default value.
+            </summary>
+            <param name="varName">The name of the variable</param>
+            <param name="varValue">The default value to assign</param>
+        </member>
+        <member name="M:YTech.General.Web.JavaScript.JavaScriptBlock.GetFunctionCall(System.String,System.Boolean,System.String[])">
+            <summary>
+            Creates a JavaScript function call with the specified name and parameters.
+            </summary>
+            <param name="functionName">The name of the function to create</param>
+            <param name="javaScriptPrefix">If true, appends "javascript:" to the function call for use in event handlers</param>
+            <param name="parameters">The parameters to pass to the JavaScript function.  Remember to use quotes for strings</param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.General.Web.JavaScript.JavaScriptBlock.GetClientVarDeclaration(System.String,System.String)">
+            <summary>
+            Creates a javascript variable declaration command.  Ex: "var test = 5;"
+            </summary>
+            <param name="variableName">The name of the variable to declare</param>
+            <param name="variableValue">The initial value to assign to the variable</param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.General.Web.JavaScript.JavaScriptBlock.SQuote(System.String)">
+            <summary>
+            Put's single quote's around the specified string. ex: 'test'
+            </summary>
+            <param name="msg">The string to quote</param>
+            <remarks>If the value already contains single quotes, they are escaped.</remarks>
+            <returns>The msg with single quotes around it</returns>
+        </member>
+        <member name="M:YTech.General.Web.JavaScript.JavaScriptBlock.SQuote(System.String,System.Boolean)">
+            <summary>
+            Put's single quote's around the specified string. ex: 'test'
+            </summary>
+            <param name="msg">The message to quote</param>
+            <param name="blankIsNull">If true, turns an empty string into "null"</param>
+            <remarks>If the value already contains single quotes, they are escaped.</remarks>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.General.Web.JavaScript.JavaScriptBlock.DQuote(System.String)">
+            <summary>
+            Puts double quotes around a stirng
+            </summary>
+            <param name="msg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.General.Web.JavaScript.JavaScriptBlock.WriteLine(System.String)">
+            <summary>
+            Write's the specified line to the script.  If the script
+            does not end with a linefeed or carriage return, a line feed
+            is appended to the end.
+            </summary>
+            <param name="scriptLine">The line of script to append</param>
+        </member>
+        <member name="M:YTech.General.Web.JavaScript.JavaScriptBlock.Render(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            Renders the control to the specified writer.
+            </summary>
+            <param name="writer">The writer to write to.</param>
+        </member>
+        <member name="M:YTech.General.Web.JavaScript.JavaScriptBlock.GetButtonClickCall(System.String)">
+            <summary>
+            	Gets the JavaScript to call the button with the
+            	specified client Id.
+            </summary>
+            <param name="clientId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.General.Web.JavaScript.JavaScriptBlock.ClickButton(System.Web.UI.WebControls.Button)">
+            <summary>
+            	Clicks the specified <see cref="T:System.Web.UI.WebControls.Button"/>.
+            </summary>
+            <param name="buttonToClick">
+            	A reference to the <see cref="T:System.Web.UI.WebControls.Button"/> to click.
+            </param>
+        </member>
+        <member name="M:YTech.General.Web.JavaScript.JavaScriptBlock.ClickButton(System.Web.UI.HtmlControls.HtmlInputButton)">
+            <summary>
+            	Clicks the specified <see cref="T:System.Web.UI.HtmlControls.HtmlInputButton"/>.
+            </summary>
+            <param name="buttonToClick">
+            	A reference to the <see cref="T:System.Web.UI.HtmlControls.HtmlInputButton"/> to click.
+            </param>
+        </member>
+        <member name="M:YTech.General.Web.JavaScript.JavaScriptBlock.ClickButton(System.Web.UI.WebControls.LinkButton)">
+            <summary>
+            	Clicks the specified <see cref="T:System.Web.UI.WebControls.LinkButton"/>.
+            </summary>
+            <param name="buttonToClick">
+            	A reference to the <see cref="T:System.Web.UI.WebControls.LinkButton"/> to click.
+            </param>
+        </member>
+        <member name="M:YTech.General.Web.JavaScript.JavaScriptBlock.Redirect(System.String)">
+            <summary>
+                Peforms a client side redirect.
+            </summary>
+            <param name="redirectUrl">
+                The URL to redirect the user to.
+            </param>
+        </member>
+        <member name="M:YTech.General.Web.JavaScript.JavaScriptBlock.AlertAndRedirect(System.String,System.String)">
+            <summary>
+                Displays a message to the user, and then redirects them to another page.
+            </summary>
+            <param name="alertMsg">
+                The message to display to the user in a JavaScript alert.
+            </param>
+            <param name="redirectUrl">
+                The URL that the user should be sent to after clicking "OK" to the message.
+            </param>
+        </member>
+        <member name="P:YTech.General.Web.JavaScript.JavaScriptBlock.Defer">
+            <summary>
+            If true, adds a "Defer" tag to the java script block.  The
+            defer tag causes the script to run after the page is rendered.
+            </summary>
+        </member>
+        <member name="T:YTech.General.Web.Controls.ControlUtilities">
+            <summary>
+            	Shared (static) utilities for working with controls.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.Controls.ControlUtilities.GetControlHtml(System.Web.UI.Control)">
+            <summary>
+            	Generates the HTML that represents the specified control.
+            </summary>
+            <param name="controlToRender">
+            	The control whose HTML will be generated.
+            </param>
+            <returns>
+            	HTML representing the control.
+            </returns>
+        </member>
+        <member name="T:YTech.General.Web.Controls.ContentRotation.ServerContentRotator">
+            <summary>
+                A panel that is able to rotate server content randomly.
+            </summary>
+            <example>
+                <![CDATA[
+                <%@ Register Assembly="YTech.General" Namespace="YTech.General.Web.Controls.ContentRotation" TagPrefix="CR" %>
+                
+                <CR:ServerContentRotator runat="server" Key="Rotator1">
+                    <CR:ContentPanel runat="server" Impressions="50" Key="Content1">
+                        Content 1
+                    </CR:ContentPanel>
+                    <CR:ContentPanel runat="server" Impressions="50" Key="Content2">
+                        Content 2
+                    </CR:ContentPanel>
+                </CR:ServerContentRotator>
+                ]]>
+            </example>
+        </member>
+        <member name="F:YTech.General.Web.Controls.ContentRotation.ServerContentRotator.SAVED_CONTENT_KEY_COOKIE_POSTFIX">
+            <summary>
+                The postfix that is attached to the key of the content
+                rotator that is used as the cookie name to load the
+                key of the content that was last displayed.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.Controls.ContentRotation.ServerContentRotator.#ctor">
+            <summary>
+                Creates a new instance of the <see cref="T:YTech.General.Web.Controls.ContentRotation.ServerContentRotator"/> control.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.Controls.ContentRotation.ServerContentRotator.OnLoad(System.EventArgs)">
+            <summary>
+                The method called when the page is loading.
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:YTech.General.Web.Controls.ContentRotation.ServerContentRotator.#ctor(YTech.General.Web.ICookieDatasource)">
+            <summary>
+                Creates a new instance of the <see cref="T:YTech.General.Web.Controls.ContentRotation.ServerContentRotator"/> control.
+            </summary>
+            <remarks>
+                This constructor is primarily for unit testing.  It allows us to mock
+                the cookie reading and writing.
+            </remarks>
+            <param name="cookieDataSource">
+                The <see cref="T:YTech.General.Web.ICookieDatasource"/> to use for reading and writing
+                persistant cookie values.
+            </param>
+        </member>
+        <member name="M:YTech.General.Web.Controls.ContentRotation.ServerContentRotator.RenderChildren(System.Web.UI.HtmlTextWriter)">
+            <summary>
+                Renders the chile controls to the writer.
+            </summary>
+            <param name="writer"></param>
+        </member>
+        <member name="M:YTech.General.Web.Controls.ContentRotation.ServerContentRotator.choosePanel">
+            <summary>
+                Determines which panel should be displayed, and displays it.
+            </summary>
+            <remarks>
+                This method is primarily a wrapper for the choosePanel
+                method.  It simply totals the number of impressions for all panels,
+                and then calls that method.
+            </remarks>
+        </member>
+        <member name="M:YTech.General.Web.Controls.ContentRotation.ServerContentRotator.choosePanel(System.Collections.Generic.List{YTech.General.Web.Controls.ContentRotation.ContentPanel},System.Int32)">
+            <summary>
+                Determines which panel should be displayed, and displays it.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.Controls.ContentRotation.ServerContentRotator.GetCookieName">
+            <summary>
+                Gets the name of the cookie that this content rotator
+                will use to store the display content key.
+            </summary>
+            <returns>
+                The name of the cookie. Note that the cookie may NOT exist.
+            </returns>
+        </member>
+        <member name="M:YTech.General.Web.Controls.ContentRotation.ServerContentRotator.getCookieName(System.String)">
+            <summary>
+                Gets the name of the cookie that stores the content key
+                for the rotator whose key is specified.
+            </summary>
+            <param name="rotatorKey">
+                The key of any content rotator.
+            </param>
+            <returns>
+                The name of the cookie. Note that the cookie may NOT exist.
+            </returns>
+        </member>
+        <member name="M:YTech.General.Web.Controls.ContentRotation.ServerContentRotator.GetSavedContentKey(System.Web.HttpCookieCollection,System.String)">
+            <summary>
+                Gets the key for the content that was displayed by the content
+                rotator with the specified rotator key.
+            </summary>
+            <remarks>
+                Basically, you will use this method if you want to know which content
+                section was displayed to a particular user.  For example, you would use
+                this if you were doing A/B testing, and wanted to know which version of the
+                content the current user saw.
+            </remarks>
+            <param name="requestCookies">
+                The request cookies for the current request where the content
+                key will attempt to be read from.
+            </param>
+            <param name="contentRotatorKey">
+                The key of the content rotator to get the displayed content key for.
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.General.Web.Controls.ContentRotation.ServerContentRotator.GetSavedContentKeys(System.Web.HttpCookieCollection)">
+            <summary>
+                Gets all of the rotator key/content key combinations stored in
+                the specified cookie collection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.General.Web.Controls.ContentRotation.ServerContentRotator.GetSavedContentKey(System.String)">
+            <summary>
+                Gets the key for the content that was displayed by the content
+                rotator with the specified rotator key.
+            </summary>
+            <remarks>
+                Basically, you will use this method if you want to know which content
+                section was displayed to a particular user.  For example, you would use
+                this if you were doing A/B testing, and wanted to know which version of the
+                content the current user saw.
+            </remarks>
+            <param name="contentRotatorKey">
+                The key of the content rotator to get the displayed content key for.
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.General.Web.Controls.ContentRotation.ServerContentRotator.saveContentKey(System.String)">
+            <summary>
+                Saves the specified key to a cookie so that it can
+                be retrieved for this user later.
+            </summary>
+            <param name="contentKey">
+                The unique key of a particular content section.  This would
+                be the key of the currently displayed content.
+            </param>
+        </member>
+        <member name="M:YTech.General.Web.Controls.ContentRotation.ServerContentRotator.panelChosen(YTech.General.Web.Controls.ContentRotation.ContentPanel)">
+            <summary>
+                Looks though the panels for one that has the specified key
+                and displays that panel.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.Controls.ContentRotation.ServerContentRotator.panelChosen(System.Collections.Generic.List{YTech.General.Web.Controls.ContentRotation.ContentPanel},System.String,System.Boolean@)">
+            <summary>
+                Looks though a panel collection for one that has the specified key
+                and displays that panel.
+            </summary>
+            <param name="panels">
+                The panel collection to look for a panel witht the specified
+                content key.
+            </param>
+            <param name="contentKey">
+                The key to look for in the panel collection.
+            </param>
+            <param name="panelFound">
+                Returns a boolean indicating whether or not the panel was found
+                and selected to be displayed.  This could be false if an invalid
+                or old contentKey was supplied.
+            </param>
+        </member>
+        <member name="M:YTech.General.Web.Controls.ContentRotation.ServerContentRotator.getRandomValue(System.Int32)">
+            <summary>
+                Gets a random number lower than the one specified.
+            </summary>
+            <remarks>
+                This method is fairly pointless now, because .NET 2.0 has
+                a method that makes it easy to get a number within a specified
+                range.
+            </remarks>
+            <param name="totalImpressions">
+                The maxiumum random value allowed.
+            </param>
+            <returns>
+                A random number between 0 and totalImpressions
+            </returns>
+        </member>
+        <member name="E:YTech.General.Web.Controls.ContentRotation.ServerContentRotator.ContentShown">
+            <summary>
+                The event raises when a content section is displayed.  This can be used
+                for tracking purposes.
+            </summary>
+        </member>
+        <member name="P:YTech.General.Web.Controls.ContentRotation.ServerContentRotator.Key">
+            <summary>
+                Gets or sets the key that will be used to uniquely identify
+                this content rotator.  Set this property when you wish to
+                track which content a particular user saw.
+            </summary>
+        </member>
+        <member name="P:YTech.General.Web.Controls.ContentRotation.ServerContentRotator.RotationMode">
+            <summary>
+                Gets or sets the rotation mode that is used to determine
+                which content panel will be displayed.
+            </summary>
+        </member>
+        <member name="T:YTech.General.Web.Controls.ContentRotation.ServerContentRotator.ContentShownDelegate">
+            <summary>
+                The delegate for the <see cref="E:YTech.General.Web.Controls.ContentRotation.ServerContentRotator.ContentShown"/> event.
+            </summary>
+            <param name="s"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:YTech.General.Web.Controls.ContentRotation.RotationModes">
+            <summary>
+                The different methods to rotate the content in
+                the <see cref="T:YTech.General.Web.Controls.ContentRotation.ServerContentRotator"/>.
+            </summary>
+        </member>
+        <member name="F:YTech.General.Web.Controls.ContentRotation.RotationModes.AlwaysSame">
+            <summary>
+                Each user will always see the same content they
+                previously viewed.
+            </summary>
+        </member>
+        <member name="F:YTech.General.Web.Controls.ContentRotation.RotationModes.AlwaysDifferent">
+            <summary>
+                Each users should see different content from what they
+                had previously used. (Not yet supported)
+            </summary>
+        </member>
+        <member name="F:YTech.General.Web.Controls.ContentRotation.RotationModes.Random">
+            <summary>
+                The content is randomly selected.
+            </summary>
+        </member>
+        <member name="T:YTech.General.Web.Controls.BulletList">
+            <summary>
+            	An ordered or unordered bulleted list.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.Controls.BulletList.#ctor">
+            <summary>
+            	Creates a new instance of the <see cref="T:YTech.General.Web.Controls.BulletList"/>
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.Controls.BulletList.RenderBeginTag(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            	Renders the beginning "ul" for the list control.
+            </summary>
+            <param name="writer">
+            	The writer to output to.
+            </param>
+        </member>
+        <member name="M:YTech.General.Web.Controls.BulletList.RenderEndTag(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            	Renders the end "ul" for the list control.
+            </summary>
+            <param name="writer">
+            	The writer to output to.
+            </param>
+        </member>
+        <member name="M:YTech.General.Web.Controls.BulletList.Render(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            	Renders the full control.
+            </summary>
+            <param name="writer">
+            	The writer to output to.
+            </param>
+        </member>
+        <member name="T:YTech.General.Serialization.SerializationUtilities">
+            <summary>
+            Summary description for SerializationUtilities.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Serialization.SerializationUtilities.XmlSerialize(System.Object)">
+            <summary>
+            	Serializes the specified object to XML
+            </summary>
+            <param name="o"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.General.Serialization.SerializationUtilities.XmlDeserialize(System.String,System.Type)">
+            <summary>
+            	Deserialized the specified string into the specified object.
+            </summary>
+            <param name="objectString">
+            	The XML that represents the XML serialized object.
+            </param>
+            <param name="objectType">
+            	The <see cref="T:System.Type"/> of the object stored in the XML.
+            </param>
+        </member>
+        <member name="T:YTech.General.Web.Controls.ContentRotation.ContentPanel">
+            <summary>
+                A panel that will have a chance of being randomly
+                rotated within a <see cref="T:YTech.General.Web.Controls.ContentRotation.ServerContentRotator"/>
+            </summary>
+        </member>
+        <member name="P:YTech.General.Web.Controls.ContentRotation.ContentPanel.Impressions">
+            <summary>
+                An arbitrary number that describes the number of times
+                to display the content in relation to all of the other
+                panels in the <see cref="T:YTech.General.Web.Controls.ContentRotation.ServerContentRotator"/>.
+            </summary>
+        </member>
+        <member name="P:YTech.General.Web.Controls.ContentRotation.ContentPanel.Key">
+            <summary>
+                A unique string that identifies this particluar content.  This
+                is used if you want to be able to track the content that is shown.
+            </summary>
+        </member>
+        <member name="T:YTech.General.RegistryUtilities">
+            <summary>
+            	Provides utilities to simplify working with registry keys.
+            </summary>
+        </member>
+        <member name="M:YTech.General.RegistryUtilities.#ctor">
+            <summary>
+            	Don't allow this to be instantiated.
+            </summary>
+        </member>
+        <member name="M:YTech.General.RegistryUtilities.ReadRegistryKey(Microsoft.Win32.RegistryKey,System.String,System.String)">
+            <summary>
+            	Reads a string value from the specified location in the registry.
+            </summary>
+            <param name="rootKey">
+            	The root location too look at in the registry.
+            </param>
+            <param name="key">
+            	The name of the key that the value is stored in.
+            </param>
+            <param name="valueName">
+            	The name of the value to retrieve.
+            </param>
+            <returns>
+            	The string value for the specified value name, or NULL if the key does not exist.
+            </returns>
+        </member>
+        <member name="M:YTech.General.RegistryUtilities.WriteRegistryKey(Microsoft.Win32.RegistryKey,System.String,System.String,System.String)">
+            <summary>
+            	Writes a string values to the registry.
+            </summary>
+            <param name="rootKey">
+            	The root location too look at in the registry.
+            </param>
+            <param name="key">
+            	The name of the key that the value should be stored in.
+            </param>
+            <param name="valueName">
+            	The name of the value to save.
+            </param>
+            <param name="value">
+            	The value to set the registry value to.
+            </param>
+        </member>
+        <member name="T:YTech.General.Web.PayPal.PaymentTypes">
+            <summary>
+            	The available payment types from PayPals IPN
+            </summary>
+        </member>
+        <member name="F:YTech.General.Web.PayPal.PaymentTypes.ECheck">
+            <summary>
+            	This payment was funded with an eCheck.
+            </summary>
+        </member>
+        <member name="F:YTech.General.Web.PayPal.PaymentTypes.Instant">
+            <summary>
+            	This payment was funded with PayPal balance, credit card, or Instant Transfer.
+            </summary>
+        </member>
+        <member name="T:YTech.General.Web.Forms.FieldPoster">
+            <summary>
+            	Posts specified values to another page.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.Forms.FieldPoster.#ctor(System.String)">
+            <summary>
+            	Creates a new instance of the <see cref="T:YTech.General.Web.Forms.FieldPoster"/> class.
+            </summary>
+            <param name="remoteForm">
+            	The remote form to be posted to.
+            </param>
+        </member>
+        <member name="M:YTech.General.Web.Forms.FieldPoster.Post(System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            	Performs a post with the specfied name/value pairs.
+            </summary>
+            <param name="values"></param>
+        </member>
+        <member name="M:YTech.General.Web.Forms.FieldPoster.Post(System.Collections.Specialized.NameValueCollection,System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            	Posts the specified values to the remote form.
+            </summary>
+            <param name="values">
+            	A <see cref="T:System.Collections.Specialized.NameValueCollection"/> of values to post
+            	to the remote form.
+            </param>
+            <param name="headers">
+            	The headers to add to the post.  This is a recommended parameter
+            	because many servers fail when certain headers are not sent.
+            </param>
+        </member>
+        <member name="T:YTech.General.Web.Controls.ButtonUtilities">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.Controls.ButtonUtilities.SetButtonClickDisable(System.Web.UI.WebControls.Button,System.String)">
+            <summary>
+            	Sets up the button so that it becomes disabled,
+            	using Javascript, when it is clicked in the browser.
+            </summary>
+            <remarks>
+            	This method does not save your existing "onclick" attribute
+            	text.  If that attribute exists, this script is not used.  A
+            	future version may work differently.
+            	
+            	This does not work yet.
+            </remarks>
+        </member>
+        <member name="T:YTech.General.Web.Sitemaps.EnhancedSitemapProvider">
+            <summary>
+            	Provides a sitemap provider that works just like the default
+            	sitemap provider, but has additional features.
+            </summary>
+        </member>
+        <member name="P:YTech.General.Web.Sitemaps.EnhancedSitemapProvider.CurrentNode">
+            <summary>
+            	Overrides the default CurrentNode field to provide support
+            	for finding nodes that are visited by not supplying the page
+            	name.  In other words, using "default.aspx".
+            </summary>
+        </member>
+        <member name="T:YTech.General.DataMapping.DataMapper">
+            <summary>
+            	Provides static utilities to automatically populate objects
+            	using collections of values.
+            </summary>
+        </member>
+        <member name="M:YTech.General.DataMapping.DataMapper.#ctor">
+            <summary>
+            	Creates a new instance of the data mapper
+            </summary>
+        </member>
+        <member name="M:YTech.General.DataMapping.DataMapper.PopulateObject(System.Object,System.Data.DataRow,YTech.General.Collections.StringObjectCollection)">
+            <summary>
+            	Populates the specified object using the data in the specified
+            	<see cref="T:System.Data.DataRow"/>, mapping the columns using the
+            	<see cref="T:YTech.General.DataMapping.FieldMappingAttribute"/>
+            </summary>
+            <param name="populateObject">The object whose fields will be populated.</param>
+            <param name="values">
+            	The <see cref="T:System.Data.DataRow"/> of values to populate the fields with.
+            </param>
+            <param name="extendedProperties">
+            	The <see cref="T:YTech.General.Collections.StringObjectCollection"/> to store any values that could
+            	not be mapped to fields in the object.
+            </param>
+        </member>
+        <member name="M:YTech.General.DataMapping.DataMapper.PopulateObject(System.Object,System.Data.DataSet,System.ApplicationException,YTech.General.Collections.StringObjectCollection)">
+            <summary>
+            	Populates the specified object using the data in the specified
+            	<see cref="T:System.Data.DataSet"/>.  The first row of the first table is used
+            	and the mappings are determined by using the
+            	<see cref="T:YTech.General.DataMapping.FieldMappingAttribute"/>
+            </summary>
+            <param name="populateObject">The object whose fields will be populated.</param>
+            <param name="rowSet">
+            	The <see cref="T:System.Data.DataSet"/> that contains a row to populate the object.
+            </param>
+            <param name="noDataException">
+            	The <see cref="T:System.ApplicationException"/> to throw if there are no rows in the first
+            	table of the dataset.  If NULL, a default exception is thrown.
+            </param>
+            <param name="extendedProperties">
+            	The <see cref="T:YTech.General.Collections.StringObjectCollection"/> to store any values that could
+            	not be mapped to fields in the object.  If NULL, the extended properties
+            	are lost.
+            </param>
+        </member>
+        <member name="M:YTech.General.DataMapping.DataMapper.PopulateObject(System.Object,System.Data.DataSet,System.ApplicationException,YTech.General.Collections.StringObjectCollection,System.Boolean)">
+            <summary>
+            	Populates the specified object using the data in the specified
+            	<see cref="T:System.Data.DataSet"/>.  The first row of the first table is used
+            	and the mappings are determined by using the
+            	<see cref="T:YTech.General.DataMapping.FieldMappingAttribute"/>
+            </summary>
+            <param name="populateObject">The object whose fields will be populated.</param>
+            <param name="rowSet">
+            	The <see cref="T:System.Data.DataSet"/> that contains a row to populate the object.
+            </param>
+            <param name="noDataException">
+            	The <see cref="T:System.ApplicationException"/> to throw if there are no rows in the first
+            	table of the dataset.  If NULL, a default exception is thrown.
+            </param>
+            <param name="extendedProperties">
+            	The <see cref="T:YTech.General.Collections.StringObjectCollection"/> to store any values that could
+            	not be mapped to fields in the object.  If NULL, the extended properties
+            	are lost.
+            </param>
+            <param name="throwNoDataException">
+            	If true, then an exception will be thrown if there are no rows in te dataset.
+            </param>
+        </member>
+        <member name="M:YTech.General.DataMapping.DataMapper.CreateObjects(System.Data.DataSet,System.Type)">
+            <summary>
+            	Uses the rows to create and populate objects of the specified type.
+            </summary>
+            <param name="rowSet">
+            	A <see cref="T:System.Data.DataSet"/> with a table that contains the rows to 
+            	create the objects from.
+            </param>
+            <param name="objectType">
+            	The type of the objects to create, populate, and add to the array.
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.General.DataMapping.DataMapper.GetRowValues(System.Data.DataRow)">
+            <summary>
+            	Converts a row into a <see cref="T:YTech.General.Collections.StringObjectCollection"/> so that
+            	it can be used to populate the fields in an object using
+            	PopulateObject.
+            </summary>
+            <param name="row">
+            	The <see cref="T:System.Data.DataRow"/> that contains the values to convert
+            	to the <see cref="T:YTech.General.Collections.StringObjectCollection"/>
+            </param>
+            <returns>
+            	A <see cref="T:YTech.General.Collections.StringObjectCollection"/> that contains the values
+            	from the <see cref="T:System.Data.DataRow"/>.
+            </returns>
+        </member>
+        <member name="M:YTech.General.DataMapping.DataMapper.PopulateObject(System.Object,YTech.General.Collections.StringObjectCollection,YTech.General.Collections.StringObjectCollection)">
+            <summary>
+            	Populates the specified object using the data in the specified
+            	values collection, mapping the columns using the <see cref="T:YTech.General.DataMapping.FieldMappingAttribute"/>
+            </summary>
+            <param name="populateObject">The object whose fields will be populated.</param>
+            <param name="values">
+            	The <see cref="T:YTech.General.Collections.StringObjectCollection"/> of values to populate the fields with.
+            </param>
+            <param name="extendedProperties">
+            	The <see cref="T:YTech.General.Collections.StringObjectCollection"/> to store any values that could
+            	not be mapped to fields in the object.
+            </param>
+        </member>
+        <member name="M:YTech.General.DataMapping.DataMapper.GetFieldMappings(System.Type)">
+            <summary>
+            	Gets a hashtable with the field mappings and the associated
+            	fields.
+            </summary>
+            <param name="objectType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.General.DataMapping.DataMapper.getFieldMapping(System.Reflection.MemberInfo)">
+            <summary>
+            	Reads the column mapping from the field.
+            </summary>
+            <param name="info"></param>
+            <returns>
+            	The column mapping unless the field doesn't have the attribute,
+            	then it returns NULL.
+            </returns>
+        </member>
+        <member name="T:YTech.General.Collections.StringObjectCollection">
+            <summary>
+            	Stores objects using string keys
+            </summary>
+        </member>
+        <member name="M:YTech.General.Collections.StringObjectCollection.#ctor">
+            <summary>
+            	Creates a new instance of the <see cref="T:YTech.General.Collections.StringObjectCollection"/>
+            </summary>
+        </member>
+        <member name="M:YTech.General.Collections.StringObjectCollection.#ctor(System.Collections.Specialized.NameValueCollection)">
+            <summary>
+            	Creates a new instance of the <see cref="T:YTech.General.Collections.StringObjectCollection"/>
+            	initialized to the values in the specified <see cref="T:System.Collections.Specialized.NameValueCollection"/>
+            </summary>
+            <param name="nvCollection">
+            	The collection to read the name value pairs from.
+            </param>
+        </member>
+        <member name="M:YTech.General.Collections.StringObjectCollection.Add(System.String,System.Object)">
+            <summary>
+            	Adds a key/value pair to the collection.
+            </summary>
+            <param name="key">
+            	The key used to identify and access the object
+            </param>
+            <param name="setValue">
+            	The value to set for the key.
+            </param>
+        </member>
+        <member name="P:YTech.General.Collections.StringObjectCollection.Item(System.String)">
+            <summary>
+            	Retrieves the object with the specified key.
+            </summary>
+        </member>
+        <member name="T:YTech.General.Collections.DelimitedList">
+            <summary>
+              Used to build a delimited or comma separated list easily.
+            	The default separator is a comma, but can be changed easily.
+            	The list is built as needed, using a stringbuilder.
+            </summary>	
+        </member>
+        <member name="F:YTech.General.Collections.DelimitedList.List">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:YTech.General.Collections.DelimitedList.Separator">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:YTech.General.Collections.DelimitedList.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:YTech.General.Collections.DelimitedList.AppendNoComma(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Str"></param>
+        </member>
+        <member name="M:YTech.General.Collections.DelimitedList.Append(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="Str"></param>
+        </member>
+        <member name="M:YTech.General.Collections.DelimitedList.Append(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="Obj"></param>
+        </member>
+        <member name="M:YTech.General.Collections.DelimitedList.Append(System.Int32[])">
+            <summary>
+            	Appends the specified array to this list.
+            </summary>
+            <param name="IntArr"></param>
+        </member>
+        <member name="M:YTech.General.Collections.DelimitedList.Append(System.String[])">
+            <summary>
+            	Appends the specified array to this list.
+            </summary>
+            <param name="StrArr"></param>
+        </member>
+        <member name="M:YTech.General.Collections.DelimitedList.AppendList(System.String)">
+            <summary>
+            	Appends the delimited list to this list.
+            </summary>
+            <param name="List"></param>
+        </member>
+        <member name="M:YTech.General.Collections.DelimitedList.GetString">
+            <summary>
+            	Returns the result of ToString()
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.General.Collections.DelimitedList.GetSchema">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.General.Collections.DelimitedList.ReadXml(System.Xml.XmlReader)">
+            <summary>
+            
+            </summary>
+            <param name="reader"></param>
+        </member>
+        <member name="M:YTech.General.Collections.DelimitedList.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            
+            </summary>
+            <param name="writer"></param>
+        </member>
+        <member name="M:YTech.General.Collections.DelimitedList.ToString">
+            <summary>
+            	Returns the delimeted list.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:YTech.General.Web.Controls.ContentRotation.ContentShownEventArgs">
+            <summary>
+            	EventArgs for the event raised when content is displayed in the content rotator.
+            </summary>
+        </member>
+        <member name="P:YTech.General.Web.Controls.ContentRotation.ContentShownEventArgs.ShownPanel">
+            <summary>
+                Gets or sets the <see cref="T:YTech.General.Web.Controls.ContentRotation.ContentPanel"/> that was
+                displayed by the <see cref="T:YTech.General.Web.Controls.ContentRotation.ServerContentRotator"/>.
+            </summary>
+        </member>
+        <member name="T:YTech.General.Build.ProjectReferenceRewriter">
+            <summary>
+            	Rewrites a Visual Studio.NET project file to turn
+            	project references into DLL references at build time.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Build.ProjectReferenceRewriter.#ctor(System.Xml.XmlDocument)">
+            <summary>
+            	Creates a new instance of the <see cref="T:YTech.General.Build.ProjectReferenceRewriter"/> class
+            </summary>
+        </member>
+        <member name="M:YTech.General.Build.ProjectReferenceRewriter.RewriteReference(System.String,System.String)">
+            <summary>
+            	Rewrites the reference to the specified project name
+            	to the specified DLL.
+            </summary>
+            <param name="projectName">
+            	The name of the project reference to remove.
+            </param>
+            <param name="path">
+            	The path and file name of the DLL to reference
+            	relative to the project file path.  Use forward
+            	slashes.
+            </param>
+        </member>
+        <member name="T:YTech.General.Web.UrlBuilder">
+            <summary>
+            Represents a URL and allows easy parameter manipulation.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.UrlBuilder.#ctor">
+            <summary>
+            	Creates a new instance of the URLBuilder with a blank URL.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.UrlBuilder.#ctor(System.String)">
+            <summary>
+            	Creates a new instance of the <see cref="T:YTech.General.Web.UrlBuilder"/> with
+            	the specified starting Url.
+            </summary>
+            <remarks>
+            	The parameters, if any, are assumed to NOT be encoded.  They are
+            	encoded after parsing the initial Url.
+            </remarks>
+            <param name="startUrl"></param>
+        </member>
+        <member name="M:YTech.General.Web.UrlBuilder.#ctor(System.String,System.Boolean)">
+            <summary>
+            	Creates a new instance of the URLBuilder with the specified URL.
+            </summary>
+            <param name="initialUrl">
+            	The initial URL to parse.
+            </param>
+            <param name="parametersEncoded">
+            
+            </param>
+        </member>
+        <member name="M:YTech.General.Web.UrlBuilder.ToString">
+            <summary>
+            	Gets the URL in string form.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:YTech.General.Web.UrlBuilder.Parameters">
+            <summary>
+            	Gets the URLParameter object that represents the
+            	parameters of this URL.
+            </summary>
+        </member>
+        <member name="P:YTech.General.Web.UrlBuilder.URLBase">
+            <summary>
+            	Gets or sets the URL without the parameters
+            </summary>
+        </member>
+        <member name="P:YTech.General.Web.UrlBuilder.Domain">
+            <summary>
+            	Gets the domain name from the URL.
+            </summary>
+        </member>
+        <member name="T:YTech.General.Web.Seo.RankChecking.Yahoo.ResultSet">
+            <remarks/>
+        </member>
+        <member name="F:YTech.General.Web.Seo.RankChecking.Yahoo.ResultSet.Result">
+            <remarks/>
+        </member>
+        <member name="F:YTech.General.Web.Seo.RankChecking.Yahoo.ResultSet.totalResultsAvailable">
+            <remarks/>
+        </member>
+        <member name="F:YTech.General.Web.Seo.RankChecking.Yahoo.ResultSet.totalResultsReturned">
+            <remarks/>
+        </member>
+        <member name="F:YTech.General.Web.Seo.RankChecking.Yahoo.ResultSet.firstResultPosition">
+            <remarks/>
+        </member>
+        <member name="T:YTech.General.Web.Seo.RankChecking.Yahoo.ResultType">
+            <remarks/>
+        </member>
+        <member name="F:YTech.General.Web.Seo.RankChecking.Yahoo.ResultType.Title">
+            <remarks/>
+        </member>
+        <member name="F:YTech.General.Web.Seo.RankChecking.Yahoo.ResultType.Summary">
+            <remarks/>
+        </member>
+        <member name="F:YTech.General.Web.Seo.RankChecking.Yahoo.ResultType.Url">
+            <remarks/>
+        </member>
+        <member name="F:YTech.General.Web.Seo.RankChecking.Yahoo.ResultType.ClickUrl">
+            <remarks/>
+        </member>
+        <member name="F:YTech.General.Web.Seo.RankChecking.Yahoo.ResultType.ModificationDate">
+            <remarks/>
+        </member>
+        <member name="F:YTech.General.Web.Seo.RankChecking.Yahoo.ResultType.MimeType">
+            <remarks/>
+        </member>
+        <member name="F:YTech.General.Web.Seo.RankChecking.Yahoo.ResultType.Cache">
+            <remarks/>
+        </member>
+        <member name="T:YTech.General.Web.Seo.RankChecking.Yahoo.CacheType">
+            <remarks/>
+        </member>
+        <member name="F:YTech.General.Web.Seo.RankChecking.Yahoo.CacheType.Url">
+            <remarks/>
+        </member>
+        <member name="F:YTech.General.Web.Seo.RankChecking.Yahoo.CacheType.Size">
+            <remarks/>
+        </member>
+        <member name="T:YTech.General.Web.SearchEngineSearches">
+            <summary>
+            	Contains static methods for creating search URL's for
+            	the major search engines.
+            </summary>
+        </member>
+        <member name="F:YTech.General.Web.SearchEngineSearches.GOOGLE_SEARCH_SIGNATURE">
+            <summary>
+            	The format of a simple Google search
+            </summary>
+        </member>
+        <member name="F:YTech.General.Web.SearchEngineSearches.YAHOO_SEARCH_SIGNATURE">
+            <summary>
+            	The format of a simple Yahoo search
+            </summary>
+        </member>
+        <member name="F:YTech.General.Web.SearchEngineSearches.MSN_SEARCH_SIGNATURE">
+            <summary>
+            	The format of a simple MSN search
+            </summary>
+        </member>
+        <member name="F:YTech.General.Web.SearchEngineSearches.JEEVES_SEARCH_SIGNATURE">
+            <summary>
+            	The format of a simple "Ask Jeeves" search
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.SearchEngineSearches.#ctor">
+            <summary>
+            	Should not instantiate
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.SearchEngineSearches.GetGoogleSearchUrl(System.String)">
+            <summary>
+            	Gets a URL that can be used to display the search results
+            	for the specified term in Google.
+            </summary>
+            <param name="searchString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.General.Web.SearchEngineSearches.GetYahooSearchUrl(System.String)">
+            <summary>
+            	Gets a URL that can be used to display the search results
+            	for the specified term in Yahoo.
+            </summary>
+            <param name="searchString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.General.Web.SearchEngineSearches.GetMsnSearchUrl(System.String)">
+            <summary>
+            	Gets a URL that can be used to display the search results
+            	for the specified term in MSN.
+            </summary>
+            <param name="searchString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.General.Web.SearchEngineSearches.GetJeevesSearchUrl(System.String)">
+            <summary>
+            	Gets a URL that can be used to display the search results
+            	for the specified term in Ask Jeeves.
+            </summary>
+            <param name="searchString"></param>
+            <returns></returns>
+        </member>
+        <member name="T:YTech.General.Web.PayPal.PayPalInterval">
+            <summary>
+            Summary description for Interval.
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.PayPal.PayPalInterval.#ctor(System.Int32,YTech.General.Web.PayPal.IntervalUnits)">
+            <summary>
+            	Creates a new instance of the <see cref="T:YTech.General.Web.PayPal.PayPalInterval"/> class.
+            </summary>
+            <param name="quantity"></param>
+            <param name="units"></param>
+        </member>
+        <member name="M:YTech.General.Web.PayPal.PayPalInterval.#ctor(System.String)">
+            <summary>
+            	Creates a new instance of the <see cref="T:YTech.General.Web.PayPal.PayPalInterval"/> class, parsing
+            	the specified PayPal interval string.
+            </summary>
+            <param name="intervalString"></param>
+        </member>
+        <member name="M:YTech.General.Web.PayPal.PayPalInterval.ToString">
+            <summary>
+            	Gets the PayPal style interval string.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:YTech.General.Web.PayPal.PayPalInterval.Quantity">
+            <summary>
+            	The numeric portion of the interval.  For an interval
+            	of 5 days, this would be 5.
+            </summary>
+        </member>
+        <member name="P:YTech.General.Web.PayPal.PayPalInterval.Units">
+            <summary>
+            	The unit portion of the interval.  For an interval
+            	of 5 days, this would be the "days" part.
+            </summary>
+        </member>
+        <member name="T:YTech.General.Web.Controls.BulletListItem">
+            <summary>
+            	A bullet item that can be added to a <see cref="T:YTech.General.Web.Controls.BulletList"/>
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.Controls.BulletListItem.#ctor">
+            <summary>
+            	Creates a new instance of the <see cref="T:YTech.General.Web.Controls.BulletListItem"/>
+            </summary>
+        </member>
+        <member name="M:YTech.General.Web.Controls.BulletListItem.RenderBeginTag(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            	Renders the beginning "li" for the control.
+            </summary>
+            <param name="writer">
+            	The writer to output to.
+            </param>
+        </member>
+        <member name="M:YTech.General.Web.Controls.BulletListItem.RenderEndTag(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            	Renders the end "li" for the control.
+            </summary>
+            <param name="writer">
+            	The writer to output to.
+            </param>
+        </member>
+        <member name="M:YTech.General.Web.Controls.BulletListItem.Render(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            	Renders the complete control.
+            </summary>
+            <param name="writer">
+            	The writer to output to.
+            </param>
+        </member>
+        <member name="P:YTech.General.Web.Controls.BulletListItem.Text">
+            <summary>
+            	Gets or sets the text to display for this list item.
+            </summary>
+            <remarks>
+            	This property is optional.  You may choose to simply
+            	add child controls instead of just displaying text.
+            </remarks>
+        </member>
+        <member name="T:YTech.General.DataMapping.FieldMappingAttribute">
+            <summary>
+            	Used to specify the mapping element that the propery maps to.
+            </summary>
+        </member>
+        <member name="M:YTech.General.DataMapping.FieldMappingAttribute.#ctor(System.String)">
+            <summary>
+            	Creates a new instance of the <see cref="T:YTech.General.DataMapping.FieldMappingAttribute"/>
+            	that signals the data mapper to map the field to the specified
+            	mapping name.
+            </summary>
+        </member>
+        <member name="P:YTech.General.DataMapping.FieldMappingAttribute.DatabaseColumnName">
+            <summary>
+            	The mapping element that this field corresponds to.
+            </summary>
+        </member>
+    </members>
+</doc>

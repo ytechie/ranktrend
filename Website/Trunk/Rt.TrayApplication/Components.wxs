@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2003/01/wi">
+	<Fragment>
+		<ComponentGroup Id="groupRankTrendComponents">
+			<ComponentRef Id="TrayAppExe" />
+			<ComponentRef Id="TrayAppSupportingFiles" />
+		</ComponentGroup>
+
+			<!-- Put our directory under the RankTrend root install folder -->
+			<DirectoryRef Id="RtPrograms">
+				<Directory Id="TRAYAPPINSTALLDIR" Name="TrayApp" LongName="Tray Application">
+					<Component Id="TrayAppExe" Guid="a1a82361-6c61-11db-bd13-0800200c9a66">
+						<File Id="Rt.TrayApplication.exe" Name="TrayApp.exe" LongName="Rt.TrayApplication.exe"
+							src="Rt.TrayApplication.exe" DiskId ="1">
+							<Shortcut Id="TrayAppStartupShortcut" Directory="StartupFolder" Name="TrayApp" 
+								LongName="RankTrend.com Tray Application" />
+							<Shortcut Id="TrayAppPMenuShortcut" Directory="RankTrendShortcutFolder" Name="TrayApp"
+								LongName="RankTrend.com Tray Application" />
+						</File>
+						<RemoveFile Id="LogFile" On="uninstall" Name="log.txt" LongName="log.txt" />
+					</Component>
+
+					<Component Id="TrayAppSupportingFiles" Guid="a1a82362-6c61-11db-bd13-0800200c9a66">
+						<File Id="logging.config" Name="logging.cfg" LongName="logging.config" src="logging.config" DiskId="1" />
+						<File Id="log4net.dll" Name="log4net.dll" LongName="log4net.dll" src="log4net.dll" DiskId="1" />
+					</Component>
+					
+					<Directory Id='StartupFolder' Name="StartupD" />
+					<Directory Id="ProgramMenuFolder" Name="PMenu" LongName="Programs">
+						<Directory Id="RankTrendShortcutFolder" Name="RankTren" LongName="RankTrend.com" />
+					</Directory>
+				</Directory>
+		</DirectoryRef>
+	</Fragment>
+</Wix>

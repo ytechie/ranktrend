@@ -1,0 +1,1267 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Csv</name>
+    </assembly>
+    <members>
+        <member name="T:Csv.CsvDataReader">
+            <summary>
+            	Provides a datasource for the .Net Framework 2.0 SqlBulkCopy class
+            	which allows data to be rapidly imported into SQL Server.
+            </summary>
+        </member>
+        <member name="M:Csv.CsvDataReader.#ctor(System.String,System.Char,System.Text.Encoding)">
+            <summary>
+            	Creates a <see cref="T:Csv.CsvDataReader"/> object using a
+            	file as the data source.
+            </summary>
+            <param name="fileName">
+            	The path to the file to use as the data source.
+            </param>
+            <param name="delimiter">
+            	The character to use as the column delimiter.
+            </param>
+            <param name="encoding">
+            	The <see cref="T:System.Text.Encoding"/> to use while parsing the data.
+            </param>
+        </member>
+        <member name="M:Csv.CsvDataReader.#ctor(System.String,System.Char)">
+            <summary>
+            	Creates a <see cref="T:Csv.CsvDataReader"/> object using a
+            	file as the data source. Uses <see cref="P:System.Text.Encoding.Default"/>
+            	as the encoding.
+            </summary>
+            <param name="fileName">
+            	The path to the file to use as the data source.
+            </param>
+            <param name="delimiter">"&gt;
+            	The character to use as the column delimiter.
+            </param>
+        </member>
+        <member name="M:Csv.CsvDataReader.#ctor(System.String)">
+            <summary>
+            	Creates a <see cref="T:Csv.CsvDataReader"/> object using a
+            	file as the data source. Uses a comma as the column
+            	delimiter and <see cref="P:System.Text.Encoding.Default"/> as the
+            	encoding.
+            </summary>
+            <param name="fileName">
+            	The path to the file to use as the data source.
+            </param>
+        </member>
+        <member name="M:Csv.CsvDataReader.#ctor(System.IO.TextReader,System.Char)">
+            <summary>
+            	Constructs a <see cref="T:Csv.CsvDataReader"/> object using
+            	a <see cref="T:System.IO.TextReader"/> object as the data
+            	source.
+            </summary>
+            <param name="inputStream">
+            	The stream to use as the data source.
+            </param>
+            <param name="delimiter">
+            	The character to use as the column delimiter.
+            </param>
+        </member>
+        <member name="M:Csv.CsvDataReader.#ctor(System.IO.TextReader)">
+            <summary>
+            	Constructs a <see cref="T:Csv.CsvDataReader"/> object using
+            	a <see cref="T:System.IO.TextReader"/> object as the data
+            	source. Uses a comma as the column delimiter.
+            </summary>
+            <param name="inputStream">
+            	The stream to use as the data source.
+            </param>
+        </member>
+        <member name="M:Csv.CsvDataReader.#ctor(System.IO.Stream,System.Char,System.Text.Encoding)">
+            <summary>
+            	Constructs a <see cref="T:Csv.CsvDataReader"/> object using
+            	a Stream object as the data
+            	source.
+            </summary>
+            <param name="inputStream">
+            	The stream to use as the data source.
+            </param>
+            <param name="delimiter">
+            	The character to use as the column delimiter.
+            </param>
+            <param name="encoding">
+            	The <see cref="T:System.Text.Encoding"/> to use while parsing the data.
+            </param>
+        </member>
+        <member name="M:Csv.CsvDataReader.#ctor(System.IO.Stream,System.Text.Encoding)">
+            <summary>
+            	Constructs a <see cref="T:Csv.CsvDataReader"/> object using
+            	a <see cref="T:System.IO.Stream"/> object as the data
+            	source. Uses a comma as the column delimiter.
+            </summary>
+            <param name="inputStream">
+            	The stream to use as the data source.
+            </param>
+            <param name="encoding">
+            	The <see cref="T:System.Text.Encoding"/> to use while parsing the data.
+            </param>
+        </member>
+        <member name="M:Csv.CsvDataReader.Parse(System.String)">
+            <summary>
+            	Creates a <see cref="T:Csv.CsvDataReader"/> object using
+            	a string of data as the source. Uses <see cref="P:System.Text.Encoding.Default"/>
+            	as the encoding.
+            </summary>
+            <param name="data">
+            	The string of data to use as the source.
+            </param>
+            <returns>
+            	A <see cref="T:Csv.CsvDataReader"/> object using the string of <paramref name="data"/>
+            	as the source.
+            </returns>
+        </member>
+        <member name="M:Csv.CsvDataReader.OnReadRecord">
+            <summary>
+            
+            </summary>
+            <returns>If the next record should be skipped.</returns>
+        </member>
+        <member name="M:Csv.CsvDataReader.Dispose(System.Boolean)">
+            <summary>
+            	Closes and releases all related resources.
+            </summary>
+            <param name="disposing">
+            	Whether this call is coming from an explicit call,
+            	instead of from the implicit GC finalizer call.
+            </param>
+        </member>
+        <member name="M:Csv.CsvDataReader.Finalize">
+            <summary>
+            	Called to release unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:Csv.CsvDataReader.CheckDisposed">
+            <summary>
+            	Checks to see if object has already been disposed, which
+            	would make calling methods on the object invalid.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">
+            	Methods were called after the object has been disposed.
+            </exception>
+        </member>
+        <member name="M:Csv.CsvDataReader.Close">
+            <summary>
+            	Closes and releases all related resources.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvDataReader.HasHeaders">
+            <summary>
+            	Indicates whether the first line of data contains names of the columns.
+            	Default is false.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvDataReader.TrimWhitespace">
+            <summary>
+            	Whether to trim leading and trailing whitespace characters
+            	from non-textqualified column data. Default is true.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvDataReader.Delimiter">
+            <summary>
+            	The character to use as the column delimiter. Default
+            	is comma, ','.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvDataReader.RecordDelimiter">
+            <summary>
+            	The character to use as the record delimiter. Default
+            	is combination of standard end of line characters
+            	for Windows, Unix, or Mac.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvDataReader.TextQualifier">
+            <summary>
+            	The character to use as a text qualifier in the data.
+            	Default is quote, '"'.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvDataReader.UseTextQualifier">
+            <summary>
+            	Whether to use a text qualifier while parsing or not.
+            	Default is true.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvDataReader.Comment">
+            <summary>
+            	The character to use as a comment signal. Default
+            	is pound, '#'.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvDataReader.UseComments">
+            <summary>
+            	Whether to look for comments while parsing or not.
+            	Default is false.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvDataReader.EscapeMode">
+            <summary>
+            	Specifies how to escape an occurance of system
+            	characters, like the <see cref="P:Csv.CsvDataReader.TextQualifier"/>
+            	and <see cref="P:Csv.CsvDataReader.Delimiter"/>, inside field values
+            	when required.
+            	Default is <see cref="F:Csv.EscapeMode.Doubled"/>.
+            </summary>
+            <remarks>
+            	When the <see cref="P:Csv.CsvDataReader.EscapeMode"/> is set to
+            	<see cref="F:Csv.EscapeMode.Doubled"/>, occurances of the
+            	<see cref="P:Csv.CsvDataReader.TextQualifier"/> will be expected
+            	to be escaped by replacing it with two consecutive occurances
+            	of the <see cref="P:Csv.CsvDataReader.TextQualifier"/>. This is the
+            	format generally used for CSV in applications such as Excel.
+            	When the <see cref="P:Csv.CsvDataReader.EscapeMode"/> is set to
+            	<see cref="F:Csv.EscapeMode.Backslash"/>, occurances of the
+            	<see cref="P:Csv.CsvDataReader.TextQualifier"/> will be expected
+            	to be escaped by preceding it with a backslash character. This
+            	format is common in Unix type environments.
+            	When the <see cref="P:Csv.CsvDataReader.EscapeMode"/> is set to
+            	<see cref="F:Csv.EscapeMode.Backslash"/>, the following escape
+            	sequences are also recognized and replaced inside field values.
+            	<list type="table">
+            		<listheader>
+            			<term>Escape</term>
+            			<description>Description</description>
+            		</listheader>
+            		<item>
+            			<term>\n</term>
+            			<description>New Line, ASCII 10</description>
+            		</item>
+            		<item>
+            			<term>\r</term>
+            			<description>Carriage Return, ASCII 13</description>
+            		</item>
+            		<item>
+            			<term>\t</term>
+            			<description>Tab, ASCII 9</description>
+            		</item>
+            		<item>
+            			<term>\b</term>
+            			<description>Backspace, ASCII 8</description>
+            		</item>
+            		<item>
+            			<term>\f</term>
+            			<description>Form Feed, ASCII 12</description>
+            		</item>
+            		<item>
+            			<term>\e</term>
+            			<description>Escape, ASCII 27</description>
+            		</item>
+            		<item>
+            			<term>\v</term>
+            			<description>Vertical Tab, ASCII 11</description>
+            		</item>
+            		<item>
+            			<term>\a</term>
+            			<description>Alert, ASCII 7</description>
+            		</item>
+            	</list>
+            	<list type="table">
+            		<listheader>
+            			<term>Format</term>
+            			<description>Description</description>
+            		</listheader>
+            		<item>
+            			<term>\u#### or \U###</term>
+            			<description>Unicode, ex. \u0041 = 'A'</description>
+            		</item>
+            		<item>
+            			<term>\x## or \X##</term>
+            			<description>Hexadecimal, ex. \x41 = 'A'</description>
+            		</item>
+            		<item>
+            			<term>\o### or \O### or \###</term>
+            			<description>Octal, ex. \o101 = 'A'</description>
+            		</item>
+            		<item>
+            			<term>\d### or \D###</term>
+            			<description>Decimal, ex. \d065 = 'A'</description>
+            		</item>
+            	</list>
+            </remarks>
+        </member>
+        <member name="P:Csv.CsvDataReader.SkipEmptyRecords">
+            <summary>
+            	Whether to treat a record with no data as if it wasn't there or not.
+            	When set to true, two consecutive occurances of the record delimiter
+            	will be treated as only one. When set to true, when the reader encounters
+            	an empty record, all fields will contain their corresponding column's
+            	default value.
+            	Default is true.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvDataReader.SafetySwitch">
+            <summary>
+            	Safety caution to prevent the parser from using large amounts of
+            	memory in the case where parsing settings like file encodings don't
+            	end up matching the actual format of a file. This switch can be turned
+            	off if the file format is known and tested. With the switch off, the
+            	max column lengths and max column count per record supported by the
+            	parser will greatly increase. Default is true.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvDataReader.Columns">
+            <summary>
+            	Collection of columns to include in the source data.
+            </summary>
+        </member>
+        <member name="E:Csv.CsvDataReader.ReadRecord">
+            <summary>
+            	This event is raised after each record has been read and before
+            	the values have been converted to the destination type. This event
+            	can be used to modify values in a record, add values to a record,
+            	or skip a record entirely.
+            </summary>
+        </member>
+        <member name="T:Csv.CsvDataReader.ReadRecordEventHandler">
+            <summary>
+            	Represents the method that will handle the <see cref="F:Csv.CsvDataReader.ReadRecord"/>
+            	event of a <see cref="T:Csv.CsvDataReader"/> instance.
+            </summary>
+            <param name="e">
+            	The <see cref="T:Csv.CsvDataReader.ReadRecordEventArgs"/> that contains the event data.
+            </param>
+        </member>
+        <member name="T:Csv.CsvDataReader.ReadRecordEventArgs">
+            <summary>
+            	Provides data for the <see cref="F:Csv.CsvDataReader.ReadRecord"/> event.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvDataReader.ReadRecordEventArgs.Values">
+            <summary>
+            	An array of column values for this record.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvDataReader.ReadRecordEventArgs.SkipRecord">
+            <summary>
+            	Whether this record should be skipped or not. Default
+            	is false.
+            </summary>
+        </member>
+        <member name="T:Csv.CsvDataReader.ColumnCollection">
+            <summary>
+            	Collection of <see cref="T:Csv.CsvDataReader.Column"/> items.
+            </summary>
+        </member>
+        <member name="M:Csv.CsvDataReader.ColumnCollection.#ctor">
+            <summary>
+            	Initializes an instance of the <see cref="T:Csv.CsvDataReader.ColumnCollection"/>
+            	class.
+            </summary>
+        </member>
+        <member name="M:Csv.CsvDataReader.ColumnCollection.Add(Csv.CsvDataReader.Column)">
+            <summary>
+            	Adds a <see cref="T:Csv.CsvDataReader.Column"/> to the collection.
+            </summary>
+            <param name="column">
+            	The <see cref="T:Csv.CsvDataReader.Column"/> to add to the collection.
+            </param>
+        </member>
+        <member name="M:Csv.CsvDataReader.ColumnCollection.Add(System.String)">
+            <summary>
+            	Adds a <see cref="T:Csv.CsvDataReader.Column"/> to the collection.
+            </summary>
+            <param name="dataType">
+            	The name of the data type of the <see cref="T:Csv.CsvDataReader.Column"/>
+            	to add to the collection.
+            </param>
+        </member>
+        <member name="M:Csv.CsvDataReader.ColumnCollection.Add(System.String,System.String)">
+            <summary>
+            	Adds a <see cref="T:Csv.CsvDataReader.Column"/> to the collection.
+            </summary>
+            <param name="dataType">
+            	The name of the data type of the <see cref="T:Csv.CsvDataReader.Column"/>
+            	to add to the collection.
+            </param>
+            <param name="columnName">
+            	The name to use when referring to this column in column mappings.
+            </param>
+        </member>
+        <member name="M:Csv.CsvDataReader.ColumnCollection.Remove(Csv.CsvDataReader.Column)">
+            <summary>
+            	Removes a <see cref="T:Csv.CsvDataReader.Column"/> from the collection.
+            </summary>
+            <param name="column">
+            	The <see cref="T:Csv.CsvDataReader.Column"/> to remove from the collection.
+            </param>
+        </member>
+        <member name="P:Csv.CsvDataReader.ColumnCollection.Item(System.Int32)">
+            <summary>
+            	The <see cref="T:Csv.CsvDataReader.Column"/> at the specified index.
+            </summary>
+        </member>
+        <member name="T:Csv.CsvDataReader.Column">
+            <summary>
+            	Represents a data column in the data source to use during import.
+            </summary>
+        </member>
+        <member name="M:Csv.CsvDataReader.Column.#ctor(System.String)">
+            <summary>
+            	Initializes a new instance of the <see cref="T:Csv.CsvDataReader.Column"/>
+            	class using the name of the data type to use for this column.
+            </summary>
+            <param name="dataType">Name of the data type in the database, for example, datetime, varchar, and so on.</param>
+        </member>
+        <member name="M:Csv.CsvDataReader.Column.#ctor(System.String,System.String)">
+            <summary>
+            	Initializes a new instance of the <see cref="T:Csv.CsvDataReader.Column"/>
+            	class using the name of the data type to use for this column
+                and specifying the name to use to refer to this column.
+            </summary>
+            <param name="dataType">
+                Name of the data type in the database, for example, datetime, varchar, and so on.
+            </param>
+            <param name="columnName">
+                The name to use when referring to this column in column mappings.
+            </param>
+        </member>
+        <member name="P:Csv.CsvDataReader.Column.Name">
+            <summary>
+            	The name of the column. This value can be used to map
+            	source columns to destination columns.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvDataReader.Column.DefaultValue">
+            <summary>
+            	The value to use for the column when no value is present.
+            	Default is <see cref="F:System.DBNull.Value"/>.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvDataReader.Column.FormatProvider">
+            <summary>
+            	The <see cref="T:System.IFormatProvider"/> to use while
+            	attempting to parse values for this column. Contains
+            	culture specific settings for date and numeric values.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvDataReader.Column.Format">
+            <summary>
+            	The format string to use for parsing irregular date
+            	column values. Must exactly match the column's value
+            	in the data source using the <see cref="P:Csv.CsvDataReader.Column.FormatProvider"/>'s
+            	formatting symbols.
+            </summary>
+        </member>
+        <member name="T:Csv.CsvReader">
+            <summary>
+            	A stream based parser for parsing delimited text data from a file or a stream.
+            </summary>
+        </member>
+        <member name="M:Csv.CsvReader.#ctor(System.String,System.Char,System.Text.Encoding)">
+            <summary>
+            	Creates a <see cref="T:Csv.CsvReader"/> object using a
+            	file as the data source.
+            </summary>
+            <param name="fileName">
+            	The path to the file to use as the data source.
+            </param>
+            <param name="delimiter">
+            	The character to use as the column delimiter.
+            </param>
+            <param name="encoding">
+            	The <see cref="T:System.Text.Encoding"/> to use while parsing the data.
+            </param>
+        </member>
+        <member name="M:Csv.CsvReader.#ctor(System.String,System.Char)">
+            <summary>
+            	Creates a <see cref="T:Csv.CsvReader"/> object using a
+            	file as the data source. Uses <see cref="P:System.Text.Encoding.Default"/>
+            	as the encoding.
+            </summary>
+            <param name="fileName">
+            	The path to the file to use as the data source.
+            </param>
+            <param name="delimiter">"&gt;
+            	The character to use as the column delimiter.
+            </param>
+        </member>
+        <member name="M:Csv.CsvReader.#ctor(System.String)">
+            <summary>
+            	Creates a <see cref="T:Csv.CsvReader"/> object using a
+            	file as the data source. Uses a comma as the column
+            	delimiter and <see cref="P:System.Text.Encoding.Default"/> as the
+            	encoding.
+            </summary>
+            <param name="fileName">
+            	The path to the file to use as the data source.
+            </param>
+        </member>
+        <member name="M:Csv.CsvReader.#ctor(System.IO.TextReader,System.Char)">
+            <summary>
+            	Constructs a <see cref="T:Csv.CsvReader"/> object using
+            	a <see cref="T:System.IO.TextReader"/> object as the data
+            	source.
+            </summary>
+            <param name="inputStream">
+            	The stream to use as the data source.
+            </param>
+            <param name="delimiter">
+            	The character to use as the column delimiter.
+            </param>
+        </member>
+        <member name="M:Csv.CsvReader.#ctor(System.IO.TextReader)">
+            <summary>
+            	Constructs a <see cref="T:Csv.CsvReader"/> object using
+            	a <see cref="T:System.IO.TextReader"/> object as the data
+            	source. Uses a comma as the column delimiter.
+            </summary>
+            <param name="inputStream">
+            	The stream to use as the data source.
+            </param>
+        </member>
+        <member name="M:Csv.CsvReader.#ctor(System.IO.Stream,System.Char,System.Text.Encoding)">
+            <summary>
+            	Constructs a <see cref="T:Csv.CsvReader"/> object using
+            	a Stream object as the data
+            	source.
+            </summary>
+            <param name="inputStream">
+            	The stream to use as the data source.
+            </param>
+            <param name="delimiter">
+            	The character to use as the column delimiter.
+            </param>
+            <param name="encoding">
+            	The <see cref="T:System.Text.Encoding"/> to use while parsing the data.
+            </param>
+        </member>
+        <member name="M:Csv.CsvReader.#ctor(System.IO.Stream,System.Text.Encoding)">
+            <summary>
+            	Constructs a <see cref="T:Csv.CsvReader"/> object using
+            	a <see cref="T:System.IO.Stream"/> object as the data
+            	source. Uses a comma as the column delimiter.
+            </summary>
+            <param name="inputStream">
+            	The stream to use as the data source.
+            </param>
+            <param name="encoding">
+            	The <see cref="T:System.Text.Encoding"/> to use while parsing the data.
+            </param>
+        </member>
+        <member name="M:Csv.CsvReader.Parse(System.String)">
+            <summary>
+            	Creates a <see cref="T:Csv.CsvReader"/> object using
+            	a string of data as the source. Uses <see cref="P:System.Text.Encoding.Default"/>
+            	as the encoding.
+            </summary>
+            <param name="data">
+            	The string of data to use as the source.
+            </param>
+            <returns>
+            	A <see cref="T:Csv.CsvReader"/> object using the string of <paramref name="data"/>
+            	as the source.
+            </returns>
+        </member>
+        <member name="M:Csv.CsvReader.ReadToEnd(System.Boolean,System.UInt64)">
+            <summary>
+            	Reads till the end of the csv data.
+            </summary>
+            <param name="readHeaders">
+            	Read the column names from the data.
+            </param>
+            <param name="maxRecords">
+            	The max number of records to return in the <see cref="T:System.Data.DataTable"/>.
+            	Pass in 0 to read all records.
+            </param>
+            <returns>
+            	A <see cref="T:System.Data.DataTable"/> containing the csv data.
+            </returns>
+        </member>
+        <member name="M:Csv.CsvReader.ReadToEnd(System.Boolean)">
+            <summary>
+            	Reads till the end of the csv data.
+            </summary>
+            <param name="readHeaders">
+            	Read the column names from the data.
+            </param>
+            <returns>
+            	A <see cref="T:System.Data.DataTable"/> containing the csv data.
+            </returns>
+        </member>
+        <member name="M:Csv.CsvReader.ReadToEnd">
+            <summary>
+            	Reads till the end of the csv data. Reads the
+            	first line in the data as column headers.
+            </summary>
+            <returns>
+            	A <see cref="T:System.Data.DataTable"/> containing the csv data.
+            </returns>
+        </member>
+        <member name="M:Csv.CsvReader.ReadRecord">
+            <summary>
+            	Reads another record.
+            </summary>
+            <returns>
+            	Whether another record was successfully read or not.
+            </returns>
+            <exception cref="T:System.ObjectDisposedException">
+            	Methods were called after the object has been disposed.
+            </exception>
+        </member>
+        <member name="M:Csv.CsvReader.CheckDataLength">
+            <summary>
+            Check to see if more data needs to be read from the source.
+            </summary>
+        </member>
+        <member name="M:Csv.CsvReader.ClearColumns">
+            <summary>
+            	Clears column variables in preparation for the next record.
+            </summary>
+        </member>
+        <member name="M:Csv.CsvReader.ReadHeaders">
+            <summary>
+            	Read the first record of data as column headers.
+            </summary>
+            <returns>
+            	Whether the header record was successfully read or not.
+            </returns>
+        </member>
+        <member name="M:Csv.CsvReader.GetHeader(System.Int32)">
+            <summary>
+            	Returns the column header value for a given
+            	<paramref name="columnIndex"/>.
+            </summary>
+            <param name="columnIndex">
+            	The index of the header column being requested.
+            </param>
+            <returns>
+            	The value of the column header at the given
+            	<paramref name="columnIndex"/>.
+            </returns>
+            <exception cref="T:System.ObjectDisposedException">
+            	Methods were called after the object has been disposed.
+            </exception>
+        </member>
+        <member name="M:Csv.CsvReader.IsQualified(System.Int32)">
+            <summary>
+            	Determines whether a specified column was qualified
+            	or not.
+            </summary>
+            <param name="columnIndex">
+            	The index of the column being requested.
+            </param>
+            <returns>
+            	Whether the requested column was qualified or not.
+            </returns>
+            <exception cref="T:System.ObjectDisposedException">
+            	Methods were called after the object has been disposed.
+            </exception>
+        </member>
+        <member name="M:Csv.CsvReader.GetLength(System.Int32)">
+            <summary>
+            	Returns the length of a column without doing extra work
+            	to find the column's actual value.
+            </summary>
+            <param name="columnIndex">
+            	The index of the header column being requested.
+            </param>
+            <returns>
+            	The length of the requested column.
+            </returns>
+            <exception cref="T:System.ObjectDisposedException">
+            	Methods were called after the object has been disposed.
+            </exception>
+        </member>
+        <member name="M:Csv.CsvReader.EndColumn">
+            <summary>
+            	Signals that the end of the current column has been
+            	reached and allows necessary values to be set.
+            </summary>
+        </member>
+        <member name="M:Csv.CsvReader.EndRecord">
+            <summary>
+            	Signals that the end of the current record has been
+            	reached and allows necessary values to be set.
+            </summary>
+        </member>
+        <member name="M:Csv.CsvReader.AddLetter(System.Char)">
+            <summary>
+            	Adds a <paramref name="letter" /> to the list of
+            	processed letters for the current column.
+            </summary>
+            <param name="letter">
+            	The letter to add to the list of processed letters for the
+            	current column.
+            </param>
+        </member>
+        <member name="M:Csv.CsvReader.GetIndex(System.String)">
+            <summary>
+            	Gets the corresponding column index for a given
+            	<paramref name="headerName"/>.
+            </summary>
+            <param name="headerName">
+            	The column header of the column.
+            </param>
+            <returns>
+            	The column index for the given
+            	<paramref name="headerName"/>. Returns -1 if not
+            	found.
+            </returns>
+            <exception cref="T:System.ObjectDisposedException">
+            	Methods were called after the object has been disposed.
+            </exception>
+        </member>
+        <member name="M:Csv.CsvReader.SkipRecord">
+            <summary>
+            	Skips the next record of data by parsing each column.
+            	Does not increment <see cref="P:Csv.CsvReader.CurrentRecord"/>.
+            </summary>
+            <returns>
+            	Whether another record was successfully skipped or not.
+            </returns>
+            <exception cref="T:System.ObjectDisposedException">
+            	Methods were called after the object has been disposed.
+            </exception>
+        </member>
+        <member name="M:Csv.CsvReader.SkipLine">
+            <summary>
+            	Skips the next line of data using the standard
+            	end of line characters and does not do any
+            	column delimited parsing.
+            </summary>
+            <returns>
+            	Whether a line was successfully skipped or not.
+            </returns>
+            <exception cref="T:System.ObjectDisposedException">
+            	Methods were called after the object has been disposed.
+            </exception>
+        </member>
+        <member name="M:Csv.CsvReader.Close">
+            <summary>
+            	Closes and releases all related resources.
+            </summary>
+        </member>
+        <member name="M:Csv.CsvReader.Dispose(System.Boolean)">
+            <summary>
+            	Closes and releases all related resources.
+            </summary>
+            <param name="disposing">
+            	Whether this call is coming from an explicit call,
+            	instead of from the implicit GC finalizer call.
+            </param>
+        </member>
+        <member name="M:Csv.CsvReader.Finalize">
+            <summary>
+            	Called to release unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:Csv.CsvReader.CheckDisposed">
+            <summary>
+            	Checks to see if object has already been disposed, which
+            	would make calling methods on the object invalid.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">
+            	Methods were called after the object has been disposed.
+            </exception>
+        </member>
+        <member name="M:Csv.CsvReader.hexToDec(System.Char)">
+            <summary>
+            	Converts an ASCII character code representing a
+            	single hex digit to the corresponding decimal
+            	value. hexToDec('a') and hexToDec('A') both
+            	return 10.
+            </summary>
+            <param name="hex">
+            	The ASCII character code representing a single
+            	hex digit, '0' - '9', 'a' - 'f', or 'A' - 'F'.
+            </param>
+            <returns>
+            	The corresponding decimal value.
+            </returns>
+        </member>
+        <member name="P:Csv.CsvReader.TrimWhitespace">
+            <summary>
+            	Whether to trim leading and trailing whitespace characters
+            	from non-textqualified column data. Default is true.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvReader.Delimiter">
+            <summary>
+            	The character to use as the column delimiter. Default
+            	is comma, ','.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvReader.RecordDelimiter">
+            <summary>
+            	The character to use as the record delimiter. Default
+            	is combination of standard end of line characters
+            	for Windows, Unix, or Mac.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvReader.TextQualifier">
+            <summary>
+            	The character to use as a text qualifier in the data.
+            	Default is quote, '"'.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvReader.UseTextQualifier">
+            <summary>
+            	Whether to use a text qualifier while parsing or not.
+            	Default is true.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvReader.Comment">
+            <summary>
+            	The character to use as a comment signal. Default
+            	is pound, '#'.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvReader.UseComments">
+            <summary>
+            	Whether to look for comments while parsing or not.
+            	Default is false.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvReader.EscapeMode">
+            <summary>
+            	Specifies how to escape an occurance of system
+            	characters, like the <see cref="P:Csv.CsvReader.TextQualifier"/>
+            	and <see cref="P:Csv.CsvReader.Delimiter"/>, inside field values
+            	when required.
+            	Default is <see cref="F:Csv.EscapeMode.Doubled"/>.
+            </summary>
+            <remarks>
+            	When the <see cref="P:Csv.CsvReader.EscapeMode"/> is set to
+            	<see cref="F:Csv.EscapeMode.Doubled"/>, occurances of the
+            	<see cref="P:Csv.CsvReader.TextQualifier"/> will be expected
+            	to be escaped by replacing it with two consecutive occurances
+            	of the <see cref="P:Csv.CsvReader.TextQualifier"/>. This is the
+            	format generally used for CSV in applications such as Excel.
+            	When the <see cref="P:Csv.CsvReader.EscapeMode"/> is set to
+            	<see cref="F:Csv.EscapeMode.Backslash"/>, occurances of the
+            	<see cref="P:Csv.CsvReader.TextQualifier"/> will be expected
+            	to be escaped by preceding it with a backslash character. This
+            	format is common in Unix type environments.
+            	When the <see cref="P:Csv.CsvReader.EscapeMode"/> is set to
+            	<see cref="F:Csv.EscapeMode.Backslash"/>, the following escape
+            	sequences are also recognized and replaced inside field values.
+            	<list type="table">
+            		<listheader>
+            			<term>Escape</term>
+            			<description>Description</description>
+            		</listheader>
+            		<item>
+            			<term>\n</term>
+            			<description>New Line, ASCII 10</description>
+            		</item>
+            		<item>
+            			<term>\r</term>
+            			<description>Carriage Return, ASCII 13</description>
+            		</item>
+            		<item>
+            			<term>\t</term>
+            			<description>Tab, ASCII 9</description>
+            		</item>
+            		<item>
+            			<term>\b</term>
+            			<description>Backspace, ASCII 8</description>
+            		</item>
+            		<item>
+            			<term>\f</term>
+            			<description>Form Feed, ASCII 12</description>
+            		</item>
+            		<item>
+            			<term>\e</term>
+            			<description>Escape, ASCII 27</description>
+            		</item>
+            		<item>
+            			<term>\v</term>
+            			<description>Vertical Tab, ASCII 11</description>
+            		</item>
+            		<item>
+            			<term>\a</term>
+            			<description>Alert, ASCII 7</description>
+            		</item>
+            	</list>
+            	<list type="table">
+            		<listheader>
+            			<term>Format</term>
+            			<description>Description</description>
+            		</listheader>
+            		<item>
+            			<term>\u#### or \U###</term>
+            			<description>Unicode, ex. \u0041 = 'A'</description>
+            		</item>
+            		<item>
+            			<term>\x## or \X##</term>
+            			<description>Hexadecimal, ex. \x41 = 'A'</description>
+            		</item>
+            		<item>
+            			<term>\o### or \O### or \###</term>
+            			<description>Octal, ex. \o101 = 'A'</description>
+            		</item>
+            		<item>
+            			<term>\d### or \D###</term>
+            			<description>Decimal, ex. \d065 = 'A'</description>
+            		</item>
+            	</list>
+            </remarks>
+        </member>
+        <member name="P:Csv.CsvReader.SkipEmptyRecords">
+            <summary>
+            	Whether to treat a record with no data as if it wasn't there or not.
+            	When set to true, two consecutive occurances of the record delimiter
+            	will be treated as only one.
+            	Default is true.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvReader.SafetySwitch">
+            <summary>
+            	Safety caution to prevent the parser from using large amounts of
+            	memory in the case where parsing settings like file encodings don't
+            	end up matching the actual format of a file. This switch can be turned
+            	off if the file format is known and tested. With the switch off, the
+            	max column lengths and max column count per record supported by the
+            	parser will greatly increase. Default is true.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvReader.ColumnCount">
+            <summary>
+            	The count of columns found in the current record.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvReader.CurrentRecord">
+            <summary>
+            	The index of the current record.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvReader.HeaderCount">
+            <summary>
+            	The count of headers read in by a previous call to <see cref="M:Csv.CsvReader.ReadHeaders"/>.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvReader.Headers">
+            <summary>
+            	Returns the header values as a string array.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">
+            	Methods were called after the object has been disposed.
+            </exception>
+        </member>
+        <member name="P:Csv.CsvReader.Values">
+            <summary>
+            	Returns the columns values for the current record as a string array.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">
+            	Methods were called after the object has been disposed.
+            </exception>
+        </member>
+        <member name="P:Csv.CsvReader.Item(System.Int32)">
+            <summary>
+            	Returns the current column value for a given column index.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">
+            	Methods were called after the object has been disposed.
+            </exception>
+        </member>
+        <member name="P:Csv.CsvReader.Item(System.String)">
+            <summary>
+            	Returns the current column value corresponding to the
+            	<paramref name="headerName"/>.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">
+            	Methods were called after the object has been disposed.
+            </exception>
+        </member>
+        <member name="T:Csv.CsvReader.ColumnChunk">
+            <summary>
+            	Holds positions for a chunk of column data.
+            </summary>
+        </member>
+        <member name="M:Csv.CsvReader.ColumnChunk.#ctor(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            	Creates a ColumnChunk instance using the specified
+            	start and end positions.
+            </summary>
+            <param name="start">
+            	The start position for the column of data.
+            </param>
+            <param name="length">
+            	The length for the column of data.
+            </param>
+            <param name="qualified">
+            	Whether data was text qualified or not.
+            </param>
+        </member>
+        <member name="F:Csv.CsvReader.ColumnChunk.Start">
+            <summary>
+            	The start position for the column of data.
+            </summary>
+        </member>
+        <member name="F:Csv.CsvReader.ColumnChunk.Length">
+            <summary>
+            	The end position for the column of data.
+            </summary>
+        </member>
+        <member name="F:Csv.CsvReader.ColumnChunk.Qualified">
+            <summary>
+            	Whether data was text qualified or not.
+            </summary>
+        </member>
+        <member name="T:Csv.CsvWriter">
+            <summary>
+            	A stream based writer for writing delimited text data
+            	to a file or a stream.
+            </summary>
+        </member>
+        <member name="M:Csv.CsvWriter.#ctor(System.String,System.Char,System.Text.Encoding)">
+            <summary>
+            	Creates a CsvWriter object using a file to write
+            	data to.
+            </summary>
+            <param name="fileName">
+            	The file to create with the column delimited data.
+            </param>
+            <param name="delimiter">
+            	The character to use as the column delimiter.
+            </param>
+            <param name="encoding">
+            	The <see cref="T:System.Text.Encoding"/> to use while writing the data.
+            </param>
+        </member>
+        <member name="M:Csv.CsvWriter.#ctor(System.String)">
+            <summary>
+            	Creates a CsvWriter object using a file to write
+            	data to. Uses a comma as the delimiter and Encoding.Default
+            	as the encoding.
+            </summary>
+            <param name="fileName">
+            	The file to create with the column delimited data.
+            </param>
+        </member>
+        <member name="M:Csv.CsvWriter.#ctor(System.IO.TextWriter,System.Char)">
+            <summary>
+            	Creates a CsvWriter object using a TextWriter to
+            	write data to.
+            </summary>
+            <param name="outputStream">
+            	The stream to write the column delimited data to.
+            </param>
+            <param name="delimiter">
+            	The character to use as the column delimiter.
+            </param>
+        </member>
+        <member name="M:Csv.CsvWriter.#ctor(System.IO.Stream,System.Char,System.Text.Encoding)">
+            <summary>
+            	Creates a CsvWriter object using a Stream to
+            	write data to.
+            </summary>
+            <param name="outputStream">
+            	The stream to write the column delimited data to.
+            </param>
+            <param name="delimiter">
+            	The character to use as the column delimiter.
+            </param>
+            <param name="encoding">
+            	The <see cref="T:System.Text.Encoding"/> to use while writing the data.
+            </param>
+        </member>
+        <member name="M:Csv.CsvWriter.Write(System.String,System.Boolean)">
+            <summary>
+            	Writes another column of data to this record.
+            </summary>
+            <param name="content">
+            	The data for the new column.
+            </param>
+            <param name="preserveSpaces">
+            	Whether to preserve leading and trailing whitespace in
+            	this column of data.
+            </param>
+        </member>
+        <member name="M:Csv.CsvWriter.Write(System.String)">
+            <summary>
+            	Writes another column of data to this record. Does not
+            	preserve leading and trailing whitespace in this column
+            	of data.
+            </summary>
+            <param name="content">
+            	The data for the new column.
+            </param>
+        </member>
+        <member name="M:Csv.CsvWriter.WriteAll(System.Data.DataTable,System.Boolean)">
+            <summary>
+            	Writes all data from the <see cref="T:System.Data.DataTable"/>.
+            </summary>
+            <param name="data">
+            	The data to write to the output.
+            </param>
+            <param name="writeHeaders">
+            	Write the column name headers as the first record in the
+            	output data.
+            </param>
+        </member>
+        <member name="M:Csv.CsvWriter.WriteAll(System.Data.DataTable)">
+            <summary>
+            	Writes all data from the <see cref="T:System.Data.DataTable"/>.
+            	Writes the column name headers as the first record in the
+            	output data.
+            </summary>
+            <param name="data">
+            	The data to write to the output.
+            </param>
+        </member>
+        <member name="M:Csv.CsvWriter.WriteComment(System.String)">
+            <summary>
+            	Writes comment text out to the file using the
+            	<see cref="P:Csv.CsvWriter.Comment"/> character.
+            </summary>
+            <param name="commentText">
+            	The text to write as a comment.
+            </param>
+        </member>
+        <member name="M:Csv.CsvWriter.WriteRecord(System.String[],System.Boolean)">
+            <summary>
+            	Writes a new record using the passed in array of values.
+            </summary>
+            <param name="values">
+            	Array of values to write in the record.
+            </param>
+            <param name="preserveSpaces">
+            	Whether to preserver leading and trailing spaces in
+            	columns while writing out to the record or not.
+            </param>
+        </member>
+        <member name="M:Csv.CsvWriter.WriteRecord(System.String[])">
+            <summary>
+            	Writes a new record using the passed in array of values.
+            </summary>
+            <param name="values">
+            	Array of values to write in the record.
+            </param>
+        </member>
+        <member name="M:Csv.CsvWriter.EndRecord">
+            <summary>
+            	Ends the current record by sending the record delimiter.
+            </summary>
+        </member>
+        <member name="M:Csv.CsvWriter.Flush">
+            <summary>
+            	Clears all buffers for the current writer and causes any
+            	buffered data to be written to the underlying device.
+            </summary>
+        </member>
+        <member name="M:Csv.CsvWriter.CheckInit">
+            <summary>
+            	Initializes the output stream by opening a file using
+            	the passed in file name from the constructor if the output
+            	stream has not been initialized.
+            </summary>
+        </member>
+        <member name="M:Csv.CsvWriter.Close">
+            <summary>
+            	Closes and releases all related resources.
+            </summary>
+        </member>
+        <member name="M:Csv.CsvWriter.System#IDisposable#Dispose">
+            <summary>
+            	Closes and releases all related resources.
+            </summary>
+        </member>
+        <member name="M:Csv.CsvWriter.Dispose(System.Boolean)">
+            <summary>
+            	Closes and releases all related resources.
+            </summary>
+            <param name="disposing">
+            	Whether this call is coming from an explicit call,
+            	instead of from the implicit GC finalizer call.
+            </param>
+        </member>
+        <member name="M:Csv.CsvWriter.Finalize">
+            <summary>
+            	Called to release unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:Csv.CsvWriter.CheckDisposed">
+            <summary>
+            	Checks to see if object has already been disposed, which
+            	would make calling methods on the object invalid.
+            </summary>
+            <exception cref="T:System.ObjectDisposedException">
+            	Methods were called after the object has been disposed.
+            </exception>
+        </member>
+        <member name="P:Csv.CsvWriter.Delimiter">
+            <summary>
+            	The character to use as the column delimiter. Default
+            	is comma, ','.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvWriter.RecordDelimiter">
+            <summary>
+            	The character to use as the record delimiter. Default
+            	uses the system default end of line marker.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvWriter.TextQualifier">
+            <summary>
+            	The character to use as a text qualifier in the data.
+            	Default is quote, '"'.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvWriter.UseTextQualifier">
+            <summary>
+            	Whether to qualify columns of data with the
+            	<see cref="P:Csv.CsvWriter.TextQualifier"/> if the data requires it.
+            	Default is true.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvWriter.EscapeMode">
+            <summary>
+            	Specifies how to escape an occurance of system
+            	characters, like the <see cref="P:Csv.CsvWriter.TextQualifier"/>
+            	and <see cref="P:Csv.CsvWriter.Delimiter"/>, inside field values
+            	when required.
+            	Default is <see cref="F:Csv.EscapeMode.Doubled"/>.
+            </summary>
+            <remarks>
+            	When the <see cref="P:Csv.CsvWriter.EscapeMode"/> is set to
+            	<see cref="F:Csv.EscapeMode.Doubled"/>, occurances of the
+            	<see cref="P:Csv.CsvWriter.TextQualifier"/> will be expected
+            	to be escaped by replacing it with two consecutive occurances
+            	of the <see cref="P:Csv.CsvWriter.TextQualifier"/>. This is the
+            	format generally used for CSV in applications such as Excel.
+            	When the <see cref="P:Csv.CsvWriter.EscapeMode"/> is set to
+            	<see cref="F:Csv.EscapeMode.Backslash"/>, occurances of the
+            	<see cref="P:Csv.CsvWriter.TextQualifier"/> will be expected
+            	to be escaped by preceding it with a backslash character. This
+            	format is common in Unix type environments.
+            </remarks>
+        </member>
+        <member name="P:Csv.CsvWriter.Comment">
+            <summary>
+            	The character to use as a comment signal. Default
+            	is pound, '#'.
+            </summary>
+        </member>
+        <member name="P:Csv.CsvWriter.ForceQualifier">
+            <summary>
+            	Use this to force all fields to be surrounded by the text qualifier
+            	even if the qualifier is not necessarily needed to escape this field.
+            	Default is false.
+            </summary>
+        </member>
+        <member name="T:Csv.EscapeMode">
+            <summary>
+            	How to escape an occurance of the text qualifier
+            	inside text qualified data.
+            </summary>
+        </member>
+        <member name="F:Csv.EscapeMode.Doubled">
+            <summary>
+            	Double up the text qualifier to represent an
+            	occurance of the text qualifier.
+            </summary>
+        </member>
+        <member name="F:Csv.EscapeMode.Backslash">
+            <summary>
+            	Use a backslash character before the text
+            	qualifier to represent an occurance of the
+            	text qualifier.
+            </summary>
+        </member>
+    </members>
+</doc>

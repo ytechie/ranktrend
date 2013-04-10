@@ -1,0 +1,104 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+<%@ Register TagPrefix="YTJS" Namespace="YTech.General.Web.JSProxy" Assembly="YTech.General" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head runat="server">
+    <link rel="stylesheet" href="~/style.css" type="text/css" />
+    <link runat="server" id="MembersCss" rel="stylesheet" href="~/Members/Members.css" type="text/css" visible="false" />
+    <link runat="server" id="AdministratorsCss" rel="stylesheet" href="~/Administrators/Administrators.css" type="text/css" visible="false" />
+    <link runat="server" id="JQueryCalendarCss" rel="stylesheet" href="~/Common-Styles/jquery-calendar.css" type="text/css" visible="false" />
+    <link rel="shortcut icon" href="~/favicon.ico" />
+    <link rel="search" href="~/OpenSearchDescription.xml" type="application/opensearchdescription+xml" title="RankTrend.com" />
+    <title>RankTrend.com</title>
+    <YTJS:JSProxyGenerator runat="Server" id="controlProxies" />
+</head>
+<body>
+    <form id="Form1" runat="server">
+        <div class="content">
+            <div class="header">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        <td>
+                            <a id="A1" runat="server" href="~/">
+                                <img id="Img1" runat="server" src="~/Images/RankTrend-Logo.gif" alt="RankTrend.com Logo" style="height: 81; width: 220;" />
+                            </a>
+                        </td>
+                        <td align="right" valign="top">
+                                <asp:LoginView ID="loginView" runat="server">
+                                    <AnonymousTemplate>
+                                        You are not currently logged in.
+                                    </AnonymousTemplate>
+                                    <LoggedInTemplate>
+                                        Logged in as <asp:LoginName ID="LoginName1" runat="Server" />
+                                    </LoggedInTemplate>
+                                </asp:LoginView>
+                                |
+                                <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutPageUrl="~/Logout/" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="bar">
+                <ul runat="server" id="lstMenu">
+                </ul>
+            </div>
+            <%--
+			<div class="search_field">
+				<form method="post" action="?">
+					<div class="search_form">
+					<p>Search the Web: <input type="text" name="search" class="search" /> <input type="submit" value="Search" class="submit" /> <a class="grey" href="#">Advanced</a></p>
+					</div>
+				</form>
+				
+				<p>Please <a href="#">Sign in</a> or <a href="#">Register</a></p>
+			</div>
+			--%>
+            <asp:ContentPlaceHolder runat="server" ID="mainContent" />
+            <div class="footer">
+                <p>
+									<a href="http://del.icio.us/post?url=http://www.RankTrend.com&title=RankTrend.com Visual Site Analysis">
+										<img id="Img2" runat="Server" src="~/Images/delicious.small.gif" alt="Post to del.icio.us" />
+										Post to del.icio.us</a> |
+									<a href="http://digg.com/submit?phase=2&URL=http://www.RankTrend.com">
+										<img id="Img3" runat="Server" src="~/Images/digg.gif" alt="Digg This!" />
+										Digg This!</a> |
+									<a href="http://furl.net/storeIt.jsp?t=RankTrend.com&u=http://www.RankTrend.com">
+										<img id="Img4" runat="Server" src="~/Images/furl.gif" alt="Post to Furl" />
+										Post to Furl</a> |
+									<a href="http://reddit.com/submit?url=http://www.RankTrend.com&title=RankTrend.com">
+										<img id="Img5" runat="Server" src="~/Images/reddit.gif" alt="Post to reddit" />
+										Post to reddit</a>
+                </p>
+                <p>
+                    <asp:HyperLink runat="server" NavigateUrl="~/Link-To-Us/" Text="Link To Us" /> |
+                    <asp:HyperLink runat="server" NavigateUrl="~/PrivacyPolicy/" Text="Privacy Policy" /> |
+                    <asp:HyperLink runat="server" NavigateUrl="~/TermsOfService/" Text="Terms of Service" /> |
+                    &copy; 2007 RankTrend.com
+                </p>
+                <p>
+									This page was generated <%= System.DateTime.UtcNow.ToString() %> GMT
+                </p>
+                <p>
+									<a href="https://seal.godaddy.com/verifySeal?sealID=1082952672050e85f201271120071609017fcf083503183792890030" target="_blank">
+										<img runat="Server" src="~/Images/GodaddySSL.gif" alt="Godaddy SSL" />
+									</a>
+                </p>
+            </div>
+        </div>
+    </form>
+
+<%--Google Analytics Tracking code--%>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-342471-5");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+<%--Google Analytics Tracking code--%>
+
+</body>
+</html>

@@ -1,0 +1,227 @@
+﻿/* control panel
+   ------ */
+.ControlPanel table
+{
+	width: 100%;
+}
+.ControlPanel td
+{
+	padding-bottom: 15px;
+	vertical-align: top;
+}
+.ControlPanel ul
+{
+	list-style-image: url(../images/cp_bullet.jpg);
+	margin: 0;
+	padding: 0;
+}
+	.ControlPanel ul li
+	{
+		background-color: #eee;
+		border-bottom: solid 1px #E0691A;
+		border-right: solid 1px #E0691A;
+		font-size: 1.1em;
+		margin-bottom: 2px;
+		margin-left: 25px;
+		margin-top: 1px;
+		margin-top: 2px;
+		padding: 1px;
+	}
+		.ControlPanel ul li a
+		{
+			text-decoration: none;
+		}
+		.ControlPanel ul li a:hover
+		{
+			text-decoration: underline;
+		}
+.ControlPanelIcon
+{
+	text-align: center;
+}
+.cp_users
+{
+	list-style-image: url(../images/cp_users.jpg);
+}
+.cp_envelope
+{
+	list-style-image: url(../images/cp_envelope.jpg);
+}
+.cp_ini
+{
+	list-style-image: url(../images/cp_ini.jpg);
+}
+.cp_services
+{
+	list-style-image: url(../images/cp_services.jpg);
+}
+.cp_text
+{
+	list-style-image: url(../images/cp_text.jpg);
+}
+
+/**********************************
+	Profile Page
+**********************************/
+.changePasswordControl
+{
+	margin-left: auto;
+	margin-right: auto;
+}
+.changeUserInformation
+{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/**********************************
+	Interactive Report
+***********************************/
+.TabTable
+{
+}
+
+.TabTable tr td
+{
+	border: solid 1px gainsboro;
+	font-family: Arial, Sans-Serif;
+	font-size: small;
+	padding: 0px;
+}
+
+.TabTable tr td a
+{
+	/*background-image: url(Tab-Background.gif);*/
+	background-repeat: repeat-x;
+	height: 22px;
+	padding-left: 5px;
+	padding-right: 5px;
+	height: 100%;
+	width: 100%;
+	color: Black;
+	text-decoration: none;
+}
+
+.TabTable tr td a:hover
+{
+	/*background-image: url(Tab-Background-Selected.gif);*/
+	background-repeat: repeat-x;
+}
+
+.TabTable tr td img
+{
+	margin-right: 3px;
+	border: 0px;
+	background-color: Transparent;
+	display: inline;
+	vertical-align: middle;
+}
+
+.TabTable_Selected
+{
+	 border-color: Gray !Important;
+	 border-width: 1px !Important;
+}
+
+.tabBody
+{
+	border: solid 1px gainsboro;
+	/* Indent to match the tabs */
+	margin-left: 2px;
+}
+
+.ir_pnlOverview
+{
+	padding: 10px;
+}
+
+.ir_Overview_Label
+{
+	width: 70px;
+	float: left;
+}
+
+/************************
+	Event Editor
+************************/
+
+.eventListBox
+{
+	height: 300px;
+	width: 200px;
+	overflow-y: scroll;
+}
+
+/************************
+	Import Data Wizard
+************************/
+
+.csvUploadControl
+{
+	width: 350px;
+}
+
+/************************
+	Text Messages
+************************/
+.TextMessage
+{
+	border: solid 1px #A9C0CE;
+	margin-bottom: 10px;
+	min-height: 30px;
+	vertical-align: middle;
+}
+.TextMessage h6
+{
+	background-color: #E0691A;
+	color: White;
+	font-size: x-small;
+	margin: 0px;
+	padding: 0px;
+	padding-left: 5px;
+}
+.TextMessage p
+{
+	margin: 0px;
+	padding: 0px;
+	padding-left: 5px;
+}
+.TextMessage_Date
+{
+	color: #E0691A;
+}
+
+/************************
+	Thumbnail Dashboard
+************************/
+
+.thumb_OuterContainer
+{
+	float: left;
+	width: 195px;
+	height: 165px;
+}
+
+.thumb_titleCheckbox
+{
+	float: left;
+	width: 170px;
+}
+
+.thumb_Chart
+{
+	height: 100px;
+	width: 175px;
+}
+/**********************************
+	Keyword Summary
+**********************************/
+.KeywordSummary
+{
+	width: 100%
+}
+.CheckImageColumn
+{
+	text-align: center;
+	width: 100px;
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+	<class name="Rt.Framework.Components.SavedReport, Rt.Framework" table="rt_SavedReports">
+		<id name="Id">
+			<generator class="native" />
+		</id>
+		<property name="ReportTypeId" />
+		<property name="XmlData" />
+		<property name="Name" />
+		<property name="Description" />
+		<property name="PublicViewable" />
+		<property name="UserId" />
+		<property name="Created" />
+		<property name="LastSaved" />
+	</class>
+</hibernate-mapping>

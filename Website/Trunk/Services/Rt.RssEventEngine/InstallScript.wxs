@@ -1,0 +1,40 @@
+﻿<?xml version='1.0'?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2003/01/wi'>
+
+	<!--
+	
+	This file builds a simple, silent install for testing and deploying this
+	service alone.  It requires that the "Components.wxs" is included during
+	the installer generation.  The components file is also used to build a full
+	blown installer for all of the services.
+	
+	-->
+	
+  <Product Id='0a2d99a0-ba19-11db-8314-0800200c9a66' Name='RankTrend.com RSS Event Engine Installer' Language='1033' Version='1.0.0.0'
+           Manufacturer='Young Technologies LLC'>
+
+    <Package Id='????????-????-????-????-????????????' Description='RankTrend.com RSS Event Engine'
+             Manufacturer='Young Technologies LLC'
+             InstallerVersion='200' Compressed='yes'/>
+    <Media Id='1' Cabinet='Main.cab' EmbedCab='yes' />
+
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder" Name="PFiles">
+				<Directory Id="RtPrograms" Name="RankTrnd" LongName="RankTrend">
+					<Directory Id="ServicesInstallDir" Name="Services">
+					</Directory>
+				</Directory>
+			</Directory>
+		</Directory>
+
+		<!-- Feature -->
+		<Feature Id='Feat_RssEventEngine'
+							Description='The rss event engine which processes rss event subscriptions for new rss events.'
+             Title='RSS Event Engine' Level='1' ConfigurableDirectory='RSSEVENTENGSERVICEDIR' TypicalDefault='install'
+             Absent='disallow' AllowAdvertise='no'>
+			
+			<ComponentGroupRef Id="groupRssEventEngineComponents" />
+		</Feature>
+
+  </Product>
+</Wix>

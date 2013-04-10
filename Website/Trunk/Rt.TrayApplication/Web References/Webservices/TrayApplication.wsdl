@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.RankTrend.com/TrayAppplication" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://www.RankTrend.com/TrayAppplication" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.RankTrend.com/TrayAppplication">
+      <s:element name="GetMinimumClientVersion">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetMinimumClientVersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMinimumClientVersionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Authenticate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthenticateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AuthenticateResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RecordError">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="guid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="exceptionString" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RecordErrorResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="QueueNextDatasource">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="guidString" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueueNextDatasourceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueueNextDatasourceResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDatasourceRequest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="requestKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDatasourceRequestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDatasourceRequestResult" type="tns:SerializableWebRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SerializableWebRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Url" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PostData" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SaveDatasourceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="response" type="tns:SerializableWebResponse" />
+            <s:element minOccurs="0" maxOccurs="1" name="requestKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SerializableWebResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Content" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SaveDatasourceResponseResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetMinimumClientVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMinimumClientVersion" />
+  </wsdl:message>
+  <wsdl:message name="GetMinimumClientVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMinimumClientVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateSoapIn">
+    <wsdl:part name="parameters" element="tns:Authenticate" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateSoapOut">
+    <wsdl:part name="parameters" element="tns:AuthenticateResponse" />
+  </wsdl:message>
+  <wsdl:message name="RecordErrorSoapIn">
+    <wsdl:part name="parameters" element="tns:RecordError" />
+  </wsdl:message>
+  <wsdl:message name="RecordErrorSoapOut">
+    <wsdl:part name="parameters" element="tns:RecordErrorResponse" />
+  </wsdl:message>
+  <wsdl:message name="QueueNextDatasourceSoapIn">
+    <wsdl:part name="parameters" element="tns:QueueNextDatasource" />
+  </wsdl:message>
+  <wsdl:message name="QueueNextDatasourceSoapOut">
+    <wsdl:part name="parameters" element="tns:QueueNextDatasourceResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDatasourceRequestSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDatasourceRequest" />
+  </wsdl:message>
+  <wsdl:message name="GetDatasourceRequestSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDatasourceRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveDatasourceResponseSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveDatasourceResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveDatasourceResponseSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveDatasourceResponseResponse" />
+  </wsdl:message>
+  <wsdl:portType name="TrayApplicationSoap">
+    <wsdl:operation name="GetMinimumClientVersion">
+      <wsdl:input message="tns:GetMinimumClientVersionSoapIn" />
+      <wsdl:output message="tns:GetMinimumClientVersionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Authenticate">
+      <wsdl:input message="tns:AuthenticateSoapIn" />
+      <wsdl:output message="tns:AuthenticateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RecordError">
+      <wsdl:input message="tns:RecordErrorSoapIn" />
+      <wsdl:output message="tns:RecordErrorSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueueNextDatasource">
+      <wsdl:input message="tns:QueueNextDatasourceSoapIn" />
+      <wsdl:output message="tns:QueueNextDatasourceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDatasourceRequest">
+      <wsdl:input message="tns:GetDatasourceRequestSoapIn" />
+      <wsdl:output message="tns:GetDatasourceRequestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveDatasourceResponse">
+      <wsdl:input message="tns:SaveDatasourceResponseSoapIn" />
+      <wsdl:output message="tns:SaveDatasourceResponseSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TrayApplicationSoap" type="tns:TrayApplicationSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetMinimumClientVersion">
+      <soap:operation soapAction="http://www.RankTrend.com/TrayAppplication/GetMinimumClientVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Authenticate">
+      <soap:operation soapAction="http://www.RankTrend.com/TrayAppplication/Authenticate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecordError">
+      <soap:operation soapAction="http://www.RankTrend.com/TrayAppplication/RecordError" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueueNextDatasource">
+      <soap:operation soapAction="http://www.RankTrend.com/TrayAppplication/QueueNextDatasource" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDatasourceRequest">
+      <soap:operation soapAction="http://www.RankTrend.com/TrayAppplication/GetDatasourceRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveDatasourceResponse">
+      <soap:operation soapAction="http://www.RankTrend.com/TrayAppplication/SaveDatasourceResponse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TrayApplicationSoap12" type="tns:TrayApplicationSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetMinimumClientVersion">
+      <soap12:operation soapAction="http://www.RankTrend.com/TrayAppplication/GetMinimumClientVersion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Authenticate">
+      <soap12:operation soapAction="http://www.RankTrend.com/TrayAppplication/Authenticate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecordError">
+      <soap12:operation soapAction="http://www.RankTrend.com/TrayAppplication/RecordError" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueueNextDatasource">
+      <soap12:operation soapAction="http://www.RankTrend.com/TrayAppplication/QueueNextDatasource" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDatasourceRequest">
+      <soap12:operation soapAction="http://www.RankTrend.com/TrayAppplication/GetDatasourceRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveDatasourceResponse">
+      <soap12:operation soapAction="http://www.RankTrend.com/TrayAppplication/SaveDatasourceResponse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TrayApplication">
+    <wsdl:port name="TrayApplicationSoap" binding="tns:TrayApplicationSoap">
+      <soap:address location="http://www.ranktrend.com/Webservices/TrayApplication.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TrayApplicationSoap12" binding="tns:TrayApplicationSoap12">
+      <soap12:address location="http://www.ranktrend.com/Webservices/TrayApplication.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

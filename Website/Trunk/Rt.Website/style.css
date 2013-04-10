@@ -1,0 +1,519 @@
+/**********************************
+	Site Template
+**********************************/
+   
+body { 
+	padding: 0; 
+	margin: 0; 
+	font: 0.7em Tahoma, sans-serif; 
+	line-height: 1.5em;
+	background: #fff; 
+	color: #454545; 
+}
+
+img
+{
+	border: none;
+}
+
+a {	color: #E0691A;	background: inherit;}
+a:hover { color: #6C757A; background: inherit; }
+
+h1 { font: normal 2.1em Arial, Sans-Serif; letter-spacing: -1px; padding: 7px 0 0 8px; margin: 0; }
+.dark  { color: #737373; background: inherit; font-weight: bold; }
+h1 a, h2 a { text-decoration: none; }
+h1 a:hover, h2 a:hover { color: #FF6600; background: inherit; }
+h2 { margin: 0; padding: 0; font: bold 1.7em Arial, Sans-Serif; letter-spacing: -1px; }
+h2 { font-size: 1.5em; margin-bottom: 5px; color: #000; background: inherit; }
+
+p {	margin: 0 0 5px 0; }
+
+/*ul { margin: 0; padding : 0; list-style : none; }*/
+
+form { 	margin: 0; }
+
+input.login { 
+	width: 150px;
+	border: none; 
+	
+	padding: 4px; 
+}
+
+/* layout
+   ------ */
+
+.content { 
+	margin: 0 auto;
+	width: 780px;
+	padding: 10px; 
+}
+
+.header { 
+	background: #eee;
+	color: #808080;
+	margin: 3px 0;
+	padding: 10px;
+	border-bottom: 1px solid #ccc;
+}
+
+.header table
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+.browse_category  {
+	font-size: 0.9em;
+	width: 190px;
+	color: #FFF;
+	background: inherit;
+}
+
+.bar { 
+	clear: both;
+	font-size: 1.1em;
+	height: 30px; 
+	color: #FFF;
+	margin-top: 0px;
+	margin-bottom: 3px;
+	padding-left: 0px;
+	background: #FF9148;
+}
+
+	.bar ul li { 
+		margin: 0; 
+		padding: 7px 12px 5px 12px;
+		color: #FFEADC;
+		background: #FF9148;
+		float: left; 
+		list-style: none;
+	}
+	
+	.bar ul li .active { 
+		background: #E0691A url(Images/bar.gif) no-repeat center top; 
+		color: #fff;
+		font-weight: bold; 
+		padding: 7px 10px 6px 10px;
+	}
+	
+	.bar ul li a { 
+		font-weight: bold;
+		color: #FFF; 
+		background: inherit;
+		text-decoration: none;
+	} 
+	
+	.bar li a:hover { 
+		color: #E0691A; 
+		background: inherit;
+	}
+
+.grey {
+	color: #808080;
+	background: inherit;
+	font-weight: normal;
+}
+
+.search_form { float: right; }
+
+.subheader {
+	margin: 0px 0 10px 0;
+	border-bottom: 1px solid #eee;
+	padding: 5px 0 5px 0;
+	background: #A4A4A4;
+	color: #fff;
+}
+
+/* left side
+   --------- */
+
+.left {
+	float: left;
+	width: 65%;
+	margin: 0 0 10px 0;
+}
+
+.left h3 {
+	clear: both;
+	background: #A9C0CE;
+	color: #FFF;
+	padding: 5px 0 5px 5px;
+	font: bold 14px Tahoma, Arial, Sans-Serif;
+	margin: 0 0 0 0;
+}
+	.left_side {
+		float: left;
+		width: 180px;
+		padding: 0 0 0 10px;
+		margin: 10px 0;
+	}
+		
+	.left_side a, .right_side a { color: #414141; background: #FFF; }
+		
+	.right_side {
+		float: right;
+		width: 220px;
+		/*background: #FFF url(dotted.gif) repeat-y;*/
+		color: #414141;
+		padding: 0 0 0 40px;
+		margin: 10px 0;
+	}
+		
+	.left_box { margin: 0 0 10px 0; color: #000; background: #FFF; padding: 3px 0; }
+	
+.left h4
+{
+	clear: both;
+	color: #FF9148;
+	font: bold 1.25em Tahoma, Arial, Sans-Serif;
+	padding: 7px 0 7px 5px;
+	margin: 0 0 0px 0;
+}
+.left h4 a
+{
+	text-decoration: none;
+}
+.left h4 a:hover
+{
+	text-decoration: underline;
+}
+	
+		
+/* right side
+   ---------- */
+		
+.right {
+	float: right;
+	width: 34.6%;
+	margin: 0 0 10px 0;
+}
+
+.right h3 {
+	background: #6C757A;
+	color: #FFF;
+	padding: 7px 0 7px 5px;
+	font: bold 1em Tahoma, Arial, Sans-Serif;
+	margin: 0 0 3px 0;
+}
+
+	.right h4 {
+		background: #f5f5f5;
+		color: #414141;
+		padding: 8px;	
+		margin: 0 0 3px 0;
+	}
+	
+	.right p {
+		background: #f5f5f5;
+		color: #414141;
+		padding: 8px;	
+		margin: 0 0 3px 0;
+	}
+	
+	.right ul { margin-left: 25px; }
+	
+	.right li.RssListItem
+	{
+		list-style-image: url(images/feed-icon-12x12.png);
+	}
+	
+.image {
+	float: left;
+	margin: 0 9px 3px 0;
+}
+
+/* footer
+   ------ */
+
+.footer { 
+	clear: both;
+	text-align: center;
+	padding: 10px 0 10px 0;
+	margin: 0;
+	border-top: 1px solid #ccc;
+	line-height: 1.8em;
+}
+
+.footer a { color: #808080; background: #fff; }
+
+.toolTip
+{
+	background-color: #ffffcc;
+	font-size: 11px;
+	padding: 4px;
+	border: solid 1px black;
+}
+
+/* Legal Agreement Textboxes (Terms of Server, etc.
+   ----- */
+.LegalAgreementTextBox
+{
+	height: 250px;
+	width: 450px;
+}
+p.RssItemSignature
+{
+	color: #AAAAAA;
+	margin: -10px 0 0px 0;
+	padding: 0 0 0px 0;
+	text-align: right;
+}
+
+/* Grid Views
+   ------ */
+.DataGridView
+{
+	width: 100%;
+}
+.DataGridView td
+{
+	text-align: center;
+}
+td.LeftAlign
+{
+	text-align: left;
+}
+
+/* Wizards
+   ------ */
+.Wizard
+{
+	background-color: #D4D0C8;
+	border: outset 2px black;
+	text-align: left;
+}
+.WizardHeader
+{
+	background-color: White;
+	border-bottom: inset 2px black;
+	font-size: 10pt;
+	font-weight: bold;
+	padding-left: 5px;
+	padding-top: 5px;
+	vertical-align: top;
+}
+.WizardHeader h1
+{
+	font-family: Tahoma;
+	font-size: 10pt;
+	font-weight: bold;
+	padding: 0;
+	padding-left: 5px;
+}
+.WizardHeader h2
+{
+	font-family: Tahoma;
+	font-size: 9pt;
+	font-weight: normal;
+	padding: 0;
+	padding-left: 5px;
+}
+.WizardNavigation
+{
+	border-top: inset 2px black;
+}
+.WizardSideBar
+{
+	background-color: Black;
+	color: White;
+	border-right: solid 1px black;
+	padding-left: 5px;
+	padding-right: 0px;
+	width: 25%;
+}
+.WizardSideBar a
+{
+	color: White;
+	text-decoration: none;
+}
+.WizardSideBar a:hover
+{
+	color: White;
+	text-decoration: underline;
+}
+.WizardStep
+{
+	padding-left: 5px;
+}
+
+
+/**********************************
+	Login Page
+**********************************/
+.logonControl
+{
+	margin-left: auto;
+	margin-right: auto;
+}
+.forgotPasswordLink
+{
+	text-align: center;
+}
+
+/**********************************
+	Forgot Password Page
+**********************************/
+.forgotPasswordControl
+{
+	margin-left: auto;
+	margin-right: auto;
+}
+/**********************************
+	Forgot Username Page
+**********************************/
+.forgotUsernameControl
+{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/**********************************
+	Sign Up Page
+**********************************/
+.createUserWizardControl
+{
+	margin-left: auto;
+	margin-right: auto;
+}
+/**********************************
+	Verify Page
+**********************************/
+.userVerificationControl
+{
+	margin-bottom: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+	text-align: center;
+	width: 100%;
+}
+
+/**********************************
+	Home Page
+**********************************/
+.NewsletterSignupIFrame
+{
+	width: 300px;
+	height: 100px;
+	margin-left: 100px;
+	border: 0px;
+}
+
+/**********************************
+	Plans Table
+**********************************/
+table.PlansTable
+{
+	width: 100%;
+}
+table.PlansTable td.PlansTable_Feature
+{
+	text-align: center;
+	width: 100px;
+}
+
+.EmailQueue td
+{
+	padding: 0px;
+}
+.EmailQueueHeader
+{
+	background-color: #EDEDED;
+	border-bottom: solid 1px #CCCCCC;
+	padding-left: 20px;
+}
+.EmailQueueHeader th
+{
+	padding-right: 10px;
+	text-align: right;
+}
+.EmailQueueHeader td
+{
+	text-align: left;
+}
+.EmailBody
+{
+	padding: 10px;
+}
+
+/**********************************
+	Standard tabular data
+**********************************/
+.TabularTable
+{
+	
+}
+
+.TabularTable tr th
+{
+	font-weight: bold;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.TabularTable tr td
+{
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+.TabularTableItem
+{
+	background-color: #eee;
+}
+
+.TabularTableAltItem
+{
+}
+
+/**********************
+	Dynamic Help System
+**********************/
+
+.helpHeader
+{
+	font-family: Arial;
+	font-size: 10pt;
+	font-weight: bold;
+	height: 20px;
+	width: 170px;
+	padding-left: 15px;
+	padding-top: 3px;
+	color: #FFEDC8;
+	cursor: hand;
+}
+
+.showHelpHeader
+{
+	background-image: url(Images/Expander.gif);
+}
+
+.hideHelpHeader
+{
+	background-image: url(Images/Expander-Expanded.gif);
+}
+
+.helpHeader img
+{
+	vertical-align:middle;
+}
+
+.help
+{
+	z-index: 2;
+	border: 1px solid black;
+	position: absolute;
+	background-color: lightyellow;
+	padding: 5px;
+	display: none;
+	width: 400px;
+}
+
+.previews { text-align: center; padding-bottom: 50px; }
+.featuresContainer { width: 600px; margin-left: auto; margin-right: auto; }
+.featuresContainer hr { background-color: #FF9148; border: none; }
+.features { border-top:1px solid #CCCCCC; padding-top: 5px; margin-top: 5px; }
+.features > div { display: inline; float: left; width: 290px; height: 100px; padding-right: 10px; vertical-align: middle;
+                  color:#444444; font-family:tahoma,trebuchet ms,arial,sans serif; font-size: 10pt; line-height: 160%; }
+.features > div > img { float: left; margin-right: 5px; }
+.features > div > .feature { font-size: 15pt; font-weight: normal; }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+	<class name="Rt.Framework.Components.EventRssSubscription, Rt.Framework" table="rt_EventRssSubscriptions">
+		<id name="Id">
+			<generator class="native" />
+		</id>
+		<property name="LastCheck" />
+		<property name="RssUrl" />
+		<property name="Name" />
+		<property name="Description" />
+		<many-to-one name="EventCategory" class="Rt.Framework.Components.EventCategory, Rt.Framework" column="EventCategoryId" />
+		<many-to-one name="Url" class="Rt.Framework.Components.UrlClass, Rt.Framework" column="UrlId" />
+		<property name="ErrorCount" />
+	</class>
+</hibernate-mapping>

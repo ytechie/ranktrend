@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>Database Array Get</Title>
+			<Shortcut>dbag</Shortcut>
+			<Description>
+				Creates a database method for wrapping a stored procedure that gets
+				an array of objects from the database.
+			</Description>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>componentType</ID>
+					<ToolTip>The type of component array that this method is retrieving.</ToolTip>
+					<Default>Object/Component Array Type</Default>
+				</Literal>
+				<Literal>
+					<ID>StoredProcedureName</ID>
+					<ToolTip>
+						The name of the stored procedure that returns a single row representing the
+						data that will be set on the component.
+					</ToolTip>
+					<Default>Stored Procedure Name</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp">
+				<![CDATA[
+  /// <summary>
+	///   Retrieves an object of type <see cref="$componentType$" /> from the database.
+	/// </summary>
+	///	<returns>
+	///		An array of $componentType$ objects created from the database
+	///		call.  If no data is returned from the database, the array will
+	///		be an array of size 0.
+	///	</returns>
+	public $componentType$[] Get$componentType$()
+	{
+		SqlCommand cmd;
+		DataSet ds;
+		object[] objects; //Temporary stores the created objects
+		$componentType$[] stronglyTypedArray;
+
+		cmd = _dbConn.GetStoredProcedureCommand("$StoredProcedureName$");
+		//Add parameters here if you need to qualify the object you are retrieving
+		//cmd.Parameters.AddWithValue("@ParamName", paramValue);
+
+		ds = _dbConn.GetDataSet(cmd);
+
+		if (ds.Tables.Count == 0)
+			return new $componentType$[0];
+		if (ds.Tables[0].Rows.Count == 0)
+			return new $componentType$[0];
+
+		//Use the DataMapper to create the objects into a temporary array
+		objects = DataMapper.CreateObjects(ds, typeof($componentType$));
+
+		//Create the actual array of the correct type, and fill it with the objects
+		stronglyTypedArray = new $componentType$[objects.Length];
+		objects.CopyTo(stronglyTypedArray, 0);
+
+		return stronglyTypedArray;
+	}$end$
+	]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

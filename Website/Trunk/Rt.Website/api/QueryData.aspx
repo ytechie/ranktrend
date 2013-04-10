@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="QueryData.aspx.cs" Inherits="api_QueryData" %>

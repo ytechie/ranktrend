@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>Database Get</Title>
+			<Shortcut>dbg</Shortcut>
+			<Description>
+        Creates a database method for wrapping a stored procedure that gets a single
+        object from the database.
+      </Description>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+        <Literal>
+          <ID>componentType</ID>
+          <ToolTip>The type of component that this method is retrieving.</ToolTip>
+          <Default>Object/Component Type</Default>
+        </Literal>
+        <Literal>
+          <ID>StoredProcedureName</ID>
+          <ToolTip>
+            The name of the stored procedure that returns a single row representing the
+            data that will be set on the component.
+          </ToolTip>
+          <Default>Stored Procedure Name</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp">
+        <![CDATA[
+  /// <summary>
+	///   Retrieves an object of type <see cref="$componentType$" /> from the database.
+	/// </summary>
+	public $componentType$ Get$componentType$()
+	{
+    SqlCommand cmd;
+    DataSet ds;
+    $componentType$ getObj;
+    
+    cmd = _dbConn.GetStoredProcedureCommand("$StoredProcedureName$");
+    //Add parameters here if you need to qualify the object you are retrieving
+    //cmd.Parameters.AddWithValue("@ParamName", paramValue);
+    
+    ds = _dbConn.GetDataSet(cmd);
+        
+    if (ds.Tables.Count == 0)
+        return null;
+    if (ds.Tables[0].Rows.Count == 0)
+        return null;
+    
+    getObj = new $componentType$();
+    DataMapper.PopulateObject(getObj, ds, null, null);
+    
+    return getObj;
+	}$end$
+	]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

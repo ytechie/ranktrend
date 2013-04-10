@@ -1,0 +1,310 @@
+<?xml version="1.0"?>
+<project name="Default" default="fullBuild" xmlns="http://nant.sf.net/release/0.85/nant.xsd">
+	<!-- Set the default build configuration -->
+	<property name="build.Configuration" value="Debug" />
+
+	<property name="buildFiles.Path" value="${project::get-base-directory()}\" />
+	<property name="build.Path" value="${directory::get-parent-directory(buildFiles.Path)}\" />
+	<property name="build.Solution" value="${build.Path}RankTrend.sln" />
+
+	<!-- Build Utilities -->
+	<property name="build.ReferenceRewriter" value="${buildFiles.Path}Project Reference Rewriter\ProjRefToDll.exe" />
+	<property name="msbuildExe" value="${environment::get-variable('SYSTEMROOT')}\Microsoft.Net\Framework\v3.5\msbuild.exe" />
+	<property name="CssTidy.Path" value="${buildFiles.Path}CssTidy\csstidy.exe" />
+	<property name="Packer.Path" value="${buildFiles.Path}Packer\packer.exe" />
+
+	<!-- Project Paths -->
+	<property name="Website.Code.Path.NoSlash" value="${build.Path}Rt.Website" />
+	<property name="Website.Code.Path" value="${Website.Code.Path.NoSlash}\" />
+	<property name="Framework.Code.Path" value="${build.Path}Rt.Framework\Code\" />
+	<property name="Framework.Tester.Path" value="${build.Path}Rt.Framework\Tester\" />
+	<property name="DataEngine.Code.Path" value="${build.Path}Services\Rt.DataEngine\" />
+	<property name="EmailEngine.Code.Path" value="${build.Path}Services\Rt.EmailEngine\" />
+	<property name="ReportEngine.Code.Path" value="${build.Path}Services\Rt.ReportEngine\" />
+	<property name="RssEventEngine.Code.Path" value="${build.Path}Services\Rt.RssEventEngine\" />
+	<property name="TrayApp.Code.Path" value="${build.Path}Rt.TrayApplication\" />
+
+	<property name="Framework.Code.Project.Name" value="Rt.Framework.csproj" />
+	<property name="Framework.Code.Project.Path" value="${Framework.Code.Path}${Framework.Code.Project.Name}" />
+
+	<property name="Output.Path" value="${buildFiles.Path}Output\" />
+	<property name="Output.Artifacts.Path" value="${Output.Path + build.Configuration}\" />
+	<!-- Override the artifacts path if CC.NET is passing one in -->
+	<property name="Output.Artifacts.Path" value="${CCNetArtifactDirectory}\" if="${property::exists('CCNetArtifactDirectory')}" />
+	<property name="Output.Website.Path.NoSlash" value="${Output.Artifacts.Path}Website" />
+	<property name="Output.Website.Path" value="${Output.Website.Path.NoSlash}\" />
+
+	<property name="Wix.Path" value="${buildFiles.Path}WiX\" />
+
+	<echo message="Using an artifact path of '${Output.Artifacts.Path}'" />
+
+	<!-- Some C# code snippets that we need -->
+	<script language="C#" prefix="file" >
+		<code>
+			<![CDATA[
+              [DllImport("kernel32.dll",EntryPoint="GetShortPathNameA")]
+              private static extern int GetShortPathName(string lpszLongPath, StringBuilder lpszShortPath, int cchBuffer);
+
+              [Function("get-short-name")]
+              public static string GetShortName(string longName)
+              {
+                StringBuilder sPath = new StringBuilder(longName.Length);
+                GetShortPathName(longName, sPath, longName.Length);
+                return sPath.ToString();
+              }
+            ]]>
+		</code>
+		<imports>
+			<import namespace="System.Runtime.InteropServices" />
+			<import namespace="System.Text" />
+		</imports>
+	</script>
+
+	<target name="build" description="compiles the source code">
+		<!-- This builds all of the applications and supporting libraries -->
+		<exec program="${msbuildExe}">
+			<arg value="${build.Solution}" />
+			<arg value="/verbosity:q" />
+			<arg value="/p:Configuration=${build.Configuration}" />
+			<arg value="/t:Rebuild" />
+		</exec>
+
+		<echo message="Creating Website Path, if it doesn't exist" />
+		<mkdir dir="${Output.Website.Path}" unless="${directory::exists(Output.Website.Path)}" />
+
+		<!-- Copy the framework outputs to the website -->
+		<copy todir="${Website.Code.Path}bin">
+			<fileset basedir="${Framework.Code.Path}bin\${build.Configuration}\">
+				<include name="*.dll" />
+			</fileset>
+		</copy>
+
+		<echo message="-nologo -v / -p &quot;${Website.Code.Path}&quot; &quot;${Output.Website.Path}&quot;" />
+
+		<if test="${build.Configuration=='Release'}">
+			<!-- Use the release.config when building -->
+			<move file="${Website.Code.Path}Web.config" tofile="${Website.Code.Path}WebTemp.config" />
+			<move file="${Website.Code.Path}Release.config" tofile="${Website.Code.Path}Web.config" />
+		</if>
+
+		<exec
+			program="${framework::get-framework-directory('net-2.0')}\aspnet_compiler.exe"
+			basedir="${Website.Code.Path}"
+			workingdir="${Website.Code.Path}"
+			commandline="-nologo -p &quot;${Website.Code.Path.NoSlash}&quot; -v / &quot;${Output.Website.Path.NoSlash}&quot;"
+			verbose="true" />
+
+		<if test="${build.Configuration=='Release'}">
+			<!-- Swap the old code web.config back in -->
+			<move file="${Website.Code.Path}Web.config" tofile="${Website.Code.Path}Release.config" />
+			<move file="${Website.Code.Path}WebTemp.config" tofile="${Website.Code.Path}Web.config" />
+		</if>
+		<!-- If it's not a release build, we don't need the release.config -->
+		<delete file="${Output.Website.Path}Release.config" unless="${build.Configuration=='Release'}" />
+
+		<!-- Delete the WebTemp.Config from the output -->
+		<delete file="${Output.Website.Path}WebTemp.config" />
+
+		<echo message="Deleting unneeded files from the build output" />
+		<delete>
+			<fileset>
+				<!-- Website logs -->
+				<include name="${Output.Website.Path}Logs\*.*" />
+				<!-- Xml Doc Files -->
+				<include name="${Output.Website.Path}Bin\*.xml" />
+			</fileset>
+		</delete>
+
+		<if test="${build.Configuration == 'Release'}">
+			<echo message="Compressing CSS Files" />
+			<exec program="${CssTidy.Path}">
+				<arg value="${Output.Website.Path}Style.css" />
+				<arg value="${Output.Website.Path}Style.css" />
+			</exec>
+			<exec program="${CssTidy.Path}">
+				<arg value="${Output.Website.Path}Members\Members.css" />
+				<arg value="${Output.Website.Path}Members\Members.css" />
+			</exec>
+			<exec program="${CssTidy.Path}">
+				<arg value="${Output.Website.Path}Administrators\Administrators.css" />
+				<arg value="${Output.Website.Path}Administrators\Administrators.css" />
+			</exec>
+		
+			<exec program="java" resultproperty="javaVersionResult" failonerror="false">		
+				<arg value="-version" />
+			</exec>
+		
+			<!-- Warn if Java isn't installed -->
+			<if test="${javaVersionResult != '0'}">
+				<echo message="WARNING: JAVA IS NOT INSTALLED. THE SCRIPTS WILL NOT BE COMPRESSED" Level="Warn" />
+			</if>
+		
+			<!-- We can compress the scripts if Java is installed -->
+			<if test="${javaVersionResult == '0'}">
+				<echo message="Java has been detected, so we can compress the JavaScript files" />
+				<!-- Remove the javascript source files in the output, since they're all compiled from the source -->
+				<!--<delete>
+					<fileset>
+						<include name="${Output.Website.Path}Scripts\*.js" />
+					</fileset>
+				</delete>-->
+				<foreach item="File" property="filename">
+					<in>
+						<items>
+							<include name="${Website.Code.Path}Scripts\*.js" />
+							<exclude name="${Website.Code.Path}Scripts\Common.js" />
+							<exclude name="${Website.Code.Path}Scripts\json.js" />
+							<exclude name="${Website.Code.Path}Scripts\jquery.listbox.js" />
+						</items>
+					</in>
+					<do>
+						<!-- Compress each item, and output the compressed copy to the output website -->
+						<exec program="java" verbose="true" workingdir="JSPacker">
+							<arg value="-jar" />
+							<arg value="js.jar" />
+							<arg value="pack.js" />
+							<arg value="${filename}" />
+							<arg value="${string::replace(filename, Website.Code.Path, Output.Website.Path)}" />
+						</exec>
+					</do>
+				</foreach>
+			</if>
+		</if>
+	</target>
+
+	<target name="clean" description="Deletes the old output files">
+		<delete dir="${Output.Path + build.Configuration}\" if="${directory::exists(Output.Path + build.Configuration)}" />
+		<delete>
+			<fileset>
+				<include name="${Output.Artifacts.Path}**" />
+			</fileset>
+		</delete>
+	</target>
+
+	<target name="unitTest" depends="build">
+		<echo message="${Framework.Tester.Path}bin\${build.Configuration}\Rt.Framework_Tester.dll" />
+		<nunit2>
+			<test assemblyname="${Framework.Tester.Path}bin\${build.Configuration}\Rt.Framework_Tester.dll" />
+			<formatter type="Xml" outputdir="${Output.Artifacts.Path}" extension=".xml" usefile="true" />
+		</nunit2>
+	</target>
+
+	<target name="fullBuild" depends="clean, unitTest, build, buildInstallers">
+
+	</target>
+
+	<!-- ********************************
+	
+			Installers
+	
+	***********************************-->
+
+	<target name="preInstallBuild">
+		<loadtasks assembly="${Wix.Path}Microsoft.Tools.WindowsInstallerXml.NAntTasks.dll" />
+		<property name="Wix.Path.Short" value="${file::get-short-name(Wix.Path)}"/>
+	</target>
+
+	<target name="buildInstallers"
+		depends="buildDataEngineInstaller, buildEmailEngineInstaller, buildTrayAppInstaller, buildReportEngineInstaller, buildRssEventEngineInstaller">
+	</target>
+
+	<target name="buildDataEngineInstaller" depends="build, preInstallBuild">
+		<property name="DataEngine.Code.Output.Path" value="${DataEngine.Code.Path}bin\${build.Configuration}\" />
+
+		<candle out="${DataEngine.Code.Output.Path}" exedir="${Wix.Path}">
+			<sources>
+				<include name="${DataEngine.Code.Path}InstallScript.wxs" />
+				<include name="${DataEngine.Code.Path}Components.wxs" />
+			</sources>
+		</candle>
+
+		<light out="${Output.Artifacts.Path}Rt.DataEngine.msi" exedir="${Wix.Path}" locfile="${Wix.Path.Short}WixUI_en-us.wxl" rebuild="true">
+			<sources>
+				<include name="${DataEngine.Code.Output.Path}InstallScript.wixobj" />
+				<include name="${DataEngine.Code.Output.Path}Components.wixobj" />
+			</sources>
+		</light>
+	</target>
+
+	<target name="buildEmailEngineInstaller" depends="build, preInstallBuild">
+		<property name="EmailEngine.Code.Output.Path" value="${EmailEngine.Code.Path}bin\${build.Configuration}\" />
+
+		<candle out="${EmailEngine.Code.Output.Path}" exedir="${Wix.Path}">
+			<sources>
+				<include name="${EmailEngine.Code.Path}InstallScript.wxs" />
+				<include name="${EmailEngine.Code.Path}Components.wxs" />
+			</sources>
+		</candle>
+
+		<light out="${Output.Artifacts.Path}Rt.EmailEngine.msi" exedir="${Wix.Path}" locfile="${Wix.Path.Short}WixUI_en-us.wxl" rebuild="true">
+			<sources>
+				<include name="${EmailEngine.Code.Output.Path}InstallScript.wixobj" />
+				<include name="${EmailEngine.Code.Output.Path}Components.wixobj" />
+			</sources>
+		</light>
+	</target>
+
+	<target name="buildReportEngineInstaller" description="Builds the WiX Report Engine Installer"
+		depends="build, preInstallBuild">
+		<property name="ReportEngine.Code.Output.Path" value="${ReportEngine.Code.Path}bin\${build.Configuration}\" />
+		
+		<candle out="${ReportEngine.Code.Output.Path}" exedir="${Wix.Path}">
+			<sources>
+				<include name="${ReportEngine.Code.Path}InstallScript.wxs" />
+				<include name="${ReportEngine.Code.Path}Components.wxs" />
+			</sources>
+		</candle>
+
+		<light out="${Output.Artifacts.Path}Rt.ReportEngine.msi" exedir="${Wix.Path}" locfile="${Wix.Path.Short}WixUI_en-us.wxl" rebuild="true">
+			<sources>
+				<include name="${ReportEngine.Code.Output.Path}InstallScript.wixobj" />
+				<include name="${ReportEngine.Code.Output.Path}Components.wixobj" />
+			</sources>
+		</light>
+	</target>
+
+	<target name="buildRssEventEngineInstaller" description="Builds the WiX RSS Event Engine Installer"
+	depends="build, preInstallBuild">
+		<property name="RssEventEngine.Code.Output.Path" value="${RssEventEngine.Code.Path}bin\${build.Configuration}\" />
+
+		<candle out="${RssEventEngine.Code.Output.Path}" exedir="${Wix.Path}">
+			<sources>
+				<include name="${RssEventEngine.Code.Path}InstallScript.wxs" />
+				<include name="${RssEventEngine.Code.Path}Components.wxs" />
+			</sources>
+		</candle>
+
+		<light out="${Output.Artifacts.Path}Rt.RssEventEngine.msi" exedir="${Wix.Path}" locfile="${Wix.Path.Short}WixUI_en-us.wxl" rebuild="true">
+			<sources>
+				<include name="${RssEventEngine.Code.Output.Path}InstallScript.wixobj" />
+				<include name="${RssEventEngine.Code.Output.Path}Components.wixobj" />
+			</sources>
+		</light>
+	</target>
+
+	<target name="buildTrayAppInstaller" depends="build, preInstallBuild">
+		<property name="TrayApp.Code.Output.Path" value="${TrayApp.Code.Path}bin\${build.Configuration}\" />
+
+		<candle out="${TrayApp.Code.Output.Path}" exedir="${Wix.Path}" verbose="true">
+			<sources>
+				<include name="${TrayApp.Code.Path}InstallScript.wxs" />
+				<include name="${TrayApp.Code.Path}Components.wxs" />
+			</sources>
+		</candle>
+
+		<light out="${Output.Artifacts.Path}Rt.TrayApplication.msi" exedir="${Wix.Path}" locfile="${Wix.Path.Short}WixUI_en-us.wxl" rebuild="true">
+			<sources>
+				<include name="${TrayApp.Code.Output.Path}InstallScript.wixobj" />
+				<include name="${TrayApp.Code.Output.Path}Components.wixobj" />
+			</sources>
+		</light>
+
+		<echo message="Copying the tray application installer to the website" />
+		<!-- Copy the tray app to the website -->
+		<copy file="${Output.Artifacts.Path}Rt.TrayApplication.msi" tofile="${Output.Website.Path}Members\Tray-Application\RankTrend-Tray-Application.msi" />
+		
+		<!-- Copy the Java tray app to the website -->
+		<copy file="${Website.Code.Path}Members\Tray-Application\RankTrend-Tray-Application.dmg" tofile="${Output.Website.Path}Members\Tray-Application\RankTrend-Tray-Application.dmg" />
+	</target>
+
+</project>

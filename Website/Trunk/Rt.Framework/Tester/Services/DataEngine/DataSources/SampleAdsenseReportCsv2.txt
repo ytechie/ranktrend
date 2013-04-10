@@ -1,0 +1,4 @@
+﻿Date	Page impressions	Clicks	Page CTR	Page eCPM	Earnings
+6/14/2005	174	1	0.57%	0.86	0.15
+6/15/2005	173	9	5.20%	12.77	2.21
+Totals	220146	6900	3.13%	3.92	863.69

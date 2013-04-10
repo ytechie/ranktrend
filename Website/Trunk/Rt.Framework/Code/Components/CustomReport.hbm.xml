@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+	<class name="Rt.Framework.Components.CustomReport, Rt.Framework" table="rt_CustomReports">
+		<id name="Id">
+			<generator class="native" />
+		</id>
+		<property name="Name" />
+		<property name="UserId" />
+		<property name="Description" />
+		<property name="EmailIntervalDays" />
+		<property name="LastEmailed" />
+		<property name="Created" insert="false" />
+		<property name="LastSaved" insert="false" />
+		<set name="ReportComponents" generic="true">
+			<key column="CustomReportId" />
+			<one-to-many class="Rt.Framework.Components.CustomReportComponent, Rt.Framework"/>
+		</set>
+	</class>
+</hibernate-mapping>

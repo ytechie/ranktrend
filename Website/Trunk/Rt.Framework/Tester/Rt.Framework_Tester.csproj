@@ -1,0 +1,169 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{793F00A5-79E3-4534-BD5F-F04521BB5F26}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Rt.Framework</RootNamespace>
+    <AssemblyName>Rt.Framework_Tester</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.2.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.Mocks, Version=3.5.0.2, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\RhinoMocks\Rhino.Mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Api\LocalImplementations\DataMappers\GetDatasourcesMapper.cs" />
+    <Compile Include="Applications\Correlation\DiagramGenerator.cs" />
+    <Compile Include="Applications\InteractiveReport\RankChartGenerator.cs" />
+    <Compile Include="Applications\Keywords\KeywordSummary.cs" />
+    <Compile Include="Components\ConfiguredDatasource.cs" />
+    <Compile Include="Applications\InteractiveReport\RankChartParameters.cs" />
+    <Compile Include="Members\WhatToTrack\KeywordUpdater.cs" />
+    <Compile Include="Payments\PayPal\IpnPostHandler.cs" />
+    <Compile Include="Payments\PayPal\PaymentCustomField.cs" />
+    <Compile Include="Payments\PayPal\PayPalInterval.cs" />
+    <Compile Include="Payments\PayPal\PayPalManagement.cs" />
+    <Compile Include="Payments\PayPal\PayPalUrl.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\DataEngine\DatasourceManager.cs" />
+    <Compile Include="Services\DataEngine\DataSources\Delicious.cs" />
+    <Compile Include="Services\DataEngine\DataSources\Digg.cs" />
+    <Compile Include="Services\DataEngine\DataSources\GoogleAdsense.cs" />
+    <Compile Include="Services\DataEngine\DataSources\GoogleBacklinks.cs" />
+    <Compile Include="Services\DataEngine\DataSources\GoogleRank.cs" />
+    <Compile Include="Services\DataEngine\DataSources\MSLiveSearch.cs" />
+    <Compile Include="Web\LeadUrlRewriter.cs" />
+    <Compile Include="Web\QueryParameters.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Code\Rt.Framework.csproj">
+      <Project>{FE97F424-18CF-4C5E-A3A4-55FAC560B4B2}</Project>
+      <Name>Rt.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Services\DataEngine\DataSources\SampleAdsenseReportCsv.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Services\DataEngine\DataSources\SampleAdsenseReportCsv2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Services\DataEngine\DataSources\GoogleRankResults.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Services\DataEngine\DataSources\GoogleRankResults_8Results.txt" />
+    <EmbeddedResource Include="Services\DataEngine\DataSources\GoogleRankResults_NoResults.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Services\DataEngine\DataSources\GoogleRankResults_Bad.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Services\DataEngine\DataSources\GoogleAdsense_Sample1_Stage1.txt" />
+    <EmbeddedResource Include="Services\DataEngine\DataSources\GoogleAdsense_Sample1_Stage2.txt" />
+    <EmbeddedResource Include="Services\DataEngine\DataSources\GoogleAdsense_Sample1_Stage3.txt" />
+    <EmbeddedResource Include="Services\DataEngine\DataSources\GoogleAdsense_Sample1_Stage4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Services\DataEngine\DataSources\Delicious_Sample1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Services\DataEngine\DataSources\Delicious_NoLinks.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Services\DataEngine\DataSources\GoogleBacklinks_Sample1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Services\DataEngine\DataSources\GoogleBacklinks_NoResults.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Services\DataEngine\DataSources\MSLiveSearch_Sample1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Services\DataEngine\DataSources\MSLiveSearch_NoResults.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Services\DataEngine\DataSources\Delicious_1Link.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Services\DataEngine\DataSources\GoogleRankResults2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Services\DataEngine\DataSources\GoogleRankResults3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Services\DataEngine\DataSources\GoogleRankResults4.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Services\DataEngine\DataSources\GoogleRankResults5.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Services\DataEngine\DataSources\GoogleRankResults6.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Services\DataEngine\DataSources\GoogleRankResults7.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Services\DataEngine\DataSources\GoogleRankResults8.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Services\DataEngine\DataSources\GoogleRankResults9.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Services\DataEngine\DataSources\Digg_Sample2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Services\DataEngine\DataSources\GoogleRankResults_Fuzzy.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Services\DataEngine\DataSources\GoogleRankResults10.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

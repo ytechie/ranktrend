@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html id="delicious">
+<head>
+	<title>del.icio.us/url/c4d8f649c23deb60def20811f23465ed</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="robots" content="noarchive,nofollow,noindex"/>
+	<link rel="stylesheet" type="text/css" href="/delicious.css?v=61E-123"/>
+
+	<script type="text/javascript" src="/ui/static/lib.js?v=61E-123"></script>
+	<script type="text/javascript" src="/ui/static/delicious.js?v=61E-123"></script>
+
+	<link rel="shortcut icon" type="image/x-icon" href="http://del.icio.us/favicon.ico" />
+	<link rel="alternate" type="application/rss+xml" title="RSS" href="http://del.icio.us/rss/url/c4d8f649c23deb60def20811f23465ed"/>
+	<script type="text/javascript">
+	global_user_flag_private = 1;
+	</script>
+<style type="text/css">
+.datehead { font-weight: normal; font-size: 76%; text-align: right; padding: 0.3em 0 0.1em 0; border-bottom: 1px dashed #ccc; margin-bottom: 1em; color: #666; }
+#sidebar .datehead { font-size: 100%; }
+.historylist li { margin: 0 0 0.4em 0 !important; padding: 0; color: #999; text-align: justify; }
+.historylist li p { margin: 0 0 0em 0; clear: left; color: #666; }
+.historylist a { color: #66f; }
+.historylist li p .who { color: #00f; }
+.historylist span { background-color: #ffc; padding: 0.2em; }
+.notelist { list-style-type: none; margin: 0; }
+.notelist li { margin: 0 0 0.5em 0; }
+.notelist li p { margin: 0 0 0.1em 0; font-size: 80%; }
+.notelist li .byline { margin: 0 0 0 1em; color: #999; font-size: 76%; }
+.alphacloud { font-size: 120%; margin: 0 0 1em 0; padding: 0; text-align: justify; }
+.alphacloud a { line-height: 1.25em; padding-right: 0.4em; }
+.s1 { font-size: 76%; color: #66f !important; }
+.s2 { font-size: 80%; color: #44f !important; }
+.s3 { font-size: 100%; color: #22f !important; }
+.s4 { font-size: 110%; color: #00f !important; }
+.s5 { font-size: 130%; color: #00f !important; }
+</style>
+</head>
+
+<body>
+
+
+<p class="hide"><a href="#main">skip to content</a></p>
+
+<div id="header">
+<div id="header-l">
+<h1 class="auth-h1"><a href="/">del.icio.us</a> /&nbsp;url
+</h1>
+<p id="header-user-links"><strong><a href="/SuperJason">your bookmarks</a></strong> | <a href="/network/SuperJason">your network</a> | <a href="/subscriptions/SuperJason">subscriptions</a> | <a href="/for/SuperJason">links for you</a> | <a href="/post/" id="new-post">post</a></p>
+
+</div>
+<div id="header-r">
+<p id="header-global-links"><a href="/popular/">popular</a> | <a href="/recent">recent</a></p>
+<p id="header-auth-links">logged in as <strong>SuperJason</strong> | <a href="https://secure.del.icio.us/settings/SuperJason/index">settings</a> | <a href="/logout">logout</a> | <a href="/help/">help</a></p>
+
+</div>
+<div class="cleardiv"></div>
+</div>
+
+<div id="infobar">
+	<div  class="search-box">
+<form method="get" action="/search/" id="searchform" onSubmit="doSearchType(); return true;"><p class="nom">
+<input type="hidden" name="fr" id="searchfr" value="del_icio_us"/>
+<input type="text" name="p" size="15" value=""/>
+<select id="searchtype" name="type">
+	<option value="user" >your bookmarks</option>
+	<option value="all" selected="selected">del.icio.us</option>
+
+	<option value="web" >the web</option>
+</select>
+<input type="submit" value="search" /></p></form></div>
+
+	<h2 id="page-desc">
+
+<form method="get" action="/url/check">
+	&raquo; del.icio.us history for
+	<input name="url" size="30" value="http://www.obishawn.com/"/>
+	<input type=submit value="check url" />
+</form>
+
+	</h2>
+</div>
+
+
+
+<div id="sidebar"  style="width: 23em"><div class="sidebar-inner">
+
+
+	<h3 class="mb">related items - <a style="font-weight: normal" href="/url/c4d8f649c23deb60def20811f23465ed?related">show &darr;</a></h3>
+	<div class="sidebar-break"></div>
+	
+	<h3>posting history</h3>
+
+	<p>&raquo; first posted by <a href="/Obishawn">Obishawn</a> to <a href="/Obishawn/blog">blog</a> <a href="/Obishawn/computer">computer</a> <a href="/Obishawn/software">software</a> <a href="/Obishawn/technology">technology</a> </p>
+	<h5 class="datehead">Mar &lsquo;07</h5>
+
+	<ul class="historylist">
+		<li><p>by <a class="who" href="/Obishawn">Obishawn</a> to <a href="/Obishawn/blog">blog</a> <a href="/Obishawn/computer">computer</a> <a href="/Obishawn/software">software</a> <a href="/Obishawn/technology">technology</a> </p></li>
+	</ul>
+
+</div></div>
+
+<div id="main"><script type="text/javascript"><!--
+addLoadEvent(function(){if($id('main') && $id('sidebar')){$id('main').style.marginRight=($id('sidebar').clientWidth+6)+'px';$id('main').style.paddingRight='1em';}})
+--></script>
+
+
+
+<h4 class="nomb"><a href="http://www.obishawn.com/" rel="nofollow">Obishawn</a></h4>
+<p class="verysmall grey">http://www.obishawn.com/</p>
+
+<h4 class="smaller nom">
+this url has been saved by 1 person.
+<br/><a href="/SuperJason?url=http%3A%2F%2Fwww.obishawn.com%2F&amp;title=Obishawn&amp;jump=no">save this to your bookmarks &raquo;</a></h4>
+
+
+<h3 style="color: #090; margin: 1em 0 0 0;">user notes</h3>
+<p class="smaller mt">no users have posted notes for this url yet.</p>
+
+
+</div>
+<img src="http://geo.yahoo.com/serv?s=2015250001&amp;t=2660&amp;uri=%2Furl%2Fc4d8f649c23deb60def20811f23465ed" height="1" width="1" />
+<script type="text/javascript">document.write('<div id="bottom">&nbsp;<\/div><div style="visibility:hidden">')</script>
+<div id="footer"><div id="footer-inner">
+<div id="footer-hr"><hr /></div>
+<ul>
+<li class="first"><img src="http://images.del.icio.us/static/img/delicious.small.gif" width="10" height="10" alt="" /> <a href="http://del.icio.us/">del.icio.us</a></li><li><a href="http://del.icio.us/about">about</a></li><li><a href="http://blog.del.icio.us/">blog</a></li><li><a href="http://del.icio.us/help/terms">terms of service</a></li><li><a href="http://del.icio.us/help/privacy">privacy policy</a></li><li><a href="http://del.icio.us/help/copyright">copyright policy</a></li><li><a href="http://del.icio.us/help/support">support</a></li><li><a class="rss" href="/rss/url/c4d8f649c23deb60def20811f23465ed" title="RSS"><img src="http://images.del.icio.us/static/img/rss.gif" width="36" height="14" alt="RSS" /></a> feed for this page</li></ul>
+
+</div></div>
+<script type="text/javascript">document.write('<\/div>'); window.onresize = footer; footer()</script>
+<div style="clear:both"><!-- ie bugfix --></div>
+<script type="text/javascript">if(Mp3.go) Mp3.go()</script></body></html>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+	<class name="Rt.Framework.Components.DatasourceType, Rt.Framework" table="DatasourceTypes">
+		<id name="Id">
+			<generator class="native" />
+		</id>
+		<property name="Description" />
+		<many-to-one name="SearchEngine" class="Rt.Framework.Components.SearchEngine, Rt.Framework" column="SearchEngineId" />
+		<property name="Enabled" />
+		<property name="Reversed" />
+		<bag name="DatasourceSubTypes" generic="true">
+			<key column="DatasourceTypeId" />
+			<one-to-many class="Rt.Framework.Components.DatasourceSubType, Rt.Framework"/>
+		</bag>
+	</class>
+</hibernate-mapping>

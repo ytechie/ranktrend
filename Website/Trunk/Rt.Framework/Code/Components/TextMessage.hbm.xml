@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+	<class name="Rt.Framework.Components.TextMessage, Rt.Framework" table="rt_TextMessages">
+		<id name="Id">
+			<generator class="native" />
+		</id>
+		<property name="Timestamp" insert="false" />
+		<property name="Message" />
+		<property name="Acknowledged" />
+		<property name="UserId" />
+	</class>
+</hibernate-mapping>

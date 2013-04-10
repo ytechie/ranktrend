@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+	<class name="Rt.Framework.Components.Leads.LeadSource, Rt.Framework" table="rt_LeadSources">
+		<id name="RedirectPageName">
+			<generator class="assigned" />
+		</id>
+		<many-to-one name="LeadType" class="Rt.Framework.Components.Leads.LeadType, Rt.Framework" column="LeadTypeId" />
+		<property name="Description" />
+		<property name="HitCount" />
+		<property name="EstimatedDistribution" />
+		<property name="Cost" />
+		<property name="RunTime" />
+		<property name="RedirectUrl" />
+	</class>
+</hibernate-mapping>

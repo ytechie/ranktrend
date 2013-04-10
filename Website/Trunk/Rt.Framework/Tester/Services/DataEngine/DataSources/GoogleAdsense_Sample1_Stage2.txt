@@ -1,0 +1,97 @@
+<html>
+  <head>
+  <script language="JavaScript" type="text/javascript">
+  <!--
+  function doRedirect(url) {
+    open(url, "_top");
+  }
+  -->
+  </script>
+  <script language="JavaScript1.4" type="text/javascript">
+  <!--
+  function doRedirect(url) {
+    try {
+      open(url, "_top");
+    } catch (xcp) {
+      insertContinueLink();
+    }
+  }
+  -->
+  </script>
+  <script language="EcmaScript" type="text/javascript">
+  <!--
+  function doRedirect(url) {
+    try {
+      open(url, "_top");
+    } catch (xcp) {
+      insertContinueLink();
+    }
+  }
+  -->
+  </script>
+  <script type="text/javascript">
+  <!--
+    var firsttime = "firsttime";
+    var goback = "goback";
+    var gofwd = "gofwd";
+
+    function redirect() {
+
+      var url = 'https:\x2F\x2Fwww.google.com\x2Faccounts\x2FCheckCookie?continue=https%3A%2F%2Fwww.google.com%2Fadsense%2Fgaiaauth&followup=https%3A%2F%2Fwww.google.com%2Fadsense%2Fgaiaauth&service=adsense&hl=en-US&chtml=LoginDoneHtml';
+      var state = document.dummyform.dummyfield.value;
+      var lastUrl = document.dummyform.dummyfield2.value;
+
+      if ((state == firsttime) || (url != lastUrl)) {
+        // First time visit or passive login
+        document.dummyform.dummyfield.value = goback;
+        document.dummyform.dummyfield.defaultvalue = goback;
+        document.dummyform.dummyfield2.value = url;
+        document.dummyform.dummyfield2.defaultvalue = url;
+        doRedirect(url);
+      } else if (state == goback) {
+        // Remember that we should go forward next time and go backward.
+        document.dummyform.dummyfield.value = gofwd;
+        document.dummyform.dummyfield.defaultvalue = gofwd;
+        history.back();
+      } else if (state == gofwd) {
+        // Remember that we should go backward next time and go forward.
+        document.dummyform.dummyfield.value = goback;
+        document.dummyform.dummyfield.defaultvalue = goback;
+        history.forward();
+      }
+    }
+
+    // Tells the user we are waiting for the page to redirect
+    function insertLoadingMessage() { 
+      document.getElementById("loadingDiv").style.visibility = "visible";
+    }
+
+    function insertContinueLink() {
+      document.getElementById("loadingDiv").style.visibility = "hidden";
+      document.getElementById("clickToContinue").style.visibility = "visible";
+    } 
+    -->
+  </script>
+  </head>
+  <body onload="insertLoadingMessage();redirect();"
+        onpageshow="if (event.persisted) redirect();"
+        bgcolor="#ffffff" text="#000000"
+        link="#0000cc" vlink="#551a8b" alink="#ff0000"
+	dir="ltr">
+  <div id="loadingDiv" 
+         style="visibility:hidden;font-size:75%;position:absolute;background:#c44;color:white;font-family:arial,sans-serif;width=0%;padding:2">
+  Loading...
+  </div>
+  <div style="visibility:hidden;position:relative;top:40px" id="clickToContinue">
+  <center><a target="_top" href="https://www.google.com/accounts/CheckCookie?continue=https%3A%2F%2Fwww.google.com%2Fadsense%2Fgaiaauth&followup=https%3A%2F%2Fwww.google.com%2Fadsense%2Fgaiaauth&service=adsense&hl=en-US&chtml=LoginDoneHtml" style="font-family: Arial, Helvetica, sans-serif; font-size: smaller;">Click here to continue</a></center>
+  </div>
+ <form name="dummyform" action="" >
+  <input name="dummyfield" value="firsttime" style="visibility:hidden" />
+  <input name="dummyfield2" value="" style="visibility:hidden" />
+ </form>
+  <noscript>
+	Please
+  <a href="https://www.google.com/accounts/CheckCookie?continue=https%3A%2F%2Fwww.google.com%2Fadsense%2Fgaiaauth&followup=https%3A%2F%2Fwww.google.com%2Fadsense%2Fgaiaauth&service=adsense&hl=en-US&chtml=LoginDoneHtml" target="_top">click here to continue</a>.
+  </noscript>
+  </body>
+</html>

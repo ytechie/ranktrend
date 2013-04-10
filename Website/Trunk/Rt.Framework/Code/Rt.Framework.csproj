@@ -1,0 +1,295 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FE97F424-18CF-4C5E-A3A4-55FAC560B4B2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Rt.Framework</RootNamespace>
+    <AssemblyName>Rt.Framework</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DataStreams, Version=3.0.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\DataStreams.dll</HintPath>
+    </Reference>
+    <Reference Include="eWorld.UI, Version=2.0.6.2393, Culture=neutral, PublicKeyToken=24d65337282035f2, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\eWorld.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=1.0.0.3, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.9.0, Culture=neutral, PublicKeyToken=b32731d11ce58905">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MichaelBrumm.Globalization.SimpleTimeZone, Version=1.0.1301.611, Culture=neutral, PublicKeyToken=deb62d011691d2fa">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\MichaelBrumm.Globalization.SimpleTimeZone.dll</HintPath>
+    </Reference>
+    <Reference Include="MichaelBrumm.Win32.TimeZones, Version=1.0.1301.676, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\MichaelBrumm.Win32.TimeZones.dll</HintPath>
+    </Reference>
+    <Reference Include="netchartdir, Version=4.1.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\netchartdir.dll</HintPath>
+    </Reference>
+    <Reference Include="Netron.Diagramming.Core, Version=3.0.2673.24642, Culture=neutral, PublicKeyToken=9c4817ccfa6cd2b1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Netron.Diagramming.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=1.2.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="RSS.NET, Version=0.86.1960.11021, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\RSS.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Core, Version=1.1.2.20125, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Spring.NET\Spring.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="YTech.Db, Version=1.0.2790.39300, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\YTech.Db.dll</HintPath>
+    </Reference>
+    <Reference Include="YTech.General, Version=1.0.2796.26694, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\YTech.General.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Api\IDatasourceRepository.cs" />
+    <Compile Include="Api\IRawDataRepository.cs" />
+    <Compile Include="Api\IUrlRepository.cs" />
+    <Compile Include="Api\LocalImplementations\DataMappers\GetDatasourcesMapper.cs" />
+    <Compile Include="Api\LocalImplementations\DataMappers\IGetDatasourcesMapper.cs" />
+    <Compile Include="Api\LocalImplementations\DatasourceRepository.cs" />
+    <Compile Include="Api\Model\DataPoint.cs" />
+    <Compile Include="Api\Model\Datasource.cs" />
+    <Compile Include="Api\Model\DatasourceKey.cs" />
+    <Compile Include="Api\Model\DatasourceParameter.cs" />
+    <Compile Include="Applications\Correlation\DiagramGenerator.cs" />
+    <Compile Include="Applications\Correlation\DiagramNode.cs" />
+    <Compile Include="Applications\Correlation\DiagramNodeConnection.cs" />
+    <Compile Include="Applications\EmailQueue.cs" />
+    <Compile Include="Applications\Events\EventJSON.cs" />
+    <Compile Include="Applications\InteractiveReport\DisplayDatasourceItem.cs" />
+    <Compile Include="Applications\InteractiveReport\DisplayEventCategoryItem.cs" />
+    <Compile Include="Applications\Keywords\KeywordSummary.cs" />
+    <Compile Include="Applications\RssFeedSubscriptions\RssFeeds.cs" />
+    <Compile Include="Applications\TextMessagesInterface.cs" />
+    <Compile Include="Applications\Thumbnails\ThumbnailGenerator.cs" />
+    <Compile Include="CommonControls\Web\DateRangeSelector.cs" />
+    <Compile Include="Components\ConfiguredDatasource.cs" />
+    <Compile Include="Components\CustomReport.cs" />
+    <Compile Include="Components\CustomReportComponent.cs" />
+    <Compile Include="Components\CustomReportComponentType.cs" />
+    <Compile Include="Components\DatasourceDataQueueItem.cs" />
+    <Compile Include="Components\DatasourceParameter.cs" />
+    <Compile Include="Components\DatasourceParameterType.cs" />
+    <Compile Include="Components\DatasourceSubType.cs" />
+    <Compile Include="Components\DatasourceType.cs" />
+    <Compile Include="Components\EmailFilter.cs" />
+    <Compile Include="Components\EmailTemplate.cs" />
+    <Compile Include="Components\Event.cs" />
+    <Compile Include="Components\EventCategory.cs" />
+    <Compile Include="Components\EventRssSubscription.cs" />
+    <Compile Include="Components\GlobalSetting.cs" />
+    <Compile Include="Components\Leads\LeadSource.cs" />
+    <Compile Include="Components\Leads\LeadType.cs" />
+    <Compile Include="Components\LegalNotice.cs" />
+    <Compile Include="Components\LegalNoticeAgreement.cs" />
+    <Compile Include="Components\LegalNoticeVersion.cs" />
+    <Compile Include="Applications\InteractiveReport\RankChartParameters.cs" />
+    <Compile Include="Components\PayPal\Payment.cs" />
+    <Compile Include="Components\PayPal\Subscription.cs" />
+    <Compile Include="Components\PayPal\SubscriptionTransaction.cs" />
+    <Compile Include="Components\Promotion.cs" />
+    <Compile Include="Components\PromotionParticipant.cs" />
+    <Compile Include="Components\RawDataValue.cs" />
+    <Compile Include="Components\SavedReport.cs" />
+    <Compile Include="Components\SearchEngine.cs" />
+    <Compile Include="Components\Plan.cs" />
+    <Compile Include="Components\Service.cs" />
+    <Compile Include="Components\TextMessage.cs" />
+    <Compile Include="Components\Url.cs" />
+    <Compile Include="Components\EmailMessage.cs" />
+    <Compile Include="Components\UserInformation.cs" />
+    <Compile Include="Db\ConnectionFactory.cs" />
+    <Compile Include="Db\Exception\GlobalSettingNotFound.cs" />
+    <Compile Include="Db\SqlServer\Database.cs" />
+    <Compile Include="Members\WhatToTrack\IKeywordManager.cs" />
+    <Compile Include="Members\WhatToTrack\KeywordManager.cs" />
+    <Compile Include="Payments\PayPal\ActionTypesEnum.cs" />
+    <Compile Include="Payments\PayPal\IntervalUnitEnum.cs" />
+    <Compile Include="Payments\PayPal\IpnPostHandler.cs" />
+    <Compile Include="Payments\PayPal\PaymentCustomField.cs" />
+    <Compile Include="Payments\PayPal\PayPalInterval.cs" />
+    <Compile Include="Payments\PayPal\PayPalManagement.cs" />
+    <Compile Include="Payments\PayPal\PayPalUrl.cs" />
+    <Compile Include="Payments\PayPal\SubscriptionActions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\DataEngine\DatasourceAttribute.cs" />
+    <Compile Include="Services\DataEngine\DatasourceManager.cs" />
+    <Compile Include="Services\DataEngine\DataSourceParameters.cs" />
+    <Compile Include="Services\DataEngine\BaseDataSource.cs" />
+    <Compile Include="Services\DataEngine\DataSources\Delicious.cs" />
+    <Compile Include="Services\DataEngine\DataSources\Digg.cs" />
+    <Compile Include="Services\DataEngine\DataSources\GoogleAdsense.cs" />
+    <Compile Include="Services\DataEngine\DataSources\GoogleBacklinks.cs" />
+    <Compile Include="Services\DataEngine\DataSources\GooglePageRank.cs" />
+    <Compile Include="Services\DataEngine\DataSources\GoogleRank.cs" />
+    <Compile Include="Services\DataEngine\DataSources\MSLiveBacklinks.cs" />
+    <Compile Include="Services\DataEngine\DataSources\MSLiveSearch.cs" />
+    <Compile Include="Services\DataEngine\DataSources\YahooRank.cs" />
+    <Compile Include="Services\DataEngine\IDataSource.cs" />
+    <Compile Include="Services\DataEngine\LocalDatasourceExecutor.cs" />
+    <Compile Include="Services\DataEngine\SerializableWebRequest.cs" />
+    <Compile Include="Services\DataEngine\SerializableWebResponse.cs" />
+    <Compile Include="Services\EmailEngine\EmailEngine.cs" />
+    <Compile Include="Services\EngineBase.cs" />
+    <Compile Include="Services\ReportEngine\GeneratedReportPart.cs" />
+    <Compile Include="Services\ReportEngine\ReportControls\SiteSummaryTable.cs" />
+    <Compile Include="Services\ReportEngine\ReportEngine.cs" />
+    <Compile Include="Applications\InteractiveReport\RankChartGenerator.cs" />
+    <Compile Include="Services\ReportEngine\ReportPartGenerator.cs" />
+    <Compile Include="Services\RssEventEngine\RssEventEngine.cs" />
+    <Compile Include="Applications\RssFeedSubscriptions\RssFeedProcessor.cs" />
+    <Compile Include="Services\RtEngineBase.cs" />
+    <Compile Include="Services\RtEngines.cs" />
+    <Compile Include="Services\RtPollingServiceBase.cs" />
+    <Compile Include="Services\WebEngine.cs" />
+    <Compile Include="Web\EventCategoryJSON.cs" />
+    <Compile Include="Web\QueryParameters.cs" />
+    <Compile Include="Web\LeadUrlRewriter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\ConfiguredDatasource.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\Url.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\DatasourceType.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\SearchEngine.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\DatasourceParameter.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\RawDataValue.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\DatasourceParameterType.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\DatasourceSubType.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\Event.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\EventCategory.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\EventRssSubscription.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\TextMessage.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\SavedReport.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\Promotion.hbm.xml" />
+    <EmbeddedResource Include="Components\PromotionParticipant.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\CustomReport.hbm.xml" />
+    <EmbeddedResource Include="Components\CustomReportComponent.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\CustomReportComponentType.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Services\ReportEngine\EmbeddedImages\RankTrend-Logo.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\PayPal\Subscription.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\Plan.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\Leads\LeadType.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\Leads\LeadSource.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\UserInformation.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\EmailFilter.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Components\DatasourceDataQueueItem.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ReportSaving\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

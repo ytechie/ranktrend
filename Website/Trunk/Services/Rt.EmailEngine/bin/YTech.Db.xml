@@ -1,0 +1,224 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>YTech.Db</name>
+    </assembly>
+    <members>
+        <member name="T:YTech.Db.ORManager">
+            <summary> 
+                   Provides access to a single NHibernate session on a per request basis. 
+            </summary> 
+            <remarks> 
+                   NHibernate requires mapping files to be loaded. These can be stored as 
+                   embedded resources in the assemblies alongside the classes that they are for or 
+                   in separate XML files. 
+                   <br /><br /> 
+                   As the number of assemblies containing mapping resources may change and 
+                   these have to be referenced by the NHibernate config before the SessionFactory 
+                   is created, the configuration is stored in a separate config file to allow 
+                   new references to be added. This would also enable the use of external mapping 
+                   files if required. 
+                   <br /><br /> 
+                   The name of the NHibernate configuration file is set in the appSettings section 
+                   with the name "nhibernate.config". If not specified the the default value of 
+                   ~/nhibernate.config is used. 
+                   <br /><br /> 
+            </remarks> 
+        </member>
+        <member name="F:YTech.Db.ORManager.SESSION_KEY">
+            <summary> 
+            Key used to identify NHibernate session in context items collection 
+            </summary> 
+            <remarks>
+            	This would need to be a dynamic key if we supported multiple connections.
+            </remarks>
+        </member>
+        <member name="F:YTech.Db.ORManager._factory">
+            <summary> 
+            NHibernate SessionFactory 
+            </summary> 
+        </member>
+        <member name="M:YTech.Db.ORManager.CloseSession(NHibernate.ISession)">
+            <summary>
+            	Closes the specified session, if that session is not
+            	the session designed to stay open for an entire
+            	web request.
+            </summary>
+            <param name="sessionToClose"></param>
+        </member>
+        <member name="M:YTech.Db.ORManager.EndRequest">
+            <summary> 
+            Closes any open NHibernate session if one has been used in this request.<br /> 
+            This is called from the EndRequest event. 
+            </summary> 
+        </member>
+        <member name="M:YTech.Db.ORManager.Get``1(System.Object)">
+            <summary> 
+            	Gets the specified object.
+            </summary> 
+            <param name="id">Id.</param> 
+        </member>
+        <member name="M:YTech.Db.ORManager.Delete(System.Object)">
+            <summary> 
+            Save object item using NHibernate. 
+            </summary> 
+            <param name="item">Object to delete</param> 
+        </member>
+        <member name="P:YTech.Db.ORManager.Session">
+            <summary> 
+            Creates a new NHibernate Session object if one does not already exist. 
+            When running in the context of a web application the session object is 
+            stored in HttpContext items and has 'per request' lifetime. For client apps 
+            and testing with NUnit a normal singleton is used. 
+            </summary> 
+            <returns>NHibernate Session object.</returns> 
+        </member>
+        <member name="T:YTech.Db.SqlServer.DbConnection">
+            <summary>
+            	Represents a database connection to SQL Server
+            </summary>
+        </member>
+        <member name="T:YTech.Db.DbConnection">
+            <summary>
+            	A generic database connection to simplify database operations.
+            </summary>
+        </member>
+        <member name="F:YTech.Db.DbConnection._connection">
+            <summary>
+            	The underlying database connection to use.
+            </summary>
+        </member>
+        <member name="M:YTech.Db.DbConnection.#ctor(System.String)">
+            <summary>
+            	Creates a new instance of the <see cref="T:YTech.Db.DbConnection"/> class.
+            </summary>
+            <param name="dbConnectionString">
+            	The connection string used to connect to the database.
+            </param>
+        </member>
+        <member name="M:YTech.Db.DbConnection.GetConnection">
+            <summary>
+            	Gets a connection for the type of database that
+            	the inheritor is defining.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.Db.DbConnection.GetDataAdapter(System.Data.IDbCommand)">
+            <summary>
+            	Gets a data adapter for the specified command.
+            </summary>
+            <param name="cmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.Db.DbConnection.GetCommand">
+            <summary>
+            	Gets a database command object.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.Db.DbConnection.disconnect">
+            <summary>
+            	Disconnects from the database if necessary.
+            </summary>
+        </member>
+        <member name="M:YTech.Db.DbConnection.GetDataSet(System.Data.IDbCommand)">
+            <summary>
+            	Gets a <see cref="T:System.Data.DataSet"/> from the specified command.
+            </summary>
+            <returns>
+            	A <see cref="T:System.Data.DataSet"/> from the results of running the command against the database
+            	connection.
+            </returns>
+        </member>
+        <member name="M:YTech.Db.DbConnection.ExecuteNonQuery(System.Data.IDbCommand)">
+            <summary>
+            	Executes the specified command.
+            </summary>
+            <remarks>
+            	If you need the return value of a stored procedure, you
+            	need to manually add the return value parameter to it.
+            </remarks>
+            <param name="cmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.Db.DbConnection.ExecuteNonQueriesAtomic(System.Data.IDbCommand[])">
+            <summary>
+            	Executes multiple queries sequentially and atomically.  If
+            	one of the commands fail, the transaction is rolled back.
+            </summary>
+            <param name="commands"></param>
+        </member>
+        <member name="P:YTech.Db.DbConnection.dbConnectionString">
+            <summary>
+            	The connection string to use when connecting to the database.
+            </summary>
+        </member>
+        <member name="M:YTech.Db.SqlServer.DbConnection.#ctor(System.String)">
+            <summary>
+            	Creates a new instance of the <see cref="T:YTech.Db.SqlServer.DbConnection"/> class.
+            </summary>
+            <param name="_dbConnectionString"></param>
+        </member>
+        <member name="M:YTech.Db.SqlServer.DbConnection.GetDataAdapter(System.Data.IDbCommand)">
+            <summary>
+            	Returns a new SqlDataAdapter from the command.
+            </summary>
+            <param name="cmd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.Db.SqlServer.DbConnection.GetConnection">
+            <summary>
+            	Gets a new sql server connection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.Db.SqlServer.DbConnection.GetCommand">
+            <summary>
+            	Gets a new <see cref="T:System.Data.SqlClient.SqlCommand"/> object.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.Db.SqlServer.DbConnection.GetSqlCommand">
+            <summary>
+            	Gets a new <see cref="T:System.Data.SqlClient.SqlCommand"/> object.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:YTech.Db.SqlServer.DbConnection.GetStoredProcedureCommand(System.String)">
+            <summary>
+            Gets a new <see cref="T:System.Data.SqlClient.SqlCommand"/> object and configures it to be a Stored Procedure <see cref="T:System.Data.CommandType"/> and
+            populates the CommandText with the stored procedure name passed in.
+            </summary>
+            <param name="spName">The stored procedure to initialize the <see cref="T:System.Data.SqlClient.SqlCommand"/> object to.</param>
+            <returns>A <see cref="T:System.Data.SqlClient.SqlCommand"/> object initialized to be a Stored Procedure <see cref="T:System.Data.CommandType"/> and 
+            to contained the specified stored procedure name as the command text.</returns>
+        </member>
+        <member name="M:YTech.Db.SqlServer.DbConnection.DisableContraints">
+            <summary>
+            Disables the constraints on all tables in the database.
+            </summary>
+        </member>
+        <member name="M:YTech.Db.SqlServer.DbConnection.EnableContraints">
+            <summary>
+            Enables the constraints on all tables in the database.
+            </summary>
+        </member>
+        <member name="M:YTech.Db.SqlServer.DbConnection.DisableTriggers">
+            <summary>
+            Disables the triggers on all tables in the database.
+            </summary>
+        </member>
+        <member name="M:YTech.Db.SqlServer.DbConnection.EnableTriggers">
+            <summary>
+            Enables the triggers on all tables in the database.
+            </summary>
+        </member>
+        <member name="M:YTech.Db.SqlServer.DbConnection.GetCurrentIdentity(System.String)">
+            <summary>
+            Returns the current identity value of the specified table.
+            </summary>
+            <param name="tableName">The table to retreive the identiy value of.</param>
+            <returns>And integer representing the identity of the specified table.</returns>
+        </member>
+    </members>
+</doc>

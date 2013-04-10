@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>Database Save</Title>
+			<Shortcut>dbs</Shortcut>
+			<Description>
+        Creates a database method for wrapping a stored procedure that saves an object to the database.
+      </Description>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+        <Literal>
+          <ID>componentType</ID>
+          <ToolTip>The type of component that this method is saving.</ToolTip>
+          <Default>Object/Component Type</Default>
+        </Literal>
+        <Literal>
+          <ID>StoredProcedureName</ID>
+          <ToolTip>
+            The name of the stored procedure that is capable of saving or updating the component.
+          </ToolTip>
+          <Default>Stored Procedure Name</Default>
+        </Literal>
+        <Literal>
+          <ID>objectName</ID>
+          <ToolTip>
+            The name of the object that the method saves.
+          </ToolTip>
+          <Default>obj</Default>
+        </Literal>
+        <Literal>
+          <ID>idParameter</ID>
+          <ToolTip>
+            The name of the parameter that is used if this call is used
+            to update an existing component in the database
+          </ToolTip>
+          <Default>@IdParameter</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp">
+        <![CDATA[
+		/// <summary>
+		///		Saves the specified <see cref="$componentType$" /> to the database.
+		/// </summary>
+		/// <param name="$objectName$">
+		///		The <see cref="$componentType$" /> to save to the database.
+		/// </param>
+		public void Save$componentType$($componentType$ $objectName$)
+		{
+			SqlCommand cmd;
+			SqlParameter idParam;
+			
+			cmd = _dbConn.GetStoredProcedureCommand("$StoredProcedureName$");
+
+			if ($objectName$.HasId)
+				idParam = cmd.Parameters.AddWithValue("@Id", ds.Id);
+			else
+				idParam = cmd.Parameters.Add("@Id", SqlDbType.Int);
+
+			//Add your parameters here that save the properties of the component
+			//Example: cmd.Parameters.AddWithValue("@Description", $objectName$.Description);
+
+			_dbConn.ExecuteNonQuery(cmd);
+
+			//If we did an insert, grab the new id
+			if(!$objectName$.HasId)
+				$objectName$.Id = (int)idParam.Value;
+		}$end$
+	]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

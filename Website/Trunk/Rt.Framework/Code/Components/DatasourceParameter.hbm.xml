@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+	<class name="Rt.Framework.Components.DatasourceParameter, Rt.Framework" table="DatasourceParameters">
+		<id name="Id">
+			<generator class="native" />
+		</id>
+		
+		<property name="ParameterNumber" />
+		<property name="IntValue" />
+		<property name="TextValue" />
+
+		<many-to-one name="ConfiguredDatasource" class="Rt.Framework.Components.ConfiguredDatasource, Rt.Framework" column="ConfiguredDatasourceId" />
+	</class>
+</hibernate-mapping>

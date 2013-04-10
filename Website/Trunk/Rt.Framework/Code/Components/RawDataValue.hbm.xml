@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+	<class name="Rt.Framework.Components.RawDataValue, Rt.Framework" table="RawData">
+		<id name="Id">
+			<generator class="native" />
+		</id>
+
+		<property name="ConfiguredDatasourceId" />
+		<property name="DatasourceSubTypeId" />
+		<property name="Timestamp" />
+		<property name="FloatValue" />
+		<property name="Success" />
+		<property name="Fuzzy" />
+	</class>
+</hibernate-mapping>

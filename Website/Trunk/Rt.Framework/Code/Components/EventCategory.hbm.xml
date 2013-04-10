@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+	<class name="Rt.Framework.Components.EventCategory, Rt.Framework" table="rt_EventCategories">
+		<id name="Id">
+			<generator class="native" />
+		</id>
+		<property name="Name" />
+		<many-to-one name="Url" class="Rt.Framework.Components.UrlClass, Rt.Framework" column="UrlId" />
+	</class>
+</hibernate-mapping>

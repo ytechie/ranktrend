@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="false">
+	<class name="Rt.Framework.Components.ConfiguredDatasource, Rt.Framework" table="ConfiguredDatasources">
+		<id name="Id">
+			<generator class="native" />
+		</id>
+		<many-to-one name="Url" class="Rt.Framework.Components.UrlClass, Rt.Framework" column="UrlId" />
+		<many-to-one name="DatasourceType" class="Rt.Framework.Components.DatasourceType, Rt.Framework" column="DatasourceTypeId" />
+		<property name="CheckFrequencyDays" />
+		<property name="Enabled" />
+		<property name="LastCheckAttempt" />
+		<property name="Name" />
+		<property name="Description" />
+		<set name="Parameters" generic="true">
+			<key column="ConfiguredDatasourceId" />
+			<one-to-many class="Rt.Framework.Components.DatasourceParameter, Rt.Framework"/>
+		</set>
+	</class>
+</hibernate-mapping>
